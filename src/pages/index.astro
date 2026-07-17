@@ -4,49 +4,34 @@ import Layout from '../layouts/Layout.astro';
 const projects = [
   {
     index: '01',
+    question: 'AI Demo 已经能跑，离真正上线还差什么？',
     title: 'AI Prototype-to-Production Toolkit',
-    description: '把“能运行的 AI Demo”转化为可审查的生产就绪判断：本地 CLI、否决门、治理工件与虚构案例。',
-    tags: ['AI Readiness', 'GRC', 'Python CLI'],
+    description: '一个本地检查工具。它读取项目证据，给出生产就绪评分和否决项，帮助团队在演示之后继续往下走。最后的放行结论仍由人确认。',
+    meta: '本地 CLI · 评分卡 · 否决项',
     href: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit'
   },
   {
     index: '02',
+    question: '资料很多，怎么整理成可以拍板的结论？',
     title: 'Research-to-Decision Toolkit',
-    description: '把资料堆积转化为可追溯的决策包：证据分级、反方审查、决策门与行动建议。',
-    tags: ['Evidence', 'Decision Support', 'Red Team'],
+    description: '把来源、反方意见、判断依据和行动建议放进同一个决策包，减少“材料不少，但下一步仍然说不清”的情况。',
+    meta: '证据分级 · 反方审查 · 决策包',
     href: 'https://github.com/Anonymousyz/research-to-decision-toolkit'
   },
   {
     index: '03',
+    question: '生产级 AI 需要补齐哪些能力？',
     title: 'Awesome AI Production Readiness',
-    description: '面向 AI 评估、可观测性、护栏、治理、安全与部署的机器可读资源入口。',
-    tags: ['Awesome List', 'Responsible AI', 'Resources'],
+    description: '一份持续维护的公开资源清单，按评估、可观测性、护栏、治理、安全和部署分类，便于按问题查找工具和资料。',
+    meta: '资源索引 · 机器可读 · 持续维护',
     href: 'https://github.com/Anonymousyz/awesome-ai-production-readiness'
-  }
-];
-
-const principles = [
-  {
-    number: 'I',
-    title: '证据先于结论',
-    text: '区分事实、判断与假设，保留来源、版本和不可证明边界。'
-  },
-  {
-    number: 'II',
-    title: '边界先于功能',
-    text: '先识别否决项、责任人和人工复核点，再讨论自动化与规模化。'
-  },
-  {
-    number: 'III',
-    title: '行动先于展示',
-    text: '输出可执行的清单、评分卡、CLI 与决策门，而不是只交付观点。'
   }
 ];
 ---
 
 <Layout
-  title="Anonymousyz｜Applied AI · Governance · Decision Systems"
-  description="连接 AI 治理、复杂研究与真实交付：公开工具、方法和可验证作品。"
+  title="Anonymousyz｜政策研究、AI 治理与开源工具"
+  description="Anonymousyz 的个人专业主页，展示 AI 上线检查、研究转决策和生产级 AI 资源整理工具。"
 >
   <header class="site-header shell">
     <a class="brand" href="#top" aria-label="返回首页">
@@ -54,9 +39,9 @@ const principles = [
       <span>Anonymousyz</span>
     </a>
     <nav aria-label="主导航">
-      <a href="#work">作品</a>
-      <a href="#method">方法</a>
-      <a href="#about">关于</a>
+      <a href="#work">工具</a>
+      <a href="#why">为什么做</a>
+      <a href="#about">关于我</a>
     </nav>
     <a class="header-link" href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
       GitHub <span aria-hidden="true">↗</span>
@@ -66,93 +51,93 @@ const principles = [
   <main id="top">
     <section class="hero shell">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> PUBLIC WORK / 2026</p>
-        <h1>把复杂研究与 AI 治理，<br /><em>做成可以使用的工具。</em></h1>
+        <p class="eyebrow"><span></span> 个人专业主页</p>
+        <h1>我做政策和产业研究，<br /><em>也在做 AI 治理和开源工具。</em></h1>
         <p class="hero-lead">
-          聚焦 Applied AI、Governance 与 Research-to-Decision。这里展示公开、可复用、可验证的工作成果。
+          这里目前放着三个公开仓库，分别处理 AI 上线检查、研究资料转化和生产级 AI 资源整理。代码、说明和示例都可以直接查看。
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#work">查看代表作品</a>
+          <a class="button button-primary" href="#work">先看三个工具</a>
           <a class="button button-quiet" href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
-            访问 GitHub <span aria-hidden="true">↗</span>
+            打开我的 GitHub <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
 
-      <aside class="hero-panel" aria-label="工作关注点">
+      <aside class="hero-panel" aria-label="网站内容说明">
         <div class="panel-topline">
-          <span>WORKING FOCUS</span>
-          <span class="status"><i></i> OPEN SOURCE</span>
+          <span>你能在这里看到</span>
+          <span class="status"><i></i> 个人主页</span>
         </div>
-        <div class="focus-list">
-          <div><span>01</span><strong>AI 生产就绪</strong><small>Prototype → Production</small></div>
-          <div><span>02</span><strong>治理与责任边界</strong><small>Governance · GRC</small></div>
-          <div><span>03</span><strong>研究转化决策</strong><small>Evidence → Action</small></div>
+        <p class="panel-intro">这是公开作品入口，不是公司官网。</p>
+        <div class="site-map">
+          <div><strong>工具</strong><span>3 个已经公开的 GitHub 仓库</span></div>
+          <div><strong>文章</strong><span>从个人知识库逐篇整理发布</span></div>
+          <div><strong>案例</strong><span>只展示经过脱敏的公开版本</span></div>
         </div>
+        <p class="panel-boundary">客户材料和内部项目不在这里公开。</p>
       </aside>
     </section>
 
     <section class="section shell" id="work">
       <div class="section-heading">
         <div>
-          <p class="kicker">SELECTED WORK</p>
-          <h2>代表作品</h2>
+          <p class="kicker">01 / 公开工具</p>
+          <h2>目前能直接查看的三个工具</h2>
         </div>
-        <p>不是项目陈列，而是把判断方法做成他人可以复用、检验和改进的公共工件。</p>
+        <p>它们对应我在研究和 AI 项目中反复遇到的三类问题。每个仓库都保留说明、源码和可检查的示例。</p>
       </div>
 
       <div class="project-grid">
         {projects.map((project) => (
           <article class="project-card">
             <div class="card-index">{project.index}</div>
+            <p class="project-question">{project.question}</p>
             <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <ul class="tag-list" aria-label="项目标签">
-              {project.tags.map((tag) => <li>{tag}</li>)}
-            </ul>
-            <a href={project.href} target="_blank" rel="noreferrer" aria-label={`查看 ${project.title}`}>
-              查看仓库 <span aria-hidden="true">↗</span>
+            <p class="project-description">{project.description}</p>
+            <p class="project-meta">{project.meta}</p>
+            <a href={project.href} target="_blank" rel="noreferrer" aria-label={`打开 ${project.title}`}>
+              打开 GitHub 仓库 <span aria-hidden="true">↗</span>
             </a>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="section method-section" id="method">
-      <div class="shell">
-        <div class="section-heading light-heading">
-          <div>
-            <p class="kicker">WORKING METHOD</p>
-            <h2>从判断到行动</h2>
-          </div>
-          <p>跨越研究、治理与工程的共同原则：可追溯、可复核、有边界。</p>
+    <section class="section method-section" id="why">
+      <div class="shell story-grid">
+        <div>
+          <p class="kicker">02 / 为什么做</p>
+          <h2>这些工具解决的是同一个麻烦</h2>
         </div>
-        <div class="principle-grid">
-          {principles.map((principle) => (
-            <article class="principle">
-              <span>{principle.number}</span>
-              <h3>{principle.title}</h3>
-              <p>{principle.text}</p>
-            </article>
-          ))}
+        <div class="story-copy">
+          <p>
+            研究项目和 AI 项目里经常有这种情况：材料并不少，系统也可能已经能运行，但关键判断仍然依赖少数人的经验，其他人很难复核。
+          </p>
+          <p>
+            这三个仓库做的是同一件事。先把判断标准写清楚，再把其中可以重复检查的部分交给程序。涉及责任和取舍的结论，继续由人来做。
+          </p>
+          <p class="story-note">
+            它们是公开方法和可运行原型，不是客户项目的公开版。
+          </p>
         </div>
       </div>
     </section>
 
     <section class="section shell about" id="about">
       <div>
-        <p class="kicker">ABOUT</p>
-        <h2>研究、治理与工程之间的连接者</h2>
+        <p class="kicker">03 / 关于我</p>
+        <h2>我在做什么</h2>
       </div>
       <div class="about-copy">
         <p>
-          我关注一个反复出现的问题：当 AI 从演示进入真实组织，哪些证据、边界和责任机制决定它能否被采用？
+          我长期处理政策、产业和治理问题。现在，我也在研究企业采用 AI 时会碰到的证据、责任、数据和运行边界。
         </p>
         <p>
-          因此，我把研究方法、治理要求和工程检查结合起来，做成可以复制、运行和审查的开放工具。
+          Anonymousyz 是我的公开技术账号。这个网站只放可以公开、可以复用的部分，包括工具、文章和脱敏案例。
         </p>
         <a href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
-          查看完整公开档案 <span aria-hidden="true">↗</span>
+          查看 GitHub 公开档案 <span aria-hidden="true">↗</span>
         </a>
       </div>
     </section>
@@ -162,9 +147,9 @@ const principles = [
     <div class="shell">
       <div>
         <strong>Anonymousyz</strong>
-        <span>Applied AI · Governance · Decision Systems</span>
+        <span>政策研究 · AI 治理 · 开源工具</span>
       </div>
-      <p>Built in public. Evidence over claims.</p>
+      <p>问题和建议可以通过 GitHub 联系。</p>
     </div>
   </footer>
 </Layout>
