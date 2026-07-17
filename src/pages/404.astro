@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="页面未找到｜Anonymousyz" description="请求的页面不存在。">
+  <main class="not-found">
+    <p>404</p>
+    <h1>这个页面还不存在。</h1>
+    <a href="/">返回首页</a>
+  </main>
+</Layout>
+
+<style>
+  .not-found { min-height: 100vh; display: grid; place-content: center; justify-items: start; padding: 28px; }
+  p { margin: 0 0 18px; color: #0b8878; font-family: monospace; }
+  h1 { margin: 0 0 30px; font-size: clamp(36px, 7vw, 72px); }
+  a { padding-bottom: 5px; border-bottom: 1px solid currentColor; }
+</style>
