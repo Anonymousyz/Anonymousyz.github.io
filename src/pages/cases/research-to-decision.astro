@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const stages = [
+  ['01', '把题目变成决策', '明确谁需要决定什么、截止时间是什么、如果不决定会怎样。'],
+  ['02', '把材料变成证据', '区分事实、判断、假设和待核验项；记录最薄弱的一环。'],
+  ['03', '把结论变成选项', '列出备选方案、取舍、风险条件，以及什么证据会改变建议。'],
+  ['04', '留下可复查的产物', '形成决策包、责任人和反馈记录，让讨论不止停留在一次会议。']
+];
+---
+
+<Layout
+  title="Research-to-Decision Toolkit｜旗舰案例"
+  description="一个公开、可复查的案例：如何把零散研究材料组织成可供人负责判断的决策包。"
+>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="返回首页">
+      <span class="brand-mark">A</span>
+      <span>Anonymousyz</span>
+    </a>
+    <nav aria-label="主导航">
+      <a href="#problem">问题</a>
+      <a href="#workflow">流程</a>
+      <a href="#evidence">证据</a>
+      <a href="#boundary">边界</a>
+    </nav>
+    <a class="header-link" href="https://github.com/Anonymousyz/research-to-decision-toolkit" target="_blank" rel="noreferrer">
+      GitHub ↗
+    </a>
+  </header>
+
+  <main>
+    <section class="case-hero shell">
+      <p class="eyebrow"><span></span> 旗舰案例 / 公开工具 01</p>
+      <p class="case-label">Research-to-Decision Toolkit · v0.6.0</p>
+      <h1>资料不少，<br /><em>但到底该拍板什么？</em></h1>
+      <p class="case-lead">这是一个本地运行的公开工具和模板包。它不替人做决定；它把问题、证据、分歧、选项和下一步整理成一份可被负责人复查的决策包。</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="https://github.com/Anonymousyz/research-to-decision-toolkit/releases/tag/v0.6.0" target="_blank" rel="noreferrer">查看 v0.6.0 Release ↗</a>
+        <a class="button button-quiet" href="https://github.com/Anonymousyz/research-to-decision-toolkit" target="_blank" rel="noreferrer">打开 GitHub 仓库 ↗</a>
+      </div>
+    </section>
+
+    <section class="section shell case-problem" id="problem">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">01 / 它解决什么</p>
+          <h2>研究经常止步于“材料很多”</h2>
+        </div>
+        <p>项目里常见的困难不是没有资料，而是没人能清楚回答：现在要决定什么、有哪些现实选项、哪些证据足以支持建议、谁对下一步负责。</p>
+      </div>
+      <div class="case-contrast">
+        <article>
+          <span>常见结果</span>
+          <h3>一份看起来完整的材料</h3>
+          <p>有背景、数据和结论，但决策人、备选项、反证、退出条件和后续责任仍然模糊。</p>
+        </article>
+        <article>
+          <span>R2D 的目标</span>
+          <h3>一份能经受讨论的决策包</h3>
+          <p>把证据和判断分开，让负责人能追问、反对、补证据或明确暂不决策。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section case-workflow" id="workflow">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">02 / 怎样工作</p>
+            <h2>四步，不跳过人的判断</h2>
+          </div>
+          <p>工具负责把结构固定下来；来源核验、领域判断、风险承担和最终决定，仍由具体责任人完成。</p>
+        </div>
+        <div class="case-stages">
+          {stages.map(([index, title, text]) => (
+            <article>
+              <span>{index}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="evidence">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">03 / 能直接检查什么</p>
+          <h2>不是一段理念，而是一套可运行的公开产物</h2>
+        </div>
+        <p>以下是任何人都可以从公开仓库检查或复现的内容；案例数据均为虚构或合成，不代表真实组织、部署或结果。</p>
+      </div>
+      <div class="case-evidence">
+        <a href="https://github.com/Anonymousyz/research-to-decision-toolkit/tree/main/templates" target="_blank" rel="noreferrer"><strong>模板</strong><span>问题框定、证据矩阵、决策备忘录、反馈记录</span><b>↗</b></a>
+        <a href="https://github.com/Anonymousyz/research-to-decision-toolkit/tree/main/examples/fictional-ai-governance-research-to-decision" target="_blank" rel="noreferrer"><strong>合成案例</strong><span>完整的 AI 治理决策简报、报告和未填反馈日志</span><b>↗</b></a>
+        <a href="https://github.com/Anonymousyz/research-to-decision-toolkit/tree/main/tests" target="_blank" rel="noreferrer"><strong>CLI 与测试</strong><span>初始化、校验、评分与报告命令；结构与否决项测试</span><b>↗</b></a>
+        <a href="https://github.com/Anonymousyz/research-to-decision-toolkit/blob/main/docs/method_status.md" target="_blank" rel="noreferrer"><strong>方法状态</strong><span>评分能证明什么、不能证明什么，以及下一步校准路线</span><b>↗</b></a>
+      </div>
+    </section>
+
+    <section class="section shell case-run">
+      <div>
+        <p class="kicker">04 / 60 秒试用</p>
+        <h2>先运行一个虚构样例，<br />再换成获授权的材料。</h2>
+      </div>
+      <pre><code>python -m pip install "https://github.com/Anonymousyz/research-to-decision-toolkit/releases/download/v0.6.0/research_to_decision_toolkit-0.6.0-py3-none-any.whl"
+r2d init brief.json
+r2d validate brief.json
+r2d report brief.json --output decision_report.md</code></pre>
+    </section>
+
+    <section class="section shell" id="boundary">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">05 / 可信度边界</p>
+          <h2>它已经做到什么，尚未做到什么</h2>
+        </div>
+        <p>这里不把“结构完整”包装成“结论正确”，也不把公开发布包装成“已被广泛采用”。</p>
+      </div>
+      <div class="validation-list">
+        <article class="validation-item">
+          <span class="validation-label verified">已验证</span>
+          <h3>工具、样例和版本可以复查</h3>
+          <ul><li>公开仓库、Release、MIT 许可证、模板和合成案例均可访问。</li><li>CLI 可以校验结构、评分规则和否决项，并输出决策报告。</li><li>方法状态文档明确列出测试、来源声明与人工复核的边界。</li></ul>
+        </article>
+        <article class="validation-item">
+          <span class="validation-label pending">尚未验证</span>
+          <h3>不替代领域责任和外部验证</h3>
+          <ul><li>24 分评分是作者设计的结构化启发式，不代表决策获批、正确或可实施。</li><li>CLI 不会自动抓取、认证或判断来源是否足以支持某一主张。</li><li>外部复现、独立评审与真实采用证据仍在积累。</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-close shell">
+      <p>下一步不是再写一份更漂亮的报告，而是让陌生人用一份获授权材料，复现一次“从研究到决策”的过程。</p>
+      <a class="button button-primary" href="https://github.com/Anonymousyz/research-to-decision-toolkit/issues/new?template=field-test.yml" target="_blank" rel="noreferrer">提交 field-test 反馈 ↗</a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell"><div><strong>Anonymousyz</strong><span>从研究到决策</span></div><p>公开案例 · 可验证工具 · 明确边界</p></div></footer>
+</Layout>

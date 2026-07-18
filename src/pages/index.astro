@@ -1,37 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const projects = [
+const themes = [
   {
     index: '01',
-    question: 'AI Demo 已经能跑，离真正上线还差什么？',
-    title: 'AI Prototype-to-Production Toolkit',
-    description: '一个本地检查工具。它读取项目证据，给出生产就绪评分和否决项，帮助团队在演示之后继续往下走。最后的放行结论仍由人确认。',
-    meta: '本地 CLI · 评分卡 · 否决项',
-    href: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit'
+    question: '真正要决定什么？',
+    answer: '研究不从搜索开始。先把宽泛话题改成有决策者、有时间限制、也有现实约束的问题。'
   },
   {
     index: '02',
-    question: '资料很多，怎么整理成可以拍板的结论？',
-    title: 'Research-to-Decision Toolkit',
-    description: '把来源、反方意见、判断依据和行动建议放进同一个决策包，减少“材料不少，但下一步仍然说不清”的情况。',
-    meta: '证据分级 · 反方审查 · 决策包',
-    href: 'https://github.com/Anonymousyz/research-to-decision-toolkit'
+    question: '结论凭什么成立？',
+    answer: '把事实、判断和假设分开，同时检查来源是否适用，并主动寻找反面证据。'
   },
   {
     index: '03',
-    question: '生产级 AI 需要补齐哪些能力？',
+    question: '下一步怎样验证？',
+    answer: '把建议写成真实选项，说明适用条件、责任人，以及什么情况应该停止或改型。'
+  }
+];
+
+const projects = [
+  {
+    index: '01',
+    question: '资料很多，怎样整理成可以拍板的判断？',
+    title: 'Research-to-Decision Toolkit',
+    description: '把问题、来源、备选方案、不确定性和下一步行动放进同一个决策包。目标不是替人拍板，而是让结论可以追溯、质疑和修订。',
+    meta: '证据分级 · 反方审查 · 决策包',
+    release: 'v0.6.0',
+    releaseHref: 'https://github.com/Anonymousyz/research-to-decision-toolkit/releases/tag/v0.6.0',
+    href: '/cases/research-to-decision/'
+  },
+  {
+    index: '02',
+    question: 'AI Demo 已经能跑，离真实使用还差什么？',
+    title: 'AI Prototype-to-Production Toolkit',
+    description: '一个本地检查工具。它读取项目证据，给出生产就绪评分和否决项，帮助团队区分“可以演示”和“可以进入真实业务”。',
+    meta: '本地 CLI · 评分卡 · 否决项',
+    release: 'v0.6.0',
+    releaseHref: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit/releases/tag/v0.6.0',
+    href: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit'
+  },
+  {
+    index: '03',
+    question: '生产级 AI 遇到具体问题时，去哪里找工具？',
     title: 'Awesome AI Production Readiness',
-    description: '一份持续维护的公开资源清单，按评估、可观测性、护栏、治理、安全和部署分类，便于按问题查找工具和资料。',
+    description: '一份持续维护的公开资源清单，按评估、可观测性、护栏、治理、安全和部署分类。',
     meta: '资源索引 · 机器可读 · 持续维护',
+    release: 'v0.3.4',
+    releaseHref: 'https://github.com/Anonymousyz/awesome-ai-production-readiness/releases/tag/v0.3.4',
     href: 'https://github.com/Anonymousyz/awesome-ai-production-readiness'
   }
 ];
 ---
 
 <Layout
-  title="Anonymousyz｜政策研究、AI 治理与开源工具"
-  description="Anonymousyz 的个人专业主页，展示 AI 上线检查、研究转决策和生产级 AI 资源整理工具。"
+  title="Anonymousyz｜从研究到决策"
+  description="Anonymousyz 的个人主页：政策与产业研究、复杂问题研判，以及配套的公开文章和开源工具。"
 >
   <header class="site-header shell">
     <a class="brand" href="#top" aria-label="返回首页">
@@ -39,8 +63,9 @@ const projects = [
       <span>Anonymousyz</span>
     </a>
     <nav aria-label="主导航">
-      <a href="#work">工具</a>
-      <a href="#why">为什么做</a>
+      <a href="#theme">研究主题</a>
+      <a href="#work">公开工具</a>
+      <a href="#validation">验证状态</a>
       <a href="#about">关于我</a>
     </nav>
     <a class="header-link" href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
@@ -51,94 +76,143 @@ const projects = [
   <main id="top">
     <section class="hero shell">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> 个人专业主页</p>
-        <h1>我做政策和产业研究，<br /><em>也在做 AI 治理和开源工具。</em></h1>
+        <p class="eyebrow"><span></span> 北京大学硕士 · 产业研究与咨询从业者</p>
+        <h1>我做政策和产业研究。<br /><em>AI 能很快给出答案，我更关心它值不值得相信。</em></h1>
         <p class="hero-lead">
-          这里目前放着三个公开仓库，分别处理 AI 上线检查、研究资料转化和生产级 AI 资源整理。代码、说明和示例都可以直接查看。
+          这里收录我的公开研究和工具。当前已经上线的是三个 GitHub 仓库，分别处理研究转决策、AI 原型上线检查和生产级 AI 资源整理。
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#work">先看三个工具</a>
-          <a class="button button-quiet" href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
-            打开我的 GitHub <span aria-hidden="true">↗</span>
-          </a>
+          <a class="button button-primary" href="#theme">从研究主题开始</a>
+          <a class="button button-quiet" href="#work">查看三个公开工具</a>
         </div>
       </div>
 
-      <aside class="hero-panel" aria-label="网站内容说明">
+      <aside class="hero-panel" aria-label="个人资料">
         <div class="panel-topline">
-          <span>你能在这里看到</span>
-          <span class="status"><i></i> 个人主页</span>
+          <span>个人资料</span>
+          <span class="status"><i></i> 公开信息</span>
         </div>
-        <p class="panel-intro">这是公开作品入口，不是公司官网。</p>
+        <p class="panel-intro">Anonymousyz</p>
         <div class="site-map">
-          <div><strong>工具</strong><span>3 个已经公开的 GitHub 仓库</span></div>
-          <div><strong>文章</strong><span>从个人知识库逐篇整理发布</span></div>
-          <div><strong>案例</strong><span>只展示经过脱敏的公开版本</span></div>
+          <div><strong>工作</strong><span>政策与产业研究</span></div>
+          <div><strong>主题</strong><span>从研究到决策</span></div>
+          <div><strong>作品</strong><span>三个公开 GitHub 仓库</span></div>
         </div>
-        <p class="panel-boundary">客户材料和内部项目不在这里公开。</p>
+        <p class="panel-boundary">AI 治理是持续积累的专业方向，不是用来替代作品的头衔。</p>
       </aside>
     </section>
 
-    <section class="section shell" id="work">
+    <section class="section shell" id="theme">
       <div class="section-heading">
         <div>
-          <p class="kicker">01 / 公开工具</p>
-          <h2>目前能直接查看的三个工具</h2>
+          <p class="kicker">01 / 长期主题</p>
+          <h2>从研究到决策</h2>
         </div>
-        <p>它们对应我在研究和 AI 项目中反复遇到的三类问题。每个仓库都保留说明、源码和可检查的示例。</p>
+        <p>AI 可以很快生成一份完整答案。真正困难的部分，是确认问题有没有问对、结论是否站得住，以及下一步该怎样验证。</p>
       </div>
 
-      <div class="project-grid">
-        {projects.map((project) => (
-          <article class="project-card">
-            <div class="card-index">{project.index}</div>
-            <p class="project-question">{project.question}</p>
-            <h3>{project.title}</h3>
-            <p class="project-description">{project.description}</p>
-            <p class="project-meta">{project.meta}</p>
-            <a href={project.href} target="_blank" rel="noreferrer" aria-label={`打开 ${project.title}`}>
-              打开 GitHub 仓库 <span aria-hidden="true">↗</span>
-            </a>
+      <div class="theme-list">
+        {themes.map((theme) => (
+          <article class="theme-item">
+            <span>{theme.index}</span>
+            <h3>{theme.question}</h3>
+            <p>{theme.answer}</p>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="section method-section" id="why">
-      <div class="shell story-grid">
-        <div>
-          <p class="kicker">02 / 为什么做</p>
-          <h2>这些工具解决的是同一个麻烦</h2>
+    <section class="section tools-section" id="work">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">02 / 公开工具</p>
+            <h2>把研究方法做成可以检查的附件</h2>
+          </div>
+          <p>文章负责解释判断，GitHub 保存模板、代码和示例。三个仓库记录了目前已经可以公开、运行和复核的部分。</p>
         </div>
-        <div class="story-copy">
-          <p>
-            研究项目和 AI 项目里经常有这种情况：材料并不少，系统也可能已经能运行，但关键判断仍然依赖少数人的经验，其他人很难复核。
-          </p>
-          <p>
-            这三个仓库做的是同一件事。先把判断标准写清楚，再把其中可以重复检查的部分交给程序。涉及责任和取舍的结论，继续由人来做。
-          </p>
-          <p class="story-note">
-            它们是公开方法和可运行原型，不是客户项目的公开版。
-          </p>
+
+        <div class="project-list">
+          {projects.map((project) => (
+            <article class="project-card">
+              <div class="card-index">{project.index}</div>
+              <div class="project-title-block">
+                <p class="project-question">{project.question}</p>
+                <h3>{project.title}</h3>
+                <p class="project-meta">{project.meta}</p>
+              </div>
+              <div class="project-summary">
+                <p class="project-description">{project.description}</p>
+                <div class="project-links">
+                  <a href={project.href} target="_blank" rel="noreferrer" aria-label={`打开 ${project.title}`}>
+                    GitHub 仓库 <span aria-hidden="true">↗</span>
+                  </a>
+                  <a href={project.releaseHref} target="_blank" rel="noreferrer" aria-label={`打开 ${project.title} ${project.release} Release`}>
+                    公开版本 {project.release} <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
+    <section class="section shell" id="validation">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">03 / 验证状态</p>
+          <h2>哪些已经验证，哪些还没有</h2>
+        </div>
+        <p>Release、测试和合成案例可以证明工具确实存在并能运行，但不能证明它已经被市场采用。</p>
+      </div>
+
+      <div class="validation-list">
+        <article class="validation-item">
+          <span class="validation-label verified">已验证</span>
+          <h3>发布物可以公开检查</h3>
+          <ul>
+            <li>三个仓库均有正式公开 Release 和可下载资产。</li>
+            <li>工具仓库提供测试、合成案例或在线链接核验。</li>
+            <li>使用边界、许可证和反馈入口可以在仓库中查看。</li>
+          </ul>
+        </article>
+        <article class="validation-item">
+          <span class="validation-label pending">尚未验证</span>
+          <h3>外部采用仍缺少独立证据</h3>
+          <ul>
+            <li>目前没有依据声称工具已被广泛采用或形成稳定用户群。</li>
+            <li>陌生用户复现、外部 Issue 和独立引用仍然不足。</li>
+            <li>“从研究到决策”文章系列尚未形成成熟的公开连载。</li>
+          </ul>
+        </article>
+      </div>
+      <p class="validation-note">目前正在征集首批外部试用和复现。可以通过 GitHub Issue 反馈，但请不要上传敏感或未经授权的材料。</p>
+    </section>
+
     <section class="section shell about" id="about">
       <div>
-        <p class="kicker">03 / 关于我</p>
-        <h2>我在做什么</h2>
+        <p class="kicker">04 / 关于我</p>
+        <h2>产业研究，是我理解问题的起点</h2>
       </div>
       <div class="about-copy">
         <p>
-          我长期处理政策、产业和治理问题。现在，我也在研究企业采用 AI 时会碰到的证据、责任、数据和运行边界。
+          北京大学硕士，产业研究与咨询从业者。我的工作长期涉及政策、产业趋势、数字化转型和复杂决策材料。
         </p>
         <p>
-          Anonymousyz 是我的公开技术账号。这个网站只放可以公开、可以复用的部分，包括工具、文章和脱敏案例。
+          近年，我也把这套方法用在 AI 项目中：不只看模型能不能输出，还看数据从哪里来、错误由谁发现、结论怎样复核、上线以后由谁负责。
         </p>
-        <a href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
-          查看 GitHub 公开档案 <span aria-hidden="true">↗</span>
-        </a>
+        <p>
+          AI 治理是我持续积累的专业方向。我不拿头衔替代项目、作品和外部检验。
+        </p>
+        <div class="about-links">
+          <a href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a href="https://linkedin.com/in/先生-白-0ba54a34" target="_blank" rel="noreferrer">
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -147,9 +221,9 @@ const projects = [
     <div class="shell">
       <div>
         <strong>Anonymousyz</strong>
-        <span>政策研究 · AI 治理 · 开源工具</span>
+        <span>从研究到决策</span>
       </div>
-      <p>问题和建议可以通过 GitHub 联系。</p>
+      <p>研究主题 · GitHub 工具 · 验证状态</p>
     </div>
   </footer>
 </Layout>
