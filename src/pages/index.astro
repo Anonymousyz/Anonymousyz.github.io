@@ -19,6 +19,45 @@ const themes = [
   }
 ];
 
+const systems = [
+  {
+    index: '01',
+    title: '判断系统',
+    question: '如何确认真正的问题？',
+    description: '先还原目标、事实和约束，再选择一个足以改变行动的工具；结论必须允许反证和修订。',
+    meta: '逻辑体系 · 多元认知 · 证据边界',
+    status: '已有公开证据',
+    href: '/systems/#judgment'
+  },
+  {
+    index: '02',
+    title: '表达系统',
+    question: '如何让复杂内容被看懂？',
+    description: '写作负责组织判断，视觉负责降低理解成本；两者都服务于信息，而不是装饰。',
+    meta: '写作方法 · 视觉规范 · Design Tokens',
+    status: '正在公开化',
+    href: '/systems/#expression'
+  },
+  {
+    index: '03',
+    title: '治理系统',
+    question: '如何让技术在边界内创造价值？',
+    description: '用 CIO 视角连接业务结果、数据、AI、风险和技术投入，把治理做成门禁而不是口号。',
+    meta: '数据治理 · AI 治理 · IT 服务管理',
+    status: '研究与应用',
+    href: '/systems/#governance'
+  },
+  {
+    index: '04',
+    title: '构建系统',
+    question: '如何把方法变成可运行的工具？',
+    description: '通过软件开发、SWE Agent、测试和发布证据，把研究方法变成可以运行、检查和复现的产物。',
+    meta: '软件开发 · SWE Agent · 测试与发布',
+    status: '公开实践',
+    href: '/systems/#building'
+  }
+];
+
 const projects = [
   {
     index: '01',
@@ -64,6 +103,7 @@ const projects = [
     </a>
     <nav aria-label="主导航">
       <a href="#theme">研究主题</a>
+      <a href="#systems">能力系统</a>
       <a href="#work">公开工具</a>
       <a href="#validation">验证状态</a>
       <a href="#about">关于我</a>
@@ -79,10 +119,10 @@ const projects = [
         <p class="eyebrow"><span></span> 北京大学硕士 · 产业研究与咨询从业者</p>
         <h1>我做政策和产业研究。<br /><em>AI 能很快给出答案，我更关心它值不值得相信。</em></h1>
         <p class="hero-lead">
-          这里收录我的公开研究和工具。当前已经上线的是三个 GitHub 仓库，分别处理研究转决策、AI 原型上线检查和生产级 AI 资源整理。
+          这里收录我的公开研究、能力系统和工具。长期建设围绕判断、表达、治理和构建四个环节；当前已有三个 GitHub 仓库作为公开证据。
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#theme">从研究主题开始</a>
+          <a class="button button-primary" href="#systems">查看四套能力系统</a>
           <a class="button button-quiet" href="#work">查看三个公开工具</a>
         </div>
       </div>
@@ -96,6 +136,7 @@ const projects = [
         <div class="site-map">
           <div><strong>工作</strong><span>政策与产业研究</span></div>
           <div><strong>主题</strong><span>从研究到决策</span></div>
+          <div><strong>系统</strong><span>判断 · 表达 · 治理 · 构建</span></div>
           <div><strong>作品</strong><span>三个公开 GitHub 仓库</span></div>
         </div>
         <p class="panel-boundary">AI 治理是持续积累的专业方向，不是用来替代作品的头衔。</p>
@@ -122,11 +163,39 @@ const projects = [
       </div>
     </section>
 
+    <section class="section systems-section" id="systems">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">02 / 能力系统</p>
+            <h2>工具不是起点</h2>
+          </div>
+          <p>公开作品来自四套长期建设的系统。这里先说明它们分别解决什么问题；方法、证据和边界放在独立页面展开。</p>
+        </div>
+
+        <div class="systems-list">
+          {systems.map((system) => (
+            <a class="system-row" href={system.href}>
+              <span class="system-index">{system.index}</span>
+              <div class="system-name">
+                <p>{system.question}</p>
+                <h3>{system.title}</h3>
+                <span>{system.meta}</span>
+              </div>
+              <p class="system-description">{system.description}</p>
+              <div class="system-status"><span>{system.status}</span><b aria-hidden="true">→</b></div>
+            </a>
+          ))}
+        </div>
+        <a class="systems-more" href="/systems/">查看方法、公开证据与能力边界 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
     <section class="section tools-section" id="work">
       <div class="shell">
         <div class="section-heading">
           <div>
-            <p class="kicker">02 / 公开工具</p>
+            <p class="kicker">03 / 公开工具</p>
             <h2>把研究方法做成可以检查的附件</h2>
           </div>
           <p>文章负责解释判断，GitHub 保存模板、代码和示例。三个仓库记录了目前已经可以公开、运行和复核的部分。</p>
@@ -161,7 +230,7 @@ const projects = [
     <section class="section shell" id="validation">
       <div class="section-heading">
         <div>
-          <p class="kicker">03 / 验证状态</p>
+          <p class="kicker">04 / 验证状态</p>
           <h2>哪些已经验证，哪些还没有</h2>
         </div>
         <p>Release、测试和合成案例可以证明工具确实存在并能运行，但不能证明它已经被市场采用。</p>
@@ -192,7 +261,7 @@ const projects = [
 
     <section class="section shell about" id="about">
       <div>
-        <p class="kicker">04 / 关于我</p>
+        <p class="kicker">05 / 关于我</p>
         <h2>产业研究，是我理解问题的起点</h2>
       </div>
       <div class="about-copy">
@@ -223,7 +292,7 @@ const projects = [
         <strong>Anonymousyz</strong>
         <span>从研究到决策</span>
       </div>
-      <p>研究主题 · GitHub 工具 · 验证状态</p>
+      <p>研究主题 · 能力系统 · GitHub 工具 · 验证状态</p>
     </div>
   </footer>
 </Layout>
