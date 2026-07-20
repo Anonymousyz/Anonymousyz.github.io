@@ -1,298 +1,69 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IdentityIndex from '../components/IdentityIndex.astro';
+import MethodIndex from '../components/MethodIndex.astro';
+import ProjectIndex from '../components/ProjectIndex.astro';
+import PublicWorkIndex from '../components/PublicWorkIndex.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { identityProfiles, methodSystem } from '../data/methods.mjs';
+import { demos, featuredCase, heroCopy, positioning, tools } from '../data/portfolio.mjs';
 
-const themes = [
-  {
-    index: '01',
-    question: '真正要决定什么？',
-    answer: '研究不从搜索开始。先把宽泛话题改成有决策者、有时间限制、也有现实约束的问题。'
-  },
-  {
-    index: '02',
-    question: '结论凭什么成立？',
-    answer: '把事实、判断和假设分开，同时检查来源是否适用，并主动寻找反面证据。'
-  },
-  {
-    index: '03',
-    question: '下一步怎样验证？',
-    answer: '把建议写成真实选项，说明适用条件、责任人，以及什么情况应该停止或改型。'
-  }
-];
-
-const systems = [
-  {
-    index: '01',
-    title: '判断系统',
-    question: '如何确认真正的问题？',
-    description: '先还原目标、事实和约束，再选择一个足以改变行动的工具；结论必须允许反证和修订。',
-    meta: '逻辑体系 · 多元认知 · 证据边界',
-    status: '已有公开证据',
-    href: '/systems/#judgment'
-  },
-  {
-    index: '02',
-    title: '表达系统',
-    question: '如何让复杂内容被看懂？',
-    description: '写作负责组织判断，视觉负责降低理解成本；两者都服务于信息，而不是装饰。',
-    meta: '写作方法 · 视觉规范 · Design Tokens',
-    status: '正在公开化',
-    href: '/systems/#expression'
-  },
-  {
-    index: '03',
-    title: '治理系统',
-    question: '如何让技术在边界内创造价值？',
-    description: '用 CIO 视角连接业务结果、数据、AI、风险和技术投入，把治理做成门禁而不是口号。',
-    meta: '数据治理 · AI 治理 · IT 服务管理',
-    status: '研究与应用',
-    href: '/systems/#governance'
-  },
-  {
-    index: '04',
-    title: '构建系统',
-    question: '如何把方法变成可运行的工具？',
-    description: '通过软件开发、SWE Agent、测试和发布证据，把研究方法变成可以运行、检查和复现的产物。',
-    meta: '软件开发 · SWE Agent · 测试与发布',
-    status: '公开实践',
-    href: '/systems/#building'
-  }
-];
-
-const projects = [
-  {
-    index: '01',
-    question: '资料很多，怎样整理成可以拍板的判断？',
-    title: 'Research-to-Decision Toolkit',
-    description: '把问题、来源、备选方案、不确定性和下一步行动放进同一个决策包。目标不是替人拍板，而是让结论可以追溯、质疑和修订。',
-    meta: '证据分级 · 反方审查 · 决策包',
-    release: 'v0.6.0',
-    releaseHref: 'https://github.com/Anonymousyz/research-to-decision-toolkit/releases/tag/v0.6.0',
-    href: '/cases/research-to-decision/'
-  },
-  {
-    index: '02',
-    question: 'AI Demo 已经能跑，离真实使用还差什么？',
-    title: 'AI Prototype-to-Production Toolkit',
-    description: '一个本地检查工具。它读取项目证据，给出生产就绪评分和否决项，帮助团队区分“可以演示”和“可以进入真实业务”。',
-    meta: '本地 CLI · 评分卡 · 否决项',
-    release: 'v0.6.0',
-    releaseHref: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit/releases/tag/v0.6.0',
-    href: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit'
-  },
-  {
-    index: '03',
-    question: '生产级 AI 遇到具体问题时，去哪里找工具？',
-    title: 'Awesome AI Production Readiness',
-    description: '一份持续维护的公开资源清单，按评估、可观测性、护栏、治理、安全和部署分类。',
-    meta: '资源索引 · 机器可读 · 持续维护',
-    release: 'v0.3.4',
-    releaseHref: 'https://github.com/Anonymousyz/awesome-ai-production-readiness/releases/tag/v0.3.4',
-    href: 'https://github.com/Anonymousyz/awesome-ai-production-readiness'
-  }
-];
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Anonymousyz',
+  url: 'https://decideandbuild.com/',
+  sameAs: [
+    'https://github.com/Anonymousyz'
+  ]
+};
 ---
 
 <Layout
-  title="Anonymousyz｜从研究到决策"
-  description="Anonymousyz 的个人主页：政策与产业研究、复杂问题研判，以及配套的公开文章和开源工具。"
+  title="Anonymousyz｜从分析到决策，从技术到应用"
+  description="围绕“从分析到决策、从技术到应用”整理的个人方法、公开作品和项目记录。"
+  image="/og/home.png"
+  structuredData={personSchema}
 >
-  <header class="site-header shell">
-    <a class="brand" href="#top" aria-label="返回首页">
-      <span class="brand-mark">A</span>
-      <span>Anonymousyz</span>
-    </a>
-    <nav aria-label="主导航">
-      <a href="#theme">研究主题</a>
-      <a href="#systems">能力系统</a>
-      <a href="#work">公开工具</a>
-      <a href="#validation">验证状态</a>
-      <a href="#about">关于我</a>
-    </nav>
-    <a class="header-link" href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
-      GitHub <span aria-hidden="true">↗</span>
-    </a>
-  </header>
-
-  <main id="top">
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> 北京大学硕士 · 产业研究与咨询从业者</p>
-        <h1>我做政策和产业研究。<br /><em>AI 能很快给出答案，我更关心它值不值得相信。</em></h1>
-        <p class="hero-lead">
-          这里收录我的公开研究、能力系统和工具。长期建设围绕判断、表达、治理和构建四个环节；当前已有三个 GitHub 仓库作为公开证据。
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#systems">查看四套能力系统</a>
-          <a class="button button-quiet" href="#work">查看三个公开工具</a>
-        </div>
-      </div>
-
-      <aside class="hero-panel" aria-label="个人资料">
-        <div class="panel-topline">
-          <span>个人资料</span>
-          <span class="status"><i></i> 公开信息</span>
-        </div>
-        <p class="panel-intro">Anonymousyz</p>
-        <div class="site-map">
-          <div><strong>工作</strong><span>政策与产业研究</span></div>
-          <div><strong>主题</strong><span>从研究到决策</span></div>
-          <div><strong>系统</strong><span>判断 · 表达 · 治理 · 构建</span></div>
-          <div><strong>作品</strong><span>三个公开 GitHub 仓库</span></div>
-        </div>
-        <p class="panel-boundary">AI 治理是持续积累的专业方向，不是用来替代作品的头衔。</p>
-      </aside>
+  <SiteHeader current="home" />
+  <main>
+    <section class="editorial-hero shell">
+      <p class="editorial-eyebrow">个人方法与项目实践</p>
+      <h1>{positioning[0]}<br />{positioning[1]}</h1>
+      <p class="editorial-lead">{heroCopy}</p>
     </section>
 
-    <section class="section shell" id="theme">
-      <div class="section-heading">
-        <div>
-          <p class="kicker">01 / 长期主题</p>
-          <h2>从研究到决策</h2>
-        </div>
-        <p>AI 可以很快生成一份完整答案。真正困难的部分，是确认问题有没有问对、结论是否站得住，以及下一步该怎样验证。</p>
+    <section class="editorial-section shell identity-section" id="identity" aria-labelledby="identity-title">
+      <div class="editorial-section__head editorial-section__head--compact">
+        <h2 id="identity-title">身份</h2>
       </div>
-
-      <div class="theme-list">
-        {themes.map((theme) => (
-          <article class="theme-item">
-            <span>{theme.index}</span>
-            <h3>{theme.question}</h3>
-            <p>{theme.answer}</p>
-          </article>
-        ))}
-      </div>
+      <IdentityIndex identities={identityProfiles} />
     </section>
 
-    <section class="section systems-section" id="systems">
-      <div class="shell">
-        <div class="section-heading">
-          <div>
-            <p class="kicker">02 / 能力系统</p>
-            <h2>工具不是起点</h2>
-          </div>
-          <p>公开作品来自四套长期建设的系统。这里先说明它们分别解决什么问题；方法、证据和边界放在独立页面展开。</p>
-        </div>
-
-        <div class="systems-list">
-          {systems.map((system) => (
-            <a class="system-row" href={system.href}>
-              <span class="system-index">{system.index}</span>
-              <div class="system-name">
-                <p>{system.question}</p>
-                <h3>{system.title}</h3>
-                <span>{system.meta}</span>
-              </div>
-              <p class="system-description">{system.description}</p>
-              <div class="system-status"><span>{system.status}</span><b aria-hidden="true">→</b></div>
-            </a>
-          ))}
-        </div>
-        <a class="systems-more" href="/systems/">查看方法、公开证据与能力边界 <span aria-hidden="true">→</span></a>
+    <section class="editorial-section shell" id="methods">
+      <div class="editorial-section__head">
+        <h2>方法</h2>
+        <p>七个入口，记录我在研究、写作和系统建设中的具体做法。</p>
       </div>
+      <MethodIndex learning={methodSystem.learning} tracks={methodSystem.tracks} />
     </section>
 
-    <section class="section tools-section" id="work">
-      <div class="shell">
-        <div class="section-heading">
-          <div>
-            <p class="kicker">03 / 公开工具</p>
-            <h2>把研究方法做成可以检查的附件</h2>
-          </div>
-          <p>文章负责解释判断，GitHub 保存模板、代码和示例。三个仓库记录了目前已经可以公开、运行和复核的部分。</p>
-        </div>
-
-        <div class="project-list">
-          {projects.map((project) => (
-            <article class="project-card">
-              <div class="card-index">{project.index}</div>
-              <div class="project-title-block">
-                <p class="project-question">{project.question}</p>
-                <h3>{project.title}</h3>
-                <p class="project-meta">{project.meta}</p>
-              </div>
-              <div class="project-summary">
-                <p class="project-description">{project.description}</p>
-                <div class="project-links">
-                  <a href={project.href} target="_blank" rel="noreferrer" aria-label={`打开 ${project.title}`}>
-                    GitHub 仓库 <span aria-hidden="true">↗</span>
-                  </a>
-                  <a href={project.releaseHref} target="_blank" rel="noreferrer" aria-label={`打开 ${project.title} ${project.release} Release`}>
-                    公开版本 {project.release} <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+    <section class="editorial-section shell" id="projects">
+      <div class="editorial-section__head">
+        <h2>项目</h2>
+        <p>一个主案例，两份脱敏项目记录。</p>
       </div>
+      <ProjectIndex {featuredCase} {demos} />
     </section>
 
-    <section class="section shell" id="validation">
-      <div class="section-heading">
-        <div>
-          <p class="kicker">04 / 验证状态</p>
-          <h2>哪些已经验证，哪些还没有</h2>
-        </div>
-        <p>Release、测试和合成案例可以证明工具确实存在并能运行，但不能证明它已经被市场采用。</p>
+    <section class="editorial-section shell" id="works">
+      <div class="editorial-section__head">
+        <h2>公开作品</h2>
+        <p>我把工作中常用的研究和交付方法整理成了三个公开工具。</p>
       </div>
-
-      <div class="validation-list">
-        <article class="validation-item">
-          <span class="validation-label verified">已验证</span>
-          <h3>发布物可以公开检查</h3>
-          <ul>
-            <li>三个仓库均有正式公开 Release 和可下载资产。</li>
-            <li>工具仓库提供测试、合成案例或在线链接核验。</li>
-            <li>使用边界、许可证和反馈入口可以在仓库中查看。</li>
-          </ul>
-        </article>
-        <article class="validation-item">
-          <span class="validation-label pending">尚未验证</span>
-          <h3>外部采用仍缺少独立证据</h3>
-          <ul>
-            <li>目前没有依据声称工具已被广泛采用或形成稳定用户群。</li>
-            <li>陌生用户复现、外部 Issue 和独立引用仍然不足。</li>
-            <li>“从研究到决策”文章系列尚未形成成熟的公开连载。</li>
-          </ul>
-        </article>
-      </div>
-      <p class="validation-note">目前正在征集首批外部试用和复现。可以通过 GitHub Issue 反馈，但请不要上传敏感或未经授权的材料。</p>
-    </section>
-
-    <section class="section shell about" id="about">
-      <div>
-        <p class="kicker">05 / 关于我</p>
-        <h2>产业研究，是我理解问题的起点</h2>
-      </div>
-      <div class="about-copy">
-        <p>
-          北京大学硕士，产业研究与咨询从业者。我的工作长期涉及政策、产业趋势、数字化转型和复杂决策材料。
-        </p>
-        <p>
-          近年，我也把这套方法用在 AI 项目中：不只看模型能不能输出，还看数据从哪里来、错误由谁发现、结论怎样复核、上线以后由谁负责。
-        </p>
-        <p>
-          AI 治理是我持续积累的专业方向。我不拿头衔替代项目、作品和外部检验。
-        </p>
-        <div class="about-links">
-          <a href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">
-            GitHub <span aria-hidden="true">↗</span>
-          </a>
-          <a href="https://linkedin.com/in/先生-白-0ba54a34" target="_blank" rel="noreferrer">
-            LinkedIn <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
+      <PublicWorkIndex works={tools} />
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="shell">
-      <div>
-        <strong>Anonymousyz</strong>
-        <span>从研究到决策</span>
-      </div>
-      <p>研究主题 · 能力系统 · GitHub 工具 · 验证状态</p>
-    </div>
-  </footer>
+  <SiteFooter />
 </Layout>

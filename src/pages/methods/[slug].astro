@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MethodArticle from '../../components/MethodArticle.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { methodArticles } from '../../data/methods.mjs';
+
+export function getStaticPaths() {
+  return methodArticles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<Layout
+  title={`${article.title}｜Anonymousyz`}
+  description={article.lead}
+>
+  <SiteHeader current="methods" />
+  <main class="article-shell shell">
+    <MethodArticle {article} />
+  </main>
+  <SiteFooter />
+</Layout>

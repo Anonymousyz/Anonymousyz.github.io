@@ -1,154 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const systems = [
-  {
-    id: 'judgment',
-    index: '01',
-    title: '判断系统',
-    question: '如何确认真正的问题？',
-    summary: '先还原目标、事实和约束，再选择一个足以改变行动的工具。模型用于暴露盲区，不用于堆砌复杂感。',
-    components: ['逻辑体系', '多元认知', '证据分级', '反方检查'],
-    method: '面对一般问题，先回答“目标是什么、哪些是事实、下一步如何验证”。默认只调用一个主工具；新增模型已经不改变判断或行动时，立即停止。',
-    evidence: 'Research-to-Decision Toolkit 已把问题框定、证据矩阵、反方审查和决策包做成公开模板、CLI、合成案例与测试。',
-    evidenceHref: '/cases/research-to-decision/',
-    evidenceLabel: '查看旗舰案例',
-    boundary: '思维框架不能证明结论正确。事实、引文和适用条件仍需回到可靠来源核验；人物视角只能提出问题，不能替代权威证据。',
-    status: '已有公开证据',
-    tone: 'verified'
-  },
-  {
-    id: 'expression',
-    index: '02',
-    title: '表达系统',
-    question: '如何让复杂内容被看懂？',
-    summary: '写作负责组织判断，视觉负责降低认知成本。先确定这一页要让人理解什么，再处理语言、层级、颜色和留白。',
-    components: ['写作方法', '结构审查', '视觉规范', 'Design Tokens'],
-    method: '写作从文种、对象和证据链开始；视觉遵循功能先于美学、一致性先于创造、删除先于添加，并保留一个清晰焦点。',
-    evidence: '写作方法已经进入公开工具和案例页；视觉体系已有语义色板、间距与字号令牌、场景规范和机器可读 Tokens，正在整理为可公开复用的产物。',
-    evidenceHref: 'https://github.com/Anonymousyz/research-to-decision-toolkit/tree/main/templates',
-    evidenceLabel: '查看公开模板',
-    boundary: '结构检查和机器规则可以发现偏差，但不能证明内容有判断力，也不能证明视觉“好看”。最终表达仍需要真实读者和人工审阅。',
-    status: '正在公开化',
-    tone: 'pending'
-  },
-  {
-    id: 'governance',
-    index: '03',
-    title: '治理系统',
-    question: '如何让技术在边界内创造价值？',
-    summary: '用 CIO 视角连接业务结果、企业能力、数据、AI、风险和技术投入，让治理成为可以执行和复查的门禁。',
-    components: ['业务与 IT 对齐', '数据治理', 'AI 治理', '风险与价值'],
-    method: '每项技术投入都要说明业务结果假设；高风险 AI 用例需要风险分级、责任人、数据来源、评测记录和退出条件；成本与风险尽量使用业务语言表达。',
-    evidence: 'AI Prototype-to-Production Toolkit 已把部分治理要求转化为本地评分卡和否决项；CDMP 与 ITIL V4 构成数据管理和 IT 服务管理的基础训练。',
-    evidenceHref: 'https://github.com/Anonymousyz/ai-prototype-to-production-toolkit',
-    evidenceLabel: '查看治理工具',
-    boundary: '这是一套持续研究和应用的治理视角，不是 CIO 任职经历的替代品。框架覆盖面不等于真实组织已经完成落地。',
-    status: '研究与应用',
-    tone: 'pending'
-  },
-  {
-    id: 'building',
-    index: '04',
-    title: '构建系统',
-    question: '如何把方法变成可运行的工具？',
-    summary: '用软件开发和 SWE Agent 把方法写进模板、代码、测试和发布流程，让“已经完成”可以被命令、差异和版本记录验证。',
-    components: ['软件开发', 'SWE Agent', '测试与复现', '版本发布'],
-    method: '从最小可验证任务开始：保留失败基线，做最小改动，运行测试，记录证据和权限边界。计划不能直接等于执行，发布也不能直接等于采用。',
-    evidence: '目前已有三个公开仓库、正式 Release、可下载资产、测试或链接核验；SWE Agent 学习体系也以真实修复任务和教师侧 Harness 作为可信结论入口。',
-    evidenceHref: 'https://github.com/Anonymousyz?tab=repositories',
-    evidenceLabel: '查看公开仓库',
-    boundary: '公开代码证明产物存在并可检查，不证明已经形成广泛采用，也不等于成熟全栈工程履历。外部复现、Issue 和独立引用仍在积累。',
-    status: '公开实践',
-    tone: 'verified'
-  }
-];
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 ---
 
-<Layout
-  title="能力系统｜Anonymousyz"
-  description="Anonymousyz 长期建设的四套能力系统：判断、表达、治理与构建，以及各自的公开证据和能力边界。"
->
-  <header class="site-header shell">
-    <a class="brand" href="/" aria-label="返回首页">
-      <span class="brand-mark">A</span>
-      <span>Anonymousyz</span>
-    </a>
-    <nav aria-label="能力系统导航">
-      {systems.map((system) => <a href={`#${system.id}`}>{system.title.replace('系统', '')}</a>)}
-    </nav>
-    <a class="header-link" href="/">返回首页 <span aria-hidden="true">↗</span></a>
-  </header>
-
+<Layout title="内容已迁移｜Anonymousyz" description="原页面内容已整合到项目页。">
+  <SiteHeader />
   <main>
-    <section class="case-hero shell systems-hero">
-      <p class="eyebrow"><span></span> 能力系统 / 公开说明</p>
-      <h1>工具不是起点。<br /><em>它们来自怎样判断、表达、治理和构建。</em></h1>
-      <p class="case-lead">这不是一张“什么都会”的技能清单，而是四套正在长期建设、彼此衔接的方法系统。每套系统都同时说明：怎样工作、有什么公开证据、哪些仍不能据此声称。</p>
-    </section>
-
-    <section class="systems-loop" aria-label="四套系统的关系">
-      <div class="shell systems-loop-inner">
-        {systems.map((system, index) => (
-          <>
-            <a href={`#${system.id}`}>
-              <span>{system.index}</span>
-              <strong>{system.title}</strong>
-              <small>{system.question}</small>
-            </a>
-            {index < systems.length - 1 && <b aria-hidden="true">→</b>}
-          </>
-        ))}
-      </div>
-    </section>
-
-    {systems.map((system) => (
-      <section class="section shell system-detail" id={system.id}>
-        <div class="system-detail-heading">
-          <div>
-            <p class="kicker">{system.index} / {system.title}</p>
-            <h2>{system.question}</h2>
-          </div>
-          <div>
-            <span class={`validation-label ${system.tone}`}>{system.status}</span>
-            <p>{system.summary}</p>
-          </div>
-        </div>
-
-        <div class="system-tags" aria-label={`${system.title}组成`}>
-          {system.components.map((component) => <span>{component}</span>)}
-        </div>
-
-        <div class="system-proof-grid">
-          <article>
-            <span>怎样工作</span>
-            <p>{system.method}</p>
-          </article>
-          <article>
-            <span>公开证据</span>
-            <p>{system.evidence}</p>
-            <a href={system.evidenceHref} target={system.evidenceHref.startsWith('http') ? '_blank' : undefined} rel={system.evidenceHref.startsWith('http') ? 'noreferrer' : undefined}>
-              {system.evidenceLabel} <b aria-hidden="true">↗</b>
-            </a>
-          </article>
-          <article>
-            <span>能力边界</span>
-            <p>{system.boundary}</p>
-          </article>
-        </div>
-      </section>
-    ))}
-
-    <section class="case-close shell systems-close">
-      <p>这些系统的价值，不看页面或模型数量，而看它们能否持续产生更清楚的判断、更可靠的交付和可以复查的公开证据。</p>
-      <a class="button button-primary" href="/#work">查看三个公开工具 →</a>
+    <section class="editorial-hero shell">
+      <p class="editorial-eyebrow">内容已迁移</p>
+      <h1>请从项目页<br />继续阅读</h1>
+      <p class="editorial-lead">旧地址继续保留。原页面中的项目内容已经按新的结构整理到项目页。</p>
+      <a class="text-link" href="/projects/">前往项目页 <span aria-hidden="true">→</span></a>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="shell">
-      <div><strong>Anonymousyz</strong><span>从研究到决策</span></div>
-      <p>判断 · 表达 · 治理 · 构建</p>
-    </div>
-  </footer>
+  <SiteFooter />
 </Layout>

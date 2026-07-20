@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import ToolProof from '../components/ToolProof.astro';
+import { tools } from '../data/portfolio.mjs';
+
+const softwareSchemas = tools.map((tool) => ({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: tool.title,
+  description: tool.summary,
+  codeRepository: tool.href,
+  ...(tool.version === '持续维护' ? {} : { version: tool.version }),
+  ...(tool.runtime.startsWith('Python') ? { programmingLanguage: 'Python' } : {})
+}));
+---
+
+<Layout
+  title="公开作品｜Anonymousyz"
+  description="可公开访问、运行和检查的研究与 AI 工具：版本、运行路径、测试与方法边界。"
+  image="/og/works.png"
+  structuredData={softwareSchemas}
+>
+  <SiteHeader current="works" />
+
+  <main>
+    <section class="editorial-hero shell">
+      <p class="editorial-eyebrow">公开作品</p>
+      <h1>公开工具与<br />工作材料</h1>
+      <p class="editorial-lead">三个仓库分别处理研究判断、AI 原型进入业务前的检查，以及生产准备资料的整理。版本、样例和运行方法放在各自页面中。</p>
+    </section>
+
+    <section class="editorial-section shell">
+      <div class="tool-proof-list">
+        {tools.map((tool) => <ToolProof tool={tool} />)}
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Layout>

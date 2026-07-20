@@ -1,0 +1,28 @@
+---
+const { featuredCase, demos } = Astro.props;
+---
+
+<div class="project-index">
+  <article class="featured-project">
+    <span class="index-number">{featuredCase.index}</span>
+    <div>
+      <h3>{featuredCase.title}</h3>
+      <p>{featuredCase.summary}</p>
+      <a class="text-link" href={featuredCase.href}>阅读项目记录 <span aria-hidden="true">→</span></a>
+    </div>
+    <dl>
+      <div><dt>我的工作</dt><dd>{featuredCase.role}</dd></div>
+      <div><dt>案例内容</dt><dd>{featuredCase.focus}</dd></div>
+    </dl>
+  </article>
+  <div class="demo-index">
+    {demos.map((demo) => (
+      <a class="demo-index__row" href={demo.href}>
+        <span class="index-number">{demo.index}</span>
+        <strong>{demo.title}</strong>
+        <p>{demo.summary}</p>
+        <span class="index-kind">{demo.kind ?? '项目记录'}</span>
+      </a>
+    ))}
+  </div>
+</div>

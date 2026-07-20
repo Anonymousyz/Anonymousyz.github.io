@@ -1,0 +1,65 @@
+---
+import ProofChip from './ProofChip.astro';
+
+interface Tool {
+  index: string;
+  title: string;
+  question: string;
+  summary: string;
+  version: string;
+  runtime: string;
+  quickStart: {
+    kind: 'command' | 'guide';
+    label: string;
+    items: string[];
+  };
+  proofTypes: string[];
+  methodBoundary: string;
+  href: string;
+  caseHref?: string;
+}
+
+interface Props {
+  tool: Tool;
+  compact?: boolean;
+}
+
+const { tool, compact = false } = Astro.props;
+---
+
+<article class:list={['tool-proof', { 'tool-proof--compact': compact }]}>
+  <header class="tool-proof__header">
+    <span>{tool.index}</span>
+    <div>
+      <p>{tool.question}</p>
+      <h3>{tool.title}</h3>
+    </div>
+    <dl>
+      <div><dt>版本</dt><dd>{tool.version}</dd></div>
+      <div><dt>环境</dt><dd>{tool.runtime}</dd></div>
+    </dl>
+  </header>
+  <div class="tool-proof__body">
+    <div>
+      <p class="tool-proof__summary">{tool.summary}</p>
+      <div class="proof-list" aria-label="可检查内容">
+        {tool.proofTypes.map((proof) => <ProofChip label={proof} />)}
+      </div>
+      {!compact && (
+        <p class="tool-proof__boundary"><strong>方法边界</strong>{tool.methodBoundary}</p>
+      )}
+    </div>
+    <div class="tool-proof__run">
+      <p>{tool.quickStart.label}</p>
+      {tool.quickStart.kind === 'command' ? (
+        <pre><code>{tool.quickStart.items.join('\n')}</code></pre>
+      ) : (
+        <ol>{tool.quickStart.items.map((item) => <li>{item}</li>)}</ol>
+      )}
+      <div class="project-links">
+        {tool.caseHref && <a href={tool.caseHref}>查看案例 →</a>}
+        <a href={tool.href} target="_blank" rel="noreferrer">打开仓库 <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,80 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { projects } from '../data/portfolio.mjs';
+---
+
+<Layout
+  title="项目与实践｜Anonymousyz"
+  description="研究、重大项目和数字化系统案例，说明职责、处理过程、当前进度与公开边界。"
+  image="/og/projects.png"
+>
+  <SiteHeader current="projects" />
+
+  <main>
+    <section class="editorial-hero shell">
+      <p class="editorial-eyebrow">项目</p>
+      <h1>三个项目，<br />按实际进度记录</h1>
+      <p class="editorial-lead">这些页面记录项目怎样从材料和业务问题走到产品与软件。当前只放脱敏文字记录，暂无项目附件；项目状态按实际进度写。</p>
+    </section>
+
+    <nav class="project-jump shell" aria-label="项目索引">
+      {projects.map((project) => (
+        <a href={`#${project.id}`}><span>{project.index}</span>{project.title}</a>
+      ))}
+    </nav>
+
+    {projects.map((project) => (
+      <section class="editorial-section shell project-detail" id={project.id}>
+        <div class="project-detail-heading">
+          <div>
+            <p class="editorial-kicker">{project.index} / {project.pillar}</p>
+            <h2>{project.title}</h2>
+          </div>
+          <p>{project.summary}</p>
+        </div>
+
+        <div class="project-facts">
+          <article>
+            <span>问题</span>
+            <p>{project.problem}</p>
+          </article>
+          <article>
+            <span>我的工作</span>
+            <p>{project.role}</p>
+          </article>
+        </div>
+
+        <div class="project-facts">
+          <article>
+            <span>怎样处理</span>
+            <ul>{project.decisions.map((item) => <li>{item}</li>)}</ul>
+          </article>
+          <article>
+            <span>目前做到哪一步</span>
+            <ul>{project.results.map((item) => <li>{item}</li>)}</ul>
+          </article>
+        </div>
+
+        <div class="project-facts">
+          <article>
+            <span>交付路径</span>
+            <p>{project.deliveryPath}</p>
+          </article>
+          <article>
+            <span>可公开说明的范围</span>
+            <ul>{project.publicScope.map((item) => <li>{item}</li>)}</ul>
+          </article>
+        </div>
+
+        <div class="project-boundary">
+          <strong>公开说明</strong>
+          <p>{project.boundary}</p>
+        </div>
+      </section>
+    ))}
+  </main>
+
+  <SiteFooter />
+</Layout>
