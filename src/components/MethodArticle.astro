@@ -1,0 +1,31 @@
+---
+const { article } = Astro.props;
+---
+
+<article class="method-article">
+  <header class="method-article__header">
+    <a class="back-link" href="/methods/">← 返回方法</a>
+    <p class="editorial-kicker">{article.trackTitle} · {article.index}</p>
+    <h1>{article.title}</h1>
+    <p>{article.lead}</p>
+  </header>
+
+  <div class="method-article__body">
+    {article.sections.map((section) => (
+      <section>
+        <h2>{section.heading}</h2>
+        <div>{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div>
+      </section>
+    ))}
+    <section>
+      <h2>相关内容</h2>
+      <div class="method-related">
+        {article.related.map((item) => (
+          <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noreferrer' : undefined}>
+            {item.label}<span aria-hidden="true">{item.external ? '↗' : '→'}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</article>

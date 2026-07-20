@@ -19,7 +19,7 @@ The static site is generated in `docs/`. GitHub Pages serves the `main` branch `
 
 ## Public URL
 
-- Website: https://anonymousyz.github.io
+- Website: https://decideandbuild.com
 - GitHub profile: https://github.com/Anonymousyz
 
 ## Content boundary

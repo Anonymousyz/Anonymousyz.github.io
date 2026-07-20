@@ -1,0 +1,23 @@
+---
+const { identities } = Astro.props;
+---
+
+<div class="identity-index">
+  {identities.map((identity) => (
+    <article class="identity-index__item">
+      <h3>{identity.title}</h3>
+      <blockquote>
+        <p>{identity.quote}</p>
+        <cite>——{identity.attribution}</cite>
+      </blockquote>
+      <div class="identity-index__english" lang="en">
+        <p>{identity.englishQuote}</p>
+        <cite>
+          <a href={identity.sourceUrl} target="_blank" rel="noreferrer">
+            {identity.englishAttribution}<span aria-hidden="true"> ↗</span>
+          </a>
+        </cite>
+      </div>
+    </article>
+  ))}
+</div>

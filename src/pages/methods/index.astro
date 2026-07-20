@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MethodIndex from '../../components/MethodIndex.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { methodSystem } from '../../data/methods.mjs';
+---
+
+<Layout
+  title="方法｜Anonymousyz"
+  description="从研究与证据到工程与交付：我在研究、项目和公开工具中使用的方法。"
+>
+  <SiteHeader current="methods" />
+  <main>
+    <section class="editorial-hero article-shell method-hub-hero">
+      <p class="editorial-eyebrow">研究、项目与公开作品中的做法</p>
+      <h1>判断与实现</h1>
+    </section>
+    <section class="editorial-section article-shell method-hub" aria-labelledby="method-index-title">
+      <h2 id="method-index-title" class="visually-hidden">方法索引</h2>
+      <MethodIndex learning={methodSystem.learning} tracks={methodSystem.tracks} showRelated />
+    </section>
+    <section class="editorial-section article-shell method-boundary">
+      <h2>内容边界</h2>
+      <p>这里记录的是我目前采用的做法。涉及专业结论时，由相应专业人员复核；项目状态仍以项目页列出的公开范围为准。</p>
+    </section>
+  </main>
+  <SiteFooter />
+</Layout>

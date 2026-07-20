@@ -1,0 +1,39 @@
+---
+interface Props {
+  current?: 'home' | 'methods' | 'projects' | 'works' | 'about';
+}
+
+const { current } = Astro.props;
+const navItems = [
+  { key: 'methods', label: '方法', href: '/methods/' },
+  { key: 'projects', label: '项目', href: '/projects/' },
+  { key: 'works', label: '公开作品', href: '/works/' },
+  { key: 'about', label: '关于', href: '/about/' }
+];
+---
+
+<header class="site-header shell">
+  <a class="brand" href="/" aria-label="返回首页" aria-current={current === 'home' ? 'page' : undefined}>Anonymousyz</a>
+  <nav class="desktop-nav" aria-label="主导航">
+    {navItems.map((item) => (
+      <a
+        class:list={{ active: current === item.key }}
+        href={item.href}
+        aria-current={current === item.key ? 'page' : undefined}
+      >{item.label}</a>
+    ))}
+  </nav>
+  <details class="mobile-nav">
+    <summary>菜单</summary>
+    <nav aria-label="移动端主导航">
+      {navItems.map((item) => (
+        <a
+          class:list={{ active: current === item.key }}
+          href={item.href}
+          aria-current={current === item.key ? 'page' : undefined}
+        >{item.label}</a>
+      ))}
+    </nav>
+  </details>
+</header>
+<span id="main-content" class="main-content-anchor" tabindex="-1"></span>

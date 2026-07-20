@@ -1,0 +1,14 @@
+---
+const { works } = Astro.props;
+---
+
+<div class="public-work-index">
+  {works.map((work) => (
+    <a class="public-work-index__row" href={work.href} target="_blank" rel="noreferrer">
+      <span class="index-number">{work.index}</span>
+      <strong>{work.title}</strong>
+      <p>{work.homeSummary}</p>
+      <span class="index-arrow" aria-hidden="true">↗</span>
+    </a>
+  ))}
+</div>

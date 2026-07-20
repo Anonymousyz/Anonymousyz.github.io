@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anonymousyz.github.io/sitemap.xml
+Sitemap: https://decideandbuild.com/sitemap.xml

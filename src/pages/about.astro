@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { methodBySlug } from '../data/methods.mjs';
+import { positioning } from '../data/portfolio.mjs';
+---
+
+<Layout title="关于｜Anonymousyz" description="Anonymousyz 的经历、工作方式、公开边界和联系方式。" image="/og/about.png">
+  <SiteHeader current="about" />
+
+  <main>
+    <section class="editorial-hero shell">
+      <p class="editorial-eyebrow">关于</p>
+      <h1>{positioning[0]}，<br />{positioning[1]}</h1>
+      <p class="editorial-lead">过去八年，我做过产业研究、政策分析和重大项目，也参与产品与软件系统建设。</p>
+    </section>
+
+    <section class="editorial-section shell about-editorial">
+      <h2>我通常接手的问题</h2>
+      <div>
+        <p>一类问题是材料很多，但还不能支持判断；另一类问题是业务已经明确，却还没有进入产品和系统。我的工作经常从这两种情况开始。</p>
+        <div class="about-inline-links">
+          <a href="/methods/research-and-judgment/">{methodBySlug['research-and-judgment'].title} <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial-section shell about-editorial">
+      <h2>我在项目里做什么</h2>
+      <div>
+        <p>前期做研究、政策分析、方案和材料；进入建设后，继续梳理角色、流程、数据和权限，参与产品定义、测试与交付检查。</p>
+        <div class="about-inline-links">
+          <a href="/projects/#industrial-energy-carbon-system">工业绿色微电网评价软件 <span aria-hidden="true">→</span></a>
+          <a href="/projects/#industrial-digital-public-service-platform">总体所技改平台项目 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial-section shell about-editorial">
+      <h2>公开内容</h2>
+      <div>
+        <p>网站只放公开仓库和脱敏后的项目记录。客户身份、原始材料、真实数据、账号、运行地址和私有代码不公开。</p>
+      </div>
+    </section>
+
+    <section class="editorial-section shell about-editorial">
+      <h2>联系</h2>
+      <div>
+        <p>如果你想讨论研究怎样支持决策，或一项业务怎样做成可以使用的软件，可以通过 GitHub 联系我。</p>
+        <div class="about-links">
+          <a href="https://github.com/Anonymousyz" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Layout>
