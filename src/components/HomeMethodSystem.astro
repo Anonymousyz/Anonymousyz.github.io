@@ -1,0 +1,33 @@
+---
+import '../styles/homepage-method-system.css';
+
+const { relationships } = Astro.props;
+---
+
+<div class="home-method-system">
+  <div class="home-method-system__paths">
+    {relationships.paths.map((path) => (
+      <section class="home-method-path" aria-label={path.title}>
+        <span class="home-method-path__endpoint">{path.from}</span>
+        <ol>
+          {path.items.map((item, index) => (
+            <li>
+              <a href={item.href}>{item.title}</a>
+              {index < path.items.length - 1 && <span aria-hidden="true">→</span>}
+            </li>
+          ))}
+        </ol>
+        <span class="home-method-path__endpoint home-method-path__endpoint--end">{path.to}</span>
+      </section>
+    ))}
+  </div>
+
+  <a class="home-method-system__learning" href="/methods/learning/">
+    <span>{relationships.learning}</span>
+    <span aria-hidden="true">→</span>
+  </a>
+
+  <a class="home-method-system__all text-link" href="/methods/">
+    查看完整方法与七个方向 <span aria-hidden="true">→</span>
+  </a>
+</div>

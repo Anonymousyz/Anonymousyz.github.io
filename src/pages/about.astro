@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IdentityIndex from '../components/IdentityIndex.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { identityProfiles } from '../data/methods.mjs';
 import { methodBySlug } from '../data/methods.mjs';
 import { positioning } from '../data/portfolio.mjs';
 ---
@@ -13,13 +15,21 @@ import { positioning } from '../data/portfolio.mjs';
     <section class="editorial-hero shell">
       <p class="editorial-eyebrow">关于</p>
       <h1>{positioning[0]}，<br />{positioning[1]}</h1>
-      <p class="editorial-lead">过去八年，我做过产业研究、政策分析和重大项目，也参与产品与软件系统建设。</p>
+      <p class="editorial-lead">过去八年，我参与产业研究、政策分析和重大项目，也参与产品与软件系统建设。</p>
+    </section>
+
+    <section class="editorial-section shell identity-section" id="identity" aria-labelledby="identity-title">
+      <div class="editorial-section__head">
+        <h2 id="identity-title">身份</h2>
+        <p>这些引语说明我认同的工作取向。项目、作品和长期结果才是能力证据。</p>
+      </div>
+      <IdentityIndex identities={identityProfiles} />
     </section>
 
     <section class="editorial-section shell about-editorial">
-      <h2>我通常接手的问题</h2>
+      <h2>我经常接手的问题</h2>
       <div>
-        <p>一类问题是材料很多，但还不能支持判断；另一类问题是业务已经明确，却还没有进入产品和系统。我的工作经常从这两种情况开始。</p>
+        <p>有时材料很多，却还不足以支持判断；有时业务已经明确，却还没进到产品和系统。我的工作常从这两种情况开始。</p>
         <div class="about-inline-links">
           <a href="/methods/research-and-judgment/">{methodBySlug['research-and-judgment'].title} <span aria-hidden="true">→</span></a>
         </div>

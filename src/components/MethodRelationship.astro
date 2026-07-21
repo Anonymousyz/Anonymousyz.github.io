@@ -1,0 +1,32 @@
+---
+import '../styles/method-editorial.css';
+
+const { relationships } = Astro.props;
+---
+
+<section class="method-relationship" aria-labelledby="method-relationship-title">
+  <header>
+    <p class="method-section-label">两条主线</p>
+    <h2 id="method-relationship-title">这些方法怎样协作</h2>
+  </header>
+  <div class="method-relationship__paths">
+    {relationships.paths.map((path) => (
+      <section aria-label={path.title}>
+        <span class="method-relationship__endpoint">{path.from}</span>
+        <ol>
+          {path.items.map((item, index) => (
+            <li>
+              <a href={item.href}>{item.title}</a>
+              {index < path.items.length - 1 && <span aria-hidden="true">→</span>}
+            </li>
+          ))}
+        </ol>
+        <span class="method-relationship__endpoint method-relationship__endpoint--end">{path.to}</span>
+      </section>
+    ))}
+  </div>
+  <div class="method-relationship__notes">
+    <p class="method-relationship__learning">{relationships.learning}</p>
+    <p class="method-relationship__note">{relationships.note}</p>
+  </div>
+</section>

@@ -18,12 +18,10 @@ const routes = [
   'methods/product-and-engineering/index.html',
   'systems/index.html',
   'cases/research-to-decision/index.html',
-  '404.html'
+  '404.html',
 ];
 
-for (const route of routes) {
-  await access(path.join(root, route));
-}
+for (const route of routes) await access(path.join(root, route));
 
 const index = await readFile(path.join(root, 'index.html'), 'utf8');
 const works = await readFile(path.join(root, 'works/index.html'), 'utf8');
@@ -32,20 +30,43 @@ const methods = await readFile(path.join(root, 'methods/index.html'), 'utf8');
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 
 const methodPages = [
-  ['learning', '持续学习'],
-  ['research-and-judgment', '研究与证据'],
-  ['plural-thinking', '多元思维'],
-  ['writing', '写作与表达'],
-  ['product-definition', '产品定义'],
-  ['visual-information-design', '视觉与信息设计'],
-  ['product-and-engineering', '工程与交付']
+  ['learning', '持续学习｜好奇心 · 任务 · 校验 · 更新'],
+  ['research-and-judgment', '研究｜决策问题 · 证据链 · 结论树'],
+  ['plural-thinking', '多元思维｜规律 · 工具 · 视角'],
+  ['writing', '写作｜判断 · 证据 · 表达'],
+  ['product-definition', '产品｜做什么 · 为什么做 · 验证什么'],
+  ['visual-information-design', '视觉｜功能 · 一致性 · 删除'],
+  ['product-and-engineering', '工程｜怎么做稳 · 怎么维护 · 怎么交付'],
 ];
 
-assert.match(index, /个人方法与项目实践/);
+const methodV3Requirements = new Map([
+  ['/methods/', ['这些方法怎样协作', '主要阅读关系']],
+  ['/methods/learning/', ['主动检索', '费曼检验', '元认知']],
+  ['/methods/research-and-judgment/', ['比较行动选项', '最小可验证行动', '判断写完整']],
+  ['/methods/plural-thinking/', ['最小、可验证、可撤回的行动', '默认使用一个主工具']],
+  ['/methods/writing/', ['四道质量门', '新增检查不再改变判断、结构或行动时停止']],
+  ['/methods/product-definition/', ['不做清单', '工程化设计入口']],
+  ['/methods/visual-information-design/', ['甜蜜区', '机器可读']],
+  ['/methods/product-and-engineering/', ['工程化设计和质量门禁', '正式 UAT']],
+]);
+
+const methodV3Forbidden = [
+  'app.notion.com',
+  'notion.so',
+  '至少 3 条 L3',
+  '总分 ≥ 28',
+  '30 秒理解价值',
+  '连续 4 周',
+  '记忆保持率提升',
+];
+
+assert.match(index, /研究、项目与公开作品/);
 assert.match(index, /从分析到决策/);
 assert.match(index, /从技术到应用/);
-assert.match(index, /过去八年，我做过产业研究、政策分析和重大项目/);
-for (const [, title] of methodPages) assert.match(index, new RegExp(title));
+assert.match(index, /两条工作主线/);
+assert.match(index, /查看完整方法与七个方向/);
+assert.match(index, /长期主义者/);
+assert.match(index, /终身学习者/);
 assert.match(index, /工业绿色微电网评价软件/);
 assert.match(index, /总体所技改平台项目/);
 assert.match(index, /口腔小程序项目/);
@@ -53,25 +74,40 @@ assert.doesNotMatch(index, /DeliveryRail|工作闭环|证据与公开边界/);
 assert.match(index, /application\/ld\+json/);
 assert.match(index, /og\/home\.png/);
 
-assert.match(methods, /<h1>判断与实现<\/h1>/);
-assert.doesNotMatch(methods, /这里记录我在研究、写作和系统建设中反复使用的做法/);
+assert.match(methods, /<h1>工作方法<\/h1>/);
 assert.match(methods, /从分析到决策/);
 assert.match(methods, /从技术到应用/);
-for (const [, title] of methodPages) assert.match(methods, new RegExp(title));
+assert.doesNotMatch(methods, /七个入口|不使用抽象标签|判断与实现/);
 
 for (const [slug, title] of methodPages) {
   const content = await readFile(path.join(root, `methods/${slug}/index.html`), 'utf8');
   assert.match(content, new RegExp(title), `${slug} should include its method title`);
+  assert.match(content, /本页目录/);
+  assert.match(content, /适用边界/);
+  assert.doesNotMatch(
+    content,
+    /工业绿色微电网|总体所|口腔小程序/,
+    `${slug} should not include project fragments`,
+  );
   assert.match(sitemap, new RegExp(`<loc>https://decideandbuild\\.com/methods/${slug}/</loc>`));
 }
+
+for (const [route, requirements] of methodV3Requirements) {
+  const relativePath = route === '/methods/'
+    ? 'methods/index.html'
+    : `${route.slice(1)}index.html`;
+  const content = await readFile(path.join(root, relativePath), 'utf8');
+  for (const requirement of requirements) {
+    assert.ok(content.includes(requirement), `${route} should include ${requirement}`);
+  }
+}
+
 assert.match(sitemap, /<loc>https:\/\/decideandbuild\.com\/methods\/<\/loc>/);
 
-const engineering = await readFile(
-  path.join(root, 'methods/product-and-engineering/index.html'),
-  'utf8'
-);
-assert.match(engineering, /正式 UAT、预生产和生产验收尚未完成/);
-assert.doesNotMatch(engineering, /已(?:完成|通过)正式 UAT|已(?:完成|通过)预生产|已(?:完成|通过)生产验收/);
+const learning = await readFile(path.join(root, 'methods/learning/index.html'), 'utf8');
+assert.match(learning, /Learner®/);
+assert.match(learning, /#1/);
+assert.match(learning, /不替代项目成果/);
 
 assert.match(works, /v0\.6\.0/);
 assert.match(works, /r2d validate brief\.json/);
@@ -79,7 +115,7 @@ assert.match(works, /ai-ready report assessment\.json/);
 assert.match(works, /SoftwareSourceCode/);
 assert.match(works, /og\/works\.png/);
 
-assert.match(about, /过去八年，我做过产业研究、政策分析和重大项目/);
+assert.match(about, /过去八年，我参与产业研究、政策分析和重大项目/);
 
 for (const file of ['home.png', 'projects.png', 'works.png', 'about.png']) {
   await access(path.join(root, 'og', file));
@@ -88,16 +124,11 @@ for (const file of ['home.png', 'projects.png', 'works.png', 'about.png']) {
 async function collectHtml(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
-
   for (const entry of entries) {
     const full = path.join(directory, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...await collectHtml(full));
-    } else if (entry.name.endsWith('.html')) {
-      files.push(full);
-    }
+    if (entry.isDirectory()) files.push(...await collectHtml(full));
+    else if (entry.name.endsWith('.html')) files.push(full);
   }
-
   return files;
 }
 
@@ -130,13 +161,16 @@ const forbidden = [
   /真实用户数量/,
   /已(?:完成|通过)正式 UAT/,
   /已(?:完成|通过)预生产/,
-  /已(?:完成|通过)生产验收/
+  /已(?:完成|通过)生产验收/,
 ];
 
 for (const file of htmlFiles) {
   const content = await readFile(file, 'utf8');
   for (const pattern of forbidden) {
     assert.doesNotMatch(content, pattern, `${file} matched ${pattern}`);
+  }
+  for (const forbiddenText of methodV3Forbidden) {
+    assert.equal(content.includes(forbiddenText), false, `${file} included ${forbiddenText}`);
   }
 }
 

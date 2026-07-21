@@ -1,12 +1,12 @@
 ---
-const { learning, tracks, showRelated = false } = Astro.props;
+const { learning, tracks } = Astro.props;
 ---
 
 <div class="method-system">
   <a class="method-system__learning" href={learning.href}>
     <span class="index-number">{learning.index}</span>
     <strong>{learning.title}</strong>
-    <p>{learning.summary}</p>
+    <p>{learning.subtitle}</p>
     <span class="index-arrow" aria-hidden="true">→</span>
   </a>
   <div class="method-system__tracks">
@@ -21,20 +21,11 @@ const { learning, tracks, showRelated = false } = Astro.props;
             <a class="method-track__row" href={method.href}>
               <span class="index-number">{method.index}</span>
               <strong>{method.title}</strong>
-              <p>{method.summary}</p>
+              <p>{method.subtitle}</p>
               <span class="index-arrow" aria-hidden="true">→</span>
             </a>
           ))}
         </div>
-        {showRelated && (
-          <div class="method-track__related" aria-label={`${track.title}延伸阅读`}>
-            {track.related.map((item) => (
-              <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noreferrer' : undefined}>
-                {item.label}<span aria-hidden="true">{item.external ? ' ↗' : ' →'}</span>
-              </a>
-            ))}
-          </div>
-        )}
       </section>
     ))}
   </div>

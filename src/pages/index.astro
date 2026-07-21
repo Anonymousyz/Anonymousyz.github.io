@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import IdentityIndex from '../components/IdentityIndex.astro';
-import MethodIndex from '../components/MethodIndex.astro';
+import HomeIdentityStrip from '../components/HomeIdentityStrip.astro';
+import HomeMethodSystem from '../components/HomeMethodSystem.astro';
 import ProjectIndex from '../components/ProjectIndex.astro';
 import PublicWorkIndex from '../components/PublicWorkIndex.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import { identityProfiles, methodSystem } from '../data/methods.mjs';
+import { identityProfiles } from '../data/methods.mjs';
+import { methodRelationships } from '../data/method-relationships.mjs';
 import { demos, featuredCase, heroCopy, positioning, tools } from '../data/portfolio.mjs';
 
 const personSchema = {
@@ -29,40 +30,40 @@ const personSchema = {
   <SiteHeader current="home" />
   <main>
     <section class="editorial-hero shell">
-      <p class="editorial-eyebrow">个人方法与项目实践</p>
+      <p class="editorial-eyebrow">研究、项目与公开作品</p>
       <h1>{positioning[0]}<br />{positioning[1]}</h1>
       <p class="editorial-lead">{heroCopy}</p>
     </section>
 
-    <section class="editorial-section shell identity-section" id="identity" aria-labelledby="identity-title">
-      <div class="editorial-section__head editorial-section__head--compact">
-        <h2 id="identity-title">身份</h2>
-      </div>
-      <IdentityIndex identities={identityProfiles} />
-    </section>
-
-    <section class="editorial-section shell" id="methods">
-      <div class="editorial-section__head">
-        <h2>方法</h2>
-        <p>七个入口，记录我在研究、写作和系统建设中的具体做法。</p>
-      </div>
-      <MethodIndex learning={methodSystem.learning} tracks={methodSystem.tracks} />
-    </section>
 
     <section class="editorial-section shell" id="projects">
       <div class="editorial-section__head">
-        <h2>项目</h2>
-        <p>一个主案例，两份脱敏项目记录。</p>
+        <h2>代表项目</h2>
+        <p>一个主案例，两个脱敏项目。</p>
       </div>
       <ProjectIndex {featuredCase} {demos} />
+    </section>
+    <section class="editorial-section shell" id="methods">
+      <div class="editorial-section__head">
+        <h2>两条工作主线</h2>
+        <p>项目背后反复使用的做法，集中写在方法页。</p>
+      </div>
+      <HomeMethodSystem relationships={methodRelationships} />
     </section>
 
     <section class="editorial-section shell" id="works">
       <div class="editorial-section__head">
         <h2>公开作品</h2>
-        <p>我把工作中常用的研究和交付方法整理成了三个公开工具。</p>
+        <p>三个可公开检查的仓库，分别对应研究判断、AI 交付检查和工程资料查找。</p>
       </div>
       <PublicWorkIndex works={tools} />
+    </section>
+
+    <section class="editorial-section shell identity-section home-identity-section" id="identity" aria-labelledby="identity-title">
+      <div class="editorial-section__head editorial-section__head--compact">
+        <h2 id="identity-title">身份</h2>
+      </div>
+      <HomeIdentityStrip identities={identityProfiles} />
     </section>
   </main>
   <SiteFooter />

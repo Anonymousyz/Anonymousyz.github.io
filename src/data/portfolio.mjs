@@ -1,11 +1,11 @@
 export const positioning = ['从分析到决策', '从技术到应用'];
 
-export const heroCopy = '过去八年，我做过产业研究、政策分析和重大项目，也参与产品与软件系统建设。这里收录我使用的方法、公开作品和项目记录。';
+export const heroCopy = '过去八年，我参与产业研究、政策分析和重大项目，也参与产品与软件系统建设。这里整理了我反复使用的做法、公开工具和项目记录。';
 
 export const featuredCase = {
   index: '01',
   title: '工业绿色微电网评价软件',
-  summary: '这套软件把政策和评价标准拆成数据要求、计算规则和报告内容。我参与前期研究、产品设计和交付检查；案例也会写明哪些部分已经测试，哪些还需专业复核。',
+  summary: '这套软件把政策和评价标准拆成数据要求、计算规则和报告内容。我参与前期研究、产品设计和交付检查；我也会写清哪些部分已经测试，哪些仍需专业复核。',
   role: '研究、产品设计、测试与交付检查',
   focus: '从评价标准到软件功能',
   href: '/projects/#industrial-energy-carbon-system'
@@ -48,12 +48,12 @@ export const projects = [
     index: '01',
     title: '工业绿色微电网评价软件',
     pillar: '从分析到决策 · 从技术到应用',
-    summary: '将分析师使用的资料、Excel和报告流程转化为可部署系统，覆盖数据导入、专业计算、审核、报告生成、权限和日志。',
+    summary: '把分析师手里的资料、Excel 和报告流程做成可部署系统，覆盖数据导入、专业计算、审核、报告生成、权限和日志。',
     role: '组织并参与需求拆解、工作流设计、架构决策、测试和部署验证。',
     deliveryPath: '资料与 Excel → 数据导入 → 专业计算 → 审核 → 报告生成',
     publicScope: ['工作流结构', '系统范围', '测试与交付范围'],
     evidence: 'sanitized',
-    problem: '分析工作依赖分散资料、Excel和人工报告，需要形成可追溯、可复核的统一工作流。',
+    problem: '分析师要在分散资料、Excel 和人工报告之间来回切换，团队需要一条可追溯、可复核的工作流。',
     decisions: [
       '以分析师真实工作流确定产品边界，优先打通数据导入、计算、审核和报告生成。',
       '选择适合交付条件的部署方式，并保留权限、日志、测试和回退要求。'
@@ -112,7 +112,7 @@ export const tools = [
   {
     index: '01',
     title: 'Research-to-Decision Toolkit',
-    question: '资料很多，怎样整理成可以拍板的判断？',
+    question: '资料很多，怎样整理成能支持选择的材料？',
     summary: '把问题、来源、备选方案、不确定性和下一步行动放进同一个决策包。',
     homeSummary: '从研究问题、证据整理到方案比较的一组模板。',
     status: '公开可复验',
@@ -135,8 +135,8 @@ export const tools = [
   {
     index: '02',
     title: 'AI Prototype-to-Production Toolkit',
-    question: 'AI Demo已经能跑，离真实使用还差什么？',
-    summary: '读取项目证据，给出生产就绪检查和否决项，区分可以演示与可以进入真实业务。',
+    question: 'AI Demo 已经能跑，离真实使用还差什么？',
+    summary: '根据项目材料列出生产就绪检查和否决项，区分能演示和能进入真实业务流程。',
     homeSummary: '帮助团队检查 AI 原型能否进入真实业务流程。',
     status: '公开可复验',
     version: 'v0.6.0',

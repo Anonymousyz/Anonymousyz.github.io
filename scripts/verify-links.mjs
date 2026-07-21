@@ -5,7 +5,8 @@ const root = path.resolve('docs');
 const siteOrigin = 'https://decideandbuild.com';
 const approvedIdentityUrls = new Set([
   'https://ir.aboutamazon.com/files/doc_financials/annual/2002_shareholderLetter.pdf',
-  'https://news.stanford.edu/stories/2005/06/steve-jobs-2005-graduates-stay-hungry-stay-foolish'
+  'https://news.stanford.edu/stories/2005/06/steve-jobs-2005-graduates-stay-hungry-stay-foolish',
+  'https://www.gallup.com/cliftonstrengths/en/252293/learner-theme.aspx'
 ]);
 const ignoredProtocols = new Set(['mailto:', 'tel:', 'javascript:']);
 const htmlCache = new Map();

@@ -1,31 +1,118 @@
 ---
+import '../styles/method-editorial.css';
+
 const { article } = Astro.props;
+const [methodTitleName, methodTitleDetail] = article.title.split('｜');
+const methodTitleTerms = methodTitleDetail?.split(' · ') ?? [];
 ---
 
 <article class="method-article">
   <header class="method-article__header">
-    <a class="back-link" href="/methods/">← 返回方法</a>
+    <a class="back-link" href="/methods/">← 返回工作方法</a>
     <p class="editorial-kicker">{article.trackTitle} · {article.index}</p>
-    <h1>{article.title}</h1>
+    <h1>
+      <span class="method-title__name">{methodTitleName}</span>
+      {methodTitleDetail && (
+        <span class="method-title__detail">
+          {methodTitleTerms.map((term, index) => (
+            <span class="method-title__term">
+              {index > 0 && <span aria-hidden="true"> · </span>}{term}
+            </span>
+          ))}
+        </span>
+      )}
+    </h1>
     <p>{article.lead}</p>
   </header>
 
-  <div class="method-article__body">
-    {article.sections.map((section) => (
-      <section>
-        <h2>{section.heading}</h2>
-        <div>{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div>
+  <div class="method-article__layout">
+    <nav class="method-article__toc" aria-label="本页目录">
+      <p>本页</p>
+      <ol>
+        <li><a href="#method-map">{article.map.label}</a></li>
+        {article.assessment && <li><a href="#assessment">测评记录</a></li>}
+        {article.sections.map((section) => (
+          <li><a href={`#${section.id}`}>{section.heading}</a></li>
+        ))}
+        <li><a href="#boundaries">适用边界</a></li>
+      </ol>
+    </nav>
+
+    <div class="method-article__content">
+      <section class="method-map" id="method-map" aria-labelledby="method-map-title">
+        <p class="method-section-label">方法路径</p>
+        <h2 id="method-map-title">{article.map.label}</h2>
+        <ol>
+          {article.map.steps.map((step, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{step}</strong>
+            </li>
+          ))}
+        </ol>
       </section>
-    ))}
-    <section>
-      <h2>相关内容</h2>
-      <div class="method-related">
-        {article.related.map((item) => (
-          <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noreferrer' : undefined}>
-            {item.label}<span aria-hidden="true">{item.external ? '↗' : '→'}</span>
+
+      {article.assessment && (
+        <section class="method-assessment" id="assessment" aria-labelledby="assessment-title">
+          <div>
+            <p class="method-section-label">{article.assessment.label}</p>
+            <h2 id="assessment-title">{article.assessment.theme}</h2>
+          </div>
+          <strong class="method-assessment__rank">{article.assessment.rank}</strong>
+          <p>{article.assessment.description}</p>
+          <p class="method-assessment__boundary">{article.assessment.boundary}</p>
+          <a href={article.assessment.sourceUrl} target="_blank" rel="noreferrer">
+            {article.assessment.sourceLabel}<span aria-hidden="true"> ↗</span>
           </a>
+        </section>
+      )}
+
+      <div class="method-article__body">
+        {article.sections.map((section) => (
+          <section id={section.id}>
+            <h2>{section.heading}</h2>
+            <div>
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              {section.definitions?.length > 0 && (
+                <dl class="method-definitions">
+                  {section.definitions.map((item) => (
+                    <div>
+                      <dt>{item.term}</dt>
+                      <dd>{item.description}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+            </div>
+          </section>
         ))}
       </div>
-    </section>
+
+      <section class="method-boundaries" id="boundaries" aria-labelledby="boundaries-title">
+        <p class="method-section-label">使用说明</p>
+        <h2 id="boundaries-title">适用边界</h2>
+        <ul>
+          {article.boundaries.map((boundary) => <li>{boundary}</li>)}
+        </ul>
+      </section>
+
+      {article.publicOutputs?.length > 0 && (
+        <section class="method-public-outputs" aria-labelledby="public-outputs-title">
+          <p class="method-section-label">公开整理</p>
+          <h2 id="public-outputs-title">可继续查看</h2>
+          <div>
+            {article.publicOutputs.map((item) => (
+              <a
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noreferrer' : undefined}
+              >
+                {item.label}<span aria-hidden="true">{item.external ? ' ↗' : ' →'}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
   </div>
 </article>

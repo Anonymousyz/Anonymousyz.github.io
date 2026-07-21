@@ -7,7 +7,7 @@ const stages = [
   ['01', '把题目变成决策', '明确谁需要决定什么、截止时间是什么、如果不决定会怎样。'],
   ['02', '把材料变成证据', '区分事实、判断、假设和待核验项；记录最薄弱的一环。'],
   ['03', '把结论变成选项', '列出备选方案、取舍、风险条件，以及什么证据会改变建议。'],
-  ['04', '留下可复查的产物', '形成决策包、责任人和反馈记录，让讨论不止停留在一次会议。']
+  ['04', '留下可复查的产物', '记录决策包、责任人和反馈，让下一次讨论能回到原来的判断。']
 ];
 ---
 
@@ -32,9 +32,9 @@ const stages = [
       <div class="section-heading">
         <div>
           <p class="kicker">01 / 它解决什么</p>
-          <h2>研究经常止步于“材料很多”</h2>
+          <h2>材料很多，决定仍然卡住</h2>
         </div>
-        <p>项目里经常已经积累了很多资料，却没人能清楚回答：现在要决定什么、有哪些现实选项、哪些证据足以支持建议、谁对下一步负责。</p>
+        <p>项目里积累了很多资料后，负责人仍可能说不清：现在要决定什么、有哪些现实选项、哪些证据足以支持建议、谁对下一步负责。</p>
       </div>
       <div class="case-contrast">
         <article>
@@ -77,7 +77,7 @@ const stages = [
           <p class="kicker">03 / 能直接检查什么</p>
           <h2>可以运行和检查的公开产物</h2>
         </div>
-        <p>以下内容都可以从公开仓库检查或复现。案例数据为虚构或合成数据，与真实组织、部署和结果无关。</p>
+        <p>以下内容可在公开仓库中检查或复现。案例数据为虚构或合成数据，与真实组织、部署和结果无关。</p>
       </div>
       <div class="case-evidence">
         <a href="https://github.com/Anonymousyz/research-to-decision-toolkit/tree/main/templates" target="_blank" rel="noreferrer"><strong>模板</strong><span>问题框定、证据矩阵、决策备忘录、反馈记录</span><b>↗</b></a>
@@ -104,12 +104,12 @@ r2d report brief.json --output decision_report.md</code></pre>
           <p class="kicker">05 / 可信度边界</p>
           <h2>目前做到哪一步</h2>
         </div>
-        <p>结构检查、来源核验和实际采用分别记录。当前版本完成了结构与命令测试，外部复现和实际采用仍在积累。</p>
+        <p>我把结构检查、来源核验和实际采用分开记录。当前版本完成结构和命令测试；外部复现和实际采用的记录还在积累。</p>
       </div>
       <div class="validation-list">
         <article class="validation-item">
           <span class="validation-label verified">已验证</span>
-          <h3>工具、样例和版本可以复查</h3>
+          <h3>工具、样例和版本可复查</h3>
           <ul><li>公开仓库、Release、MIT 许可证、模板和合成案例均可访问。</li><li>CLI 可以校验结构、评分规则和否决项，并输出决策报告。</li><li>方法状态文档明确列出测试、来源声明与人工复核的边界。</li></ul>
         </article>
         <article class="validation-item">
@@ -121,7 +121,7 @@ r2d report brief.json --output decision_report.md</code></pre>
     </section>
 
     <section class="case-close shell">
-      <p>接下来，希望有人用一份获授权材料完整走一遍流程，并把遇到的问题留下来。</p>
+      <p>下一步，希望有人用一份获授权材料完整走一遍流程，并记录遇到的问题。</p>
       <a class="button button-primary" href="https://github.com/Anonymousyz/research-to-decision-toolkit/issues/new?template=field-test.yml" target="_blank" rel="noreferrer">提交 field-test 反馈 ↗</a>
     </section>
   </main>

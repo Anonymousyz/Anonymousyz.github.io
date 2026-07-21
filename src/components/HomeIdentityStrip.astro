@@ -1,0 +1,14 @@
+---
+import '../styles/homepage-method-system.css';
+
+const { identities } = Astro.props;
+---
+
+<div class="home-identity">
+  {identities.map((identity) => (
+    <article class="home-identity__item">
+      <h3>{identity.title}</h3>
+      <p>{identity.homeNote}</p>
+    </article>
+  ))}
+</div>

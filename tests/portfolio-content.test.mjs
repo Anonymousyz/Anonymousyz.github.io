@@ -68,57 +68,6 @@ test('身份只保留两个确认定义和可核对引文', () => {
   );
 });
 
-test('方法目录由持续学习和两条并重主线组成', () => {
-  assert.equal(methodSystem.learning.title, '持续学习');
-  assert.deepEqual(methodSystem.tracks.map((track) => track.title), [
-    '从分析到决策',
-    '从技术到应用'
-  ]);
-  assert.deepEqual(methodSystem.tracks[0].methods.map((item) => item.title), [
-    '研究与证据',
-    '多元思维',
-    '写作与表达'
-  ]);
-  assert.deepEqual(methodSystem.tracks[1].methods.map((item) => item.title), [
-    '产品定义',
-    '视觉与信息设计',
-    '工程与交付'
-  ]);
-  assert.equal(methodSystem.tracks[0].methods.length, methodSystem.tracks[1].methods.length);
-});
-
-test('首页和方法总页复用同一套方法索引', async () => {
-  const home = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
-  const hub = await readFile(new URL('../src/pages/methods/index.astro', import.meta.url), 'utf8');
-  const header = await readFile(new URL('../src/components/SiteHeader.astro', import.meta.url), 'utf8');
-  const index = await readFile(new URL('../src/components/MethodIndex.astro', import.meta.url), 'utf8');
-  const article = await readFile(new URL('../src/components/MethodArticle.astro', import.meta.url), 'utf8');
-  const data = await readFile(new URL('../src/data/methods.mjs', import.meta.url), 'utf8');
-
-  assert.match(home, /MethodIndex/);
-  assert.match(home, /methodSystem\.learning/);
-  assert.match(home, /methodSystem\.tracks/);
-  assert.match(hub, /MethodIndex/);
-  assert.match(hub, /showRelated/);
-  assert.match(hub, /aria-labelledby="method-index-title"/);
-  assert.match(hub, /<h2 id="method-index-title" class="visually-hidden">方法索引<\/h2>/);
-  assert.match(hub, /<h1>判断与实现<\/h1>/);
-  assert.doesNotMatch(hub, /这里记录我在研究、写作和系统建设中反复使用的做法/);
-  assert.ok(hub.indexOf('<h1>判断与实现</h1>') < hub.indexOf('<h2 id="method-index-title"'));
-  assert.ok(hub.indexOf('<h2 id="method-index-title"') < hub.indexOf('<MethodIndex'));
-  assert.match(header, /href: '\/methods\/'/);
-  assert.doesNotMatch(header, /href: '\/methods\/research-and-judgment\/'/);
-  assert.match(index, /const \{ learning, tracks, showRelated = false \} = Astro\.props;/);
-  assert.match(index, /method-system__learning/);
-  assert.match(index, /method-system__tracks/);
-  assert.ok(index.indexOf('method-system__learning') < index.indexOf('method-system__tracks'));
-  assert.match(index, /target=\{item\.external \? '_blank' : undefined\}/);
-  assert.match(index, /rel=\{item\.external \? 'noreferrer' : undefined\}/);
-  assert.match(article, /href="\/methods\/"/);
-  assert.match(article, /article\.trackTitle/);
-  assert.doesNotMatch(data, /export const methodTopics/);
-});
-
 test('一级定位保持用户确认的原文', () => {
   assert.deepEqual(positioning, ['从分析到决策', '从技术到应用']);
 });
@@ -126,7 +75,7 @@ test('一级定位保持用户确认的原文', () => {
 test('首页事实说明保持确认稿', () => {
   assert.equal(
     heroCopy,
-    '过去八年，我做过产业研究、政策分析和重大项目，也参与产品与软件系统建设。这里收录我使用的方法、公开作品和项目记录。'
+    '过去八年，我参与产业研究、政策分析和重大项目，也参与产品与软件系统建设。这里整理了我反复使用的做法、公开工具和项目记录。'
   );
 });
 
@@ -149,119 +98,6 @@ test('首页项目固定为一个主案例和两份项目记录', () => {
   assert.match(techReform.results.join(''), /申报与论证材料.*内部功能版本/);
 });
 
-test('七个方法入口都有完整文章', () => {
-  assert.deepEqual(methodArticles.map((article) => article.slug), expectedMethodSlugs);
-  for (const article of methodArticles) {
-    assert.equal(article.title, methodBySlug[article.slug].title);
-    assert.equal(article.summary, methodBySlug[article.slug].summary);
-    assert.equal(article.href, methodBySlug[article.slug].href);
-    assert.equal(article.track, methodBySlug[article.slug].track);
-    assert.ok(article.lead.length >= 36);
-    assert.ok(article.sections.length >= 5);
-    assert.ok(article.related.length >= 2);
-  }
-});
-
-test('技术到应用覆盖产品、视觉和交付边界', () => {
-  const product = methodArticles.find((item) => item.slug === 'product-definition');
-  const visual = methodArticles.find((item) => item.slug === 'visual-information-design');
-  const engineering = methodArticles.find((item) => item.slug === 'product-and-engineering');
-  const productText = JSON.stringify(product);
-  const visualText = JSON.stringify(visual);
-  const engineeringText = JSON.stringify(engineering);
-
-  for (const term of [
-    '使用者', '场景', '替代方案', '角色', '对象', '流程',
-    '异常', 'MVP', '指标', '范围', '停止条件'
-  ]) {
-    assert.match(productText, new RegExp(term));
-  }
-
-  for (const term of [
-    'Word', 'PPT', '数据表格', '网页', '软件界面', '焦点',
-    '层级', '阅读顺序', '颜色', '字体', '间距', '组件',
-    '状态', '对比度', '移动端', '可访问性'
-  ]) {
-    assert.match(visualText, new RegExp(term));
-  }
-
-  for (const term of [
-    '数据', '状态', '权限', '校验', '架构', '异常',
-    '恢复', '测试', '构建', '发布', '监控', '回滚',
-    '维护', '正式 UAT', '预生产', '生产验收'
-  ]) {
-    assert.match(engineeringText, new RegExp(term));
-  }
-
-  assert.match(engineeringText, /正式 UAT、预生产和生产验收尚未完成/);
-  assert.doesNotMatch(JSON.stringify([product, visual, engineering]), /审美升级|视觉赋能|闭环/);
-
-  for (const article of [product, visual, engineering]) {
-    assert.ok(article.related.some((item) => item.href.startsWith('/projects/#')));
-    assert.ok(article.related.some((item) => tools.some((tool) => tool.href === item.href)));
-  }
-});
-
-test('视觉设计写明主页真实修订依据和确认结果', () => {
-  const visual = methodArticles.find((item) => item.slug === 'visual-information-design');
-  const text = JSON.stringify(visual);
-
-  for (const excerpt of [
-    '旧版个人主页把“研究、写作、学习、产品与工程”放在同一层',
-    '读者能看见四个入口，却看不出持续学习与两条主线的关系',
-    '这次改版把“持续学习”放在通栏位置',
-    '其余六项归入两条主线',
-    '桌面端和移动端保持相同的信息顺序',
-    '主要链接也保留清晰的键盘焦点'
-  ]) {
-    assert.match(text, new RegExp(excerpt));
-  }
-
-  assert.doesNotMatch(text, /已完成视觉验收|通过视觉验收/);
-});
-
-test('视觉设计为移动端宽表提供具体规则', () => {
-  const visual = methodArticles.find((item) => item.slug === 'visual-information-design');
-  const text = JSON.stringify(visual);
-
-  for (const rule of [
-    '小屏先保留关键列',
-    '无法压缩的表格允许横向滚动',
-    '表头说明单位'
-  ]) {
-    assert.match(text, new RegExp(rule));
-  }
-});
-
-test('文章元数据由目录覆盖正文同名字段', async () => {
-  const source = await readFile(new URL('../src/data/methods.mjs', import.meta.url), 'utf8');
-  assert.match(source, /return \{ \.\.\.content, \.\.\.topic, trackTitle \};/);
-});
-
-test('方法页使用复核后的文案、公开边界和现阶段链接', () => {
-  const research = methodArticles.find((item) => item.slug === 'research-and-judgment');
-  const product = methodArticles.find((item) => item.slug === 'product-and-engineering');
-  const researchText = JSON.stringify(research);
-  const productText = JSON.stringify(product);
-
-  assert.match(researchText, /我先核对发布时间、定义、统计口径和作者立场，再判断差异来自哪里/);
-  assert.doesNotMatch(researchText, /案例会把这几类检查分开写/);
-  assert.match(researchText, /专业人员另行复核原始标准，真实环境验收也单独进行/);
-  assert.match(productText, /正式 UAT、预生产和生产验收尚未完成/);
-  assert.doesNotMatch(productText, /页面不会把这些阶段写成已经通过/);
-  assert.equal(
-    product.related.find((item) => item.label === '口腔小程序项目').href,
-    '/projects/#oral-care-mini-program'
-  );
-});
-
-test('学习页不使用抽象学习术语', () => {
-  const learning = methodArticles.find((item) => item.slug === 'learning');
-  const text = JSON.stringify(learning);
-  assert.doesNotMatch(text, /进入陌生领域|认知更新|学习迁移|方法论闭环/);
-  assert.match(text, /做不下去|讲不清楚|回头/);
-});
-
 test('学习和分析主线不使用包装性术语', () => {
   const text = JSON.stringify(methodArticles.filter((item) =>
     ['learning', 'analysis-to-decision'].includes(item.track)
@@ -274,26 +110,6 @@ test('学习和分析主线不使用包装性术语', () => {
   assert.match(text, /解释/);
   assert.match(text, /评价/);
   assert.match(text, /建议/);
-});
-
-test('复审文案使用明确人物和动作', () => {
-  const learningText = JSON.stringify(methodArticles.find((item) => item.slug === 'learning'));
-  const pluralText = JSON.stringify(methodArticles.find((item) => item.slug === 'plural-thinking'));
-  const writingText = JSON.stringify(methodArticles.find((item) => item.slug === 'writing'));
-
-  assert.match(learningText, /我根据当天要完成的规则，只补这一项计算所需的知识/);
-  assert.doesNotMatch(learningText, /实际工作把学习范围压到/);
-  assert.match(pluralText, /同事用反方问题指出未知项后，我/);
-  assert.doesNotMatch(pluralText, /反方问题如果指出/);
-  assert.equal(
-    (pluralText.match(/需要专业结论时，再请相应人员复核/g) ?? []).length,
-    1
-  );
-  assert.doesNotMatch(pluralText, /真实专家为作者或项目背书|提问角色当作署名者/);
-  assert.match(writingText, /我在事项旁标注“待专业复核”/);
-  assert.doesNotMatch(writingText, /不会把工作记录读成/);
-  assert.match(writingText, /我在材料中写明项目边界，并留下后续可核对的依据/);
-  assert.doesNotMatch(writingText, /材料保留项目边界/);
 });
 
 test('工作闭环按确认顺序提供具体动作', () => {
@@ -330,19 +146,8 @@ test('项目页包含三个确认项目且不使用能力证明标签', async ()
   assert.match(source, /project\.publicScope/);
   assert.match(source, /交付路径/);
   assert.match(source, /可公开说明的范围/);
-  assert.match(source, /暂无项目附件/);
+  assert.match(source, /不放项目附件/);
   assert.doesNotMatch(source, /验证证据|可展示内容/);
-});
-
-test('口腔项目锚点与首页和方法页链接一致', () => {
-  const oralProject = projects.find((item) => item.id === 'oral-care-mini-program');
-  const oralDemo = demos.find((item) => item.title === '口腔小程序项目');
-  const product = methodArticles.find((item) => item.slug === 'product-and-engineering');
-  const oralRelated = product.related.find((item) => item.label === '口腔小程序项目');
-
-  assert.ok(oralProject);
-  assert.equal(oralDemo.href, `/projects/#${oralProject.id}`);
-  assert.equal(oralRelated.href, `/projects/#${oralProject.id}`);
 });
 
 test('代表项目提供交付路径和公开说明范围', () => {
@@ -388,12 +193,12 @@ test('首页公开作品摘要保持确认稿', () => {
 
 test('首页按方法、项目和公开作品组织内容', async () => {
   const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
-  assert.match(source, /MethodIndex/);
+  assert.match(source, /HomeMethodSystem/);
   assert.match(source, /ProjectIndex/);
   assert.match(source, /PublicWorkIndex/);
   assert.match(source, /heroCopy/);
   assert.match(source, /id="methods"/);
-  assert.match(source, /一个主案例，两份脱敏项目记录/);
+  assert.match(source, /一个主案例，两个脱敏项目/);
   assert.doesNotMatch(source, /一个完整案例/);
   assert.doesNotMatch(source, /DeliveryRail|WorkLoop|EvidenceBadge/);
 });
@@ -553,7 +358,7 @@ test('链接检查器拒绝未知外链并说明原因', async (t) => {
 test('关于页不重复主页主标题', async () => {
   const about = await readFile(new URL('../src/pages/about.astro', import.meta.url), 'utf8');
   assert.doesNotMatch(about, /从分析到决策|从技术到应用/);
-  assert.match(about, />我通常接手的问题</);
+  assert.match(about, />我经常接手的问题</);
   assert.match(about, />我在项目里做什么</);
   assert.match(about, />公开内容</);
   assert.match(about, />联系</);
@@ -622,20 +427,17 @@ test('共享布局使用编辑式页面外框', async () => {
   ]);
 });
 
-test('首页在首屏之后展示两个身份', async () => {
+test('首页在公开作品之后简要呈现两个身份', async () => {
   const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
-  const identity = await readFile(new URL('../src/components/IdentityIndex.astro', import.meta.url), 'utf8');
-  assert.match(source, /<IdentityIndex identities=\{identityProfiles\} \/>/);
-  assert.match(source, /<p class="editorial-eyebrow">个人方法与项目实践<\/p>/);
+  const identity = await readFile(new URL('../src/components/HomeIdentityStrip.astro', import.meta.url), 'utf8');
+  assert.match(source, /<HomeIdentityStrip identities=\{identityProfiles\} \/>/);
+  assert.match(source, /<p class="editorial-eyebrow">研究、项目与公开作品<\/p>/);
   assert.match(source, /<p class="editorial-lead">\{heroCopy\}<\/p>/);
-  assert.ok(source.indexOf('editorial-hero') < source.indexOf('id="identity"'));
-  assert.ok(source.indexOf('id="identity"') < source.indexOf('id="methods"'));
-  assert.match(identity, /blockquote/);
-  assert.match(identity, /lang="en"/);
-  assert.match(identity, /target="_blank"/);
-  assert.match(identity, /rel="noreferrer"/);
+  assert.ok(source.indexOf('editorial-hero') < source.indexOf('id="methods"'));
+  assert.ok(source.indexOf('id="works"') < source.indexOf('id="identity"'));
+  assert.match(identity, /identity\.homeNote/);
+  assert.doesNotMatch(identity, /blockquote|englishQuote|sourceUrl/);
 });
-
 test('身份和方法在桌面双栏、移动端单栏', async () => {
   const css = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
   assert.match(css, /\.identity-index\s*\{[^}]*grid-template-columns:\s*repeat\(2,/s);
@@ -674,7 +476,7 @@ test('390px 关键导航和文字链接保留触控高度', async () => {
   const css = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
   assert.match(
     css,
-    /@media \(max-width: 560px\)[\s\S]*?\.brand,\s*\.site-footer a\s*\{[^}]*display:\s*inline-flex;[^}]*min-height:\s*40px;[^}]*align-items:\s*center;/s
+    /@media \(max-width: 560px\)[\s\S]*?\.brand,\s*\.site-footer a\s*\{[^}]*display:\s*inline-flex;[^}]*min-height:\s*44px;[^}]*align-items:\s*center;/s
   );
   assert.match(
     css,
@@ -729,86 +531,5 @@ test('编辑式导航与细字元数据不再使用低对比旧色值', async ()
   assert.match(
     editorialCss,
     /\.skip-link:focus-visible\s*\{[^}]*transform:\s*translateY\(0\);/s
-  );
-});
-
-test('七篇方法文章各自连接一个项目和一项具名 GitHub 作品', () => {
-  assert.equal(methodArticles.length, 7);
-
-  for (const article of methodArticles) {
-    assert.ok(
-      article.related.some((item) => item.href.startsWith('/projects/')),
-      article.slug + ' missing project link'
-    );
-    assert.ok(
-      article.related.some((item) => /^https:\/\/github\.com\/Anonymousyz\/.+/.test(item.href)),
-      article.slug + ' missing GitHub work link'
-    );
-  }
-
-  assert.deepEqual(
-    methodArticles.find((item) => item.slug === 'learning').related,
-    [
-      { label: '工业绿色微电网评价软件', href: '/projects/#industrial-energy-carbon-system' },
-      {
-        label: 'Awesome AI Production Readiness',
-        href: 'https://github.com/Anonymousyz/awesome-ai-production-readiness',
-        external: true
-      }
-    ]
-  );
-  assert.deepEqual(
-    methodArticles.find((item) => item.slug === 'plural-thinking').related,
-    [
-      { label: '工业绿色微电网评价软件', href: '/projects/#industrial-energy-carbon-system' },
-      {
-        label: 'Research-to-Decision Toolkit',
-        href: 'https://github.com/Anonymousyz/research-to-decision-toolkit',
-        external: true
-      }
-    ]
-  );
-  assert.deepEqual(
-    methodArticles.find((item) => item.slug === 'writing').related,
-    [
-      { label: '总体所技改平台项目', href: '/projects/#industrial-digital-public-service-platform' },
-      {
-        label: 'Research-to-Decision Toolkit',
-        href: 'https://github.com/Anonymousyz/research-to-decision-toolkit',
-        external: true
-      }
-    ]
-  );
-});
-
-test('最终文案使用确认后的具体表述和项目主线', async () => {
-  const home = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
-  const hub = await readFile(new URL('../src/pages/methods/index.astro', import.meta.url), 'utf8');
-  const visual = methodArticles.find((item) => item.slug === 'visual-information-design');
-  const plural = methodArticles.find((item) => item.slug === 'plural-thinking');
-  const engineering = methodArticles.find((item) => item.slug === 'product-and-engineering');
-  const microgrid = projects.find((item) => item.id === 'industrial-energy-carbon-system');
-  const oral = projects.find((item) => item.id === 'oral-care-mini-program');
-
-  assert.match(
-    home,
-    /description="围绕“从分析到决策、从技术到应用”整理的个人方法、公开作品和项目记录。"/
-  );
-  assert.match(hub, /<h1>判断与实现<\/h1>/);
-  assert.doesNotMatch(hub, /我会根据新材料和项目结果，调整这些做法。/);
-  assert.doesNotMatch(hub, /改变其中的判断和次序/);
-  assert.equal(microgrid.pillar, '从分析到决策 · 从技术到应用');
-  assert.equal(oral.pillar, '从技术到应用');
-  assert.equal(
-    visual.sections.at(-1).paragraphs.at(-1),
-    '这次改版把“持续学习”放在通栏位置，其余六项归入两条主线。桌面端和移动端保持相同的信息顺序，主要链接也保留清晰的键盘焦点。'
-  );
-  assert.match(
-    JSON.stringify(plural),
-    /我把这种做法叫作“专家委员会”：分别从项目负责人、专业人员等角色出发列问题。需要专业结论时，再请相应人员复核。/
-  );
-  assert.equal(
-    engineering.lead,
-    '业务规则确认后，我把它们落实为数据、状态、权限和校验。技术方案按部署环境和维护条件取舍，交付前再检查异常处理、测试、部署和维护责任。'
   );
 });

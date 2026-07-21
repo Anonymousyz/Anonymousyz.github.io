@@ -3,3 +3,7 @@ node_modules/
 .DS_Store
 *.log
 .superpowers/
+
+agent-inbox/
+agent-outbox/
+specs/
