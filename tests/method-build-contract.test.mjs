@@ -20,7 +20,7 @@ test('构建验证检查新方法标题与无项目片段边界', async () => {
   }
 
   assert.match(source, /<h1>工作方法<\\\/h1>/);
-  assert.match(source, /工业绿色微电网\|总体所\|口腔小程序/);
+  assert.match(source, /工业绿色微电网\|工业技术改造投资管理平台项目\|口腔小程序/);
   assert.doesNotMatch(source, /正式 UAT、预生产和生产验收尚未完成/);
 });
 

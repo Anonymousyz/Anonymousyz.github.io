@@ -14,7 +14,7 @@ export const featuredCase = {
 export const demos = [
   {
     index: '02',
-    title: '总体所技改平台项目',
+    title: '工业技术改造投资管理平台项目',
     kind: '内部功能版本 · 原型快照',
     summary: '把项目材料、角色和审批流程做成系统中的台账、权限和工作台。',
     href: '/projects/#industrial-digital-public-service-platform'
@@ -67,7 +67,7 @@ export const projects = [
   {
     id: 'industrial-digital-public-service-platform',
     index: '02',
-    title: '总体所技改平台项目',
+    title: '工业技术改造投资管理平台项目',
     pillar: '从分析到决策 · 从技术到应用',
     summary: '前期把政策和产业问题写成项目方案、任务和预算；建设期再把材料中的角色、对象和审批关系落实为台账、权限、状态和工作台。',
     role: '参与申报论证、预算与任务设计，也参与建设期的材料梳理、产品定义、流程与权限设计，以及实现检查和测试。',
@@ -89,14 +89,18 @@ export const projects = [
       images: [
         {
           src: '/images/projects/tech-reform-cockpit.png',
-          alt: '工业技改投资项目管理平台驾驶舱的脱敏样例界面',
+          width: 1265,
+          height: 712,
+          alt: '工业技术改造投资管理平台项目驾驶舱的脱敏样例界面',
           label: '项目驾驶舱',
           explanation: '把项目台账、风险信号和角色视角放进同一工作台，便于项目管理团队持续跟进。',
           boundary: '脱敏样例界面，不含真实项目、组织信息或运行地址。'
         },
         {
           src: '/images/projects/tech-reform-workflow.png',
-          alt: '工业技改投资项目管理平台任务队列的脱敏样例界面',
+          width: 1265,
+          height: 712,
+          alt: '工业技术改造投资管理平台项目任务队列的脱敏样例界面',
           label: '任务队列',
           explanation: '按项目阶段、角色和时限组织待办，把申报、反馈、验收与问题处理放到同一条工作路径上。',
           boundary: '脱敏样例界面，不代表正式 UAT、预生产或生产验收。'
@@ -130,6 +134,8 @@ export const projects = [
       images: [
         {
           src: '/images/projects/oral-care-mini-program.png',
+          width: 1265,
+          height: 712,
           alt: '口腔矫治依从性管理工具患者端的脱敏样例界面',
           label: '患者端流程',
           explanation: '围绕当天任务、记录和提醒组织日常使用；不输出诊断或治疗建议。',
@@ -137,6 +143,8 @@ export const projects = [
         },
         {
           src: '/images/projects/oral-care-admin.png',
+          width: 1280,
+          height: 720,
           alt: '口腔矫治依从性管理工具医生端工作台的脱敏样例界面',
           label: '医生端工作台',
           explanation: '用于查看样例任务、随访关注项和协作信息，体现患者端与医生端的工作关系。',

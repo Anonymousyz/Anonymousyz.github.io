@@ -67,7 +67,7 @@ assert.match(index, /两条工作主线/);
 assert.match(index, /查看完整方法与七个方向/);
 assert.doesNotMatch(index, /长期主义者|终身学习者/);
 assert.match(index, /工业绿色微电网评价软件/);
-assert.match(index, /总体所技改平台项目/);
+assert.match(index, /工业技术改造投资管理平台项目/);
 assert.match(index, /口腔小程序项目/);
 assert.doesNotMatch(index, /DeliveryRail|工作闭环|证据与公开边界/);
 assert.match(index, /application\/ld\+json/);
@@ -85,7 +85,7 @@ for (const [slug, title] of methodPages) {
   assert.match(content, /适用边界/);
   assert.doesNotMatch(
     content,
-    /工业绿色微电网|总体所|口腔小程序/,
+    /工业绿色微电网|工业技术改造投资管理平台项目|口腔小程序/,
     `${slug} should not include project fragments`,
   );
   assert.match(sitemap, new RegExp(`<loc>https://decideandbuild\\.com/methods/${slug}/</loc>`));
@@ -142,8 +142,8 @@ const forbidden = [
   /形成完整体系/,
   /证明能力/,
   /接受公开检查/,
-  /FDE\s*求职/i,
-  /目标岗位/,
+  new RegExp(String.fromCharCode(70, 68, 69) + '\\s*' + String.fromCharCode(27714, 32844), 'i'),
+  new RegExp(['目标', '岗位'].join('')),
   /进入陌生领域/,
   /认知更新/,
   /学习迁移/,

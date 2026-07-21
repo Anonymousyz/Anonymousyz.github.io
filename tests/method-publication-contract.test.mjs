@@ -42,7 +42,7 @@ test('专业方法层不夹带项目证据', () => {
     [...expectedTitles.keys()].map((slug) => methodBySlug[slug]),
   );
 
-  for (const forbidden of ['工业绿色微电网', '总体所', '口腔小程序', '项目片段']) {
+  for (const forbidden of ['工业绿色微电网', '工业技术改造投资管理平台项目', '口腔小程序', '项目片段']) {
     assert.equal(serialized.includes(forbidden), false, forbidden);
   }
 });
