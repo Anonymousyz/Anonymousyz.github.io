@@ -90,7 +90,7 @@ test('首页项目固定为一个主案例和两份项目记录', () => {
     '/projects/#industrial-digital-public-service-platform',
     '/projects/#oral-care-mini-program'
   ]);
-  assert.deepEqual(demos.map((item) => item.kind), ['内部功能版本', '受控 Demo']);
+  assert.deepEqual(demos.map((item) => item.kind), ['内部功能版本 · 原型快照', '受控 Demo · 原型快照']);
 
   const techReform = projects.find((item) => item.id === 'industrial-digital-public-service-platform');
   assert.match(techReform.summary, /项目方案、任务和预算.*台账、权限、状态和工作台/);
@@ -155,6 +155,37 @@ test('代表项目提供交付路径和公开说明范围', () => {
     assert.ok(project.deliveryPath.length > 0);
     assert.ok(project.publicScope.length >= 3);
   }
+});
+
+test('两份数字化项目以两张脱敏原型快照说明流程与公开边界', () => {
+  const prototypeProjects = projects.filter((project) => project.prototypeShowcase);
+  assert.deepEqual(prototypeProjects.map((project) => project.id), [
+    'industrial-digital-public-service-platform',
+    'oral-care-mini-program'
+  ]);
+
+  for (const project of prototypeProjects) {
+    assert.match(project.prototypeShowcase.status, /原型快照/);
+    assert.ok(project.prototypeShowcase.intro.length > 0);
+    assert.equal(project.prototypeShowcase.images.length, 2);
+
+    for (const image of project.prototypeShowcase.images) {
+      assert.match(image.src, /^\/images\/projects\//);
+      assert.ok(image.alt.length > 0);
+      assert.ok(image.label.length > 0);
+      assert.ok(image.explanation.length > 0);
+      assert.ok(image.boundary.length > 0);
+      assert.doesNotMatch([image.explanation, image.boundary].join(' '), /公开生产运行|正式验收完成|已上线/);
+    }
+  }
+});
+
+test('项目页在公开边界内渲染原型快照，不导向私有运行环境', async () => {
+  const source = await readFile(new URL('../src/pages/projects.astro', import.meta.url), 'utf8');
+  assert.match(source, /project\.prototypeShowcase/);
+  assert.match(source, /project-prototype-showcase/);
+  assert.match(source, /image\.boundary/);
+  assert.doesNotMatch(source, /target=/);
 });
 
 test('证据状态只有三种', () => {

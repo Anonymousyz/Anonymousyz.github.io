@@ -15,14 +15,14 @@ export const demos = [
   {
     index: '02',
     title: '总体所技改平台项目',
-    kind: '内部功能版本',
+    kind: '内部功能版本 · 原型快照',
     summary: '把项目材料、角色和审批流程做成系统中的台账、权限和工作台。',
     href: '/projects/#industrial-digital-public-service-platform'
   },
   {
     index: '03',
     title: '口腔小程序项目',
-    kind: '受控 Demo',
+    kind: '受控 Demo · 原型快照',
     summary: '设计家长授权、检查报告、预约和后台协作流程。',
     href: '/projects/#oral-care-mini-program'
   }
@@ -83,6 +83,26 @@ export const projects = [
       '形成项目申报与论证材料、建设任务和预算安排。',
       '形成内部功能版本，覆盖项目台账、角色权限、审批状态和工作台；正式 UAT、预生产与生产验收尚未完成。'
     ],
+    prototypeShowcase: {
+      status: '内部功能版本 · 原型快照',
+      intro: '以下界面使用脱敏样例数据，说明项目台账、角色、风险和任务怎样进入同一套工作台。',
+      images: [
+        {
+          src: '/images/projects/tech-reform-cockpit.png',
+          alt: '工业技改投资项目管理平台驾驶舱的脱敏样例界面',
+          label: '项目驾驶舱',
+          explanation: '把项目台账、风险信号和角色视角放进同一工作台，便于项目管理团队持续跟进。',
+          boundary: '脱敏样例界面，不含真实项目、组织信息或运行地址。'
+        },
+        {
+          src: '/images/projects/tech-reform-workflow.png',
+          alt: '工业技改投资项目管理平台任务队列的脱敏样例界面',
+          label: '任务队列',
+          explanation: '按项目阶段、角色和时限组织待办，把申报、反馈、验收与问题处理放到同一条工作路径上。',
+          boundary: '脱敏样例界面，不代表正式 UAT、预生产或生产验收。'
+        }
+      ]
+    },
     boundary: '本页只说明脱敏后的方案结构、流程与测试范围；不披露原始材料、用户数据、账号、运行地址或私有代码。'
   },
   {
@@ -104,6 +124,26 @@ export const projects = [
       '形成小程序与管理后台的受控 Demo。',
       '完成主要流程和相关测试，保留试点前仍需处理的运行事项。'
     ],
+    prototypeShowcase: {
+      status: '受控 Demo · 原型快照',
+      intro: '以下界面使用原型样例数据，说明提醒、记录与随访辅助怎样组织为患者端和医生端的协作流程。',
+      images: [
+        {
+          src: '/images/projects/oral-care-mini-program.png',
+          alt: '口腔矫治依从性管理工具患者端的脱敏样例界面',
+          label: '患者端流程',
+          explanation: '围绕当天任务、记录和提醒组织日常使用；不输出诊断或治疗建议。',
+          boundary: '受控 Demo 的脱敏样例界面，不代表真实患者服务或正式上线。'
+        },
+        {
+          src: '/images/projects/oral-care-admin.png',
+          alt: '口腔矫治依从性管理工具医生端工作台的脱敏样例界面',
+          label: '医生端工作台',
+          explanation: '用于查看样例任务、随访关注项和协作信息，体现患者端与医生端的工作关系。',
+          boundary: '受控 Demo 的脱敏样例界面，不含真实患者资料或运行地址。'
+        }
+      ]
+    },
     boundary: '不公开未成年人和健康原始数据；受控 Demo 与试点准备不代表已经公开生产运行。'
   }
 ];
