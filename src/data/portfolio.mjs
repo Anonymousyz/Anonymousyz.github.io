@@ -174,5 +174,27 @@ export const tools = [
     proofTypes: ['来源链接', '分类结构', '快速决策地图', '机器可读入口'],
     methodBoundary: '清单提供检索起点。采用工具前仍需核对当前版本、适用条件和维护状态。',
     href: 'https://github.com/Anonymousyz/awesome-ai-production-readiness'
+  },
+  {
+    index: '04',
+    title: '高质量 AI 写作',
+    question: '一篇知识工作文档在署名前，怎样判断它是否经得起审阅？',
+    summary: '一套面向方案、评审、报告、决策备忘和技术文档的评审标准，覆盖立意、逻辑、来源、分寸、字句、文气和得体，并配有脱敏改稿判例与可安装的审稿技能。',
+    homeSummary: '一套用于方案、报告和技术文档的署名前审稿标准。',
+    status: '持续维护',
+    version: 'v0.7.0',
+    runtime: 'Markdown 标准与 Agent Skills',
+    quickStart: {
+      kind: 'guide',
+      label: '最短阅读路径',
+      items: [
+        '从 STANDARD.md 了解写前模式、一票否决与三层八维',
+        '按 principles/ 查看每个维度的问句、病征和改法',
+        '安装 pre-sign-review，在署名前做一次全检'
+      ]
+    },
+    proofTypes: ['评审标准', '脱敏判例', '测试', 'Agent Skills'],
+    methodBoundary: '它提供判断标准和审稿路径，不替代事实核查、专业审核或署名责任。',
+    href: 'https://github.com/Anonymousyz/quality-ai-writing'
   }
 ];

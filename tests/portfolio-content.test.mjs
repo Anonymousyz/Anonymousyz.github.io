@@ -165,15 +165,15 @@ test('证据状态只有三种', () => {
   ]);
 });
 
-test('公开作品保留三个入口', () => {
-  assert.equal(tools.length, 3);
+test('公开作品保留四个入口', () => {
+  assert.equal(tools.length, 4);
   for (const tool of tools) {
     assert.match(tool.href, /^https:\/\/github\.com\/Anonymousyz\//);
   }
 });
 
 test('公开作品提供版本、检查路径和方法边界', () => {
-  assert.deepEqual(tools.map((item) => item.version), ['v0.6.0', 'v0.6.0', '持续维护']);
+  assert.deepEqual(tools.map((item) => item.version), ['v0.6.0', 'v0.6.0', '持续维护', 'v0.7.0']);
 
   for (const tool of tools) {
     assert.ok(tool.runtime.length > 0);
@@ -187,7 +187,8 @@ test('首页公开作品摘要保持确认稿', () => {
   assert.deepEqual(tools.map((item) => item.homeSummary), [
     '从研究问题、证据整理到方案比较的一组模板。',
     '帮助团队检查 AI 原型能否进入真实业务流程。',
-    '收录 AI 系统上线前需要检查的工程和治理资料。'
+    '收录 AI 系统上线前需要检查的工程和治理资料。',
+    '一套用于方案、报告和技术文档的署名前审稿标准。'
   ]);
 });
 
