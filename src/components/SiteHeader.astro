@@ -26,13 +26,11 @@ const navItems = [
 <header class="site-header shell">
   <a class="brand" href="/" aria-label="返回首页" aria-current={current === 'home' ? 'page' : undefined}>Anonymousyz</a>
   <nav class="desktop-nav" aria-label="主导航">
-    <details class:list={{ 'desktop-nav__methods': true, active: current === 'methods' }}>
-      <summary>{methodNav.label}<span aria-hidden="true">⌄</span></summary>
-      <div class="desktop-nav__menu" aria-label="方法导航">
-        <a href={methodNav.href} aria-current={isMethodHub ? 'page' : undefined}>方法总览 <span aria-hidden="true">→</span></a>
-        {methodItems.map((item) => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>)}
-      </div>
-    </details>
+    <a
+      class:list={{ active: current === 'methods' }}
+      href={methodNav.href}
+      aria-current={isMethodHub ? 'page' : undefined}
+    >{methodNav.label}</a>
     {navItems.map((item) => (
       <a
         class:list={{ active: current === item.key }}
@@ -45,7 +43,7 @@ const navItems = [
     <summary>菜单</summary>
     <nav aria-label="移动端主导航">
       <div class="mobile-nav__methods">
-        <a class:list={{ active: current === 'methods' }} href={methodNav.href} aria-current={isMethodHub ? 'page' : undefined}>方法总览</a>
+        <a class:list={{ active: current === 'methods' }} href={methodNav.href} aria-current={isMethodHub ? 'page' : undefined}>{methodNav.label}</a>
         <div class="mobile-nav__subnav">
           {methodItems.map((item) => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>)}
         </div>

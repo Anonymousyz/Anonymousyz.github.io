@@ -427,16 +427,13 @@ test('共享布局使用编辑式页面外框', async () => {
   ]);
 });
 
-test('首页在公开作品之后简要呈现两个身份', async () => {
+test('首页不再呈现身份定义，身份说明仅保留在关于页', async () => {
   const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
-  const identity = await readFile(new URL('../src/components/HomeIdentityStrip.astro', import.meta.url), 'utf8');
-  assert.match(source, /<HomeIdentityStrip identities=\{identityProfiles\} \/>/);
+  assert.doesNotMatch(source, /HomeIdentityStrip|identityProfiles|id="identity"/);
   assert.match(source, /<p class="editorial-eyebrow">研究、项目与公开作品<\/p>/);
   assert.match(source, /<p class="editorial-lead">\{heroCopy\}<\/p>/);
   assert.ok(source.indexOf('editorial-hero') < source.indexOf('id="methods"'));
-  assert.ok(source.indexOf('id="works"') < source.indexOf('id="identity"'));
-  assert.match(identity, /identity\.homeNote/);
-  assert.doesNotMatch(identity, /blockquote|englishQuote|sourceUrl/);
+  assert.ok(source.indexOf('id="methods"') < source.indexOf('id="works"'));
 });
 test('身份和方法在桌面双栏、移动端单栏', async () => {
   const css = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
@@ -532,4 +529,9 @@ test('编辑式导航与细字元数据不再使用低对比旧色值', async ()
     editorialCss,
     /\.skip-link:focus-visible\s*\{[^}]*transform:\s*translateY\(0\);/s
   );
+});
+
+test('构建验证不再要求首页身份区块', async () => {
+  const source = await readFile(new URL('../scripts/verify-build.mjs', import.meta.url), 'utf8');
+  assert.match(source, /assert\.doesNotMatch\(index, \/长期主义者\|终身学习者\/\);/);
 });

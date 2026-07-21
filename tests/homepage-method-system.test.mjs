@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { identityProfiles } from '../src/data/methods.mjs';
 import * as relationshipData from '../src/data/method-relationships.mjs';
 
 const { methodRelationships } = relationshipData;
@@ -56,30 +55,16 @@ test('首页三条原则使用已确认的公开方法原文', () => {
   ]);
 });
 
-test('首页身份简注使用第一人称确认稿', () => {
-  assert.deepEqual(identityProfiles.map(({ title, homeNote }) => ({ title, homeNote })), [
-    {
-      title: '长期主义者',
-      homeNote: '我愿意把时间放在能够积累、反复使用并接受结果检验的事情上。'
-    },
-    {
-      title: '终身学习者',
-      homeNote: '我对陌生领域保持兴趣，也会根据新材料和实际结果修正自己的理解。'
-    }
-  ]);
-});
-
 test('首页先展示代表项目，再提供紧凑的方法入口', async () => {
   const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
   const methodSource = await readFile(new URL('../src/components/HomeMethodSystem.astro', import.meta.url), 'utf8');
 
   assert.match(source, /HomeMethodSystem/);
-  assert.match(source, /HomeIdentityStrip/);
+  assert.doesNotMatch(source, /HomeIdentityStrip|identityProfiles|id="identity"/);
   assert.doesNotMatch(source, /<MethodIndex/);
   assert.doesNotMatch(source, /<IdentityIndex/);
   assert.ok(source.indexOf('id="projects"') < source.indexOf('id="methods"'));
   assert.ok(source.indexOf('id="methods"') < source.indexOf('id="works"'));
-  assert.ok(source.indexOf('id="works"') < source.indexOf('id="identity"'));
   assert.doesNotMatch(methodSource, /home-principles/);
 });
 
@@ -98,7 +83,8 @@ test('导航直接披露方法的七个方向', async () => {
     assert.match(source, new RegExp(href));
   }
   assert.match(source, /label: '方法'/);
-  assert.match(source, /<summary>\{methodNav\.label\}<span aria-hidden="true">⌄<\/span><\/summary>/);
+  assert.match(source, /<a\s+class:list=\{\{ active: current === 'methods' \}\}\s+href=\{methodNav\.href\}/s);
+  assert.doesNotMatch(source, /desktop-nav__methods|<summary>\{methodNav\.label\}/);
 });
 
 test('方法导航只把实际所在页面标为当前页', async () => {
@@ -110,12 +96,9 @@ test('方法导航只把实际所在页面标为当前页', async () => {
   assert.match(source, /aria-current=\{currentPath === item\.href \? 'page' : undefined\}/);
 });
 
-test('关于页承接完整身份引语并说明证据边界', async () => {
+test('关于页保留身份引语，不再添加解释性说明', async () => {
   const source = await readFile(new URL('../src/pages/about.astro', import.meta.url), 'utf8');
 
   assert.match(source, /<IdentityIndex identities=\{identityProfiles\}/);
-  assert.match(
-    source,
-    /这些引语说明我认同的工作取向。项目、作品和长期结果才是能力证据。/
-  );
+  assert.doesNotMatch(source, /这些引语说明我认同的工作取向/);
 });

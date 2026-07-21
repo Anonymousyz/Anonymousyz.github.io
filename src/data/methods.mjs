@@ -8,7 +8,6 @@ export const identityProfiles = [
   {
     key: 'long-termist',
     title: '长期主义者',
-    homeNote: '我愿意把时间放在能够积累、反复使用并接受结果检验的事情上。',
     quote: '无欲速，无见小利。欲速则不达，见小利则大事不成。',
     attribution: '孔子《论语·子路》',
     englishQuote: "It's All About the Long Term.",
@@ -18,7 +17,6 @@ export const identityProfiles = [
   {
     key: 'lifelong-learner',
     title: '终身学习者',
-    homeNote: '我对陌生领域保持兴趣，也会根据新材料和实际结果修正自己的理解。',
     quote: '学不可以已。',
     attribution: '荀子《劝学》',
     englishQuote: 'Stay hungry. Stay foolish.',

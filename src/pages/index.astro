@@ -1,12 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HomeIdentityStrip from '../components/HomeIdentityStrip.astro';
 import HomeMethodSystem from '../components/HomeMethodSystem.astro';
 import ProjectIndex from '../components/ProjectIndex.astro';
 import PublicWorkIndex from '../components/PublicWorkIndex.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import { identityProfiles } from '../data/methods.mjs';
 import { methodRelationships } from '../data/method-relationships.mjs';
 import { demos, featuredCase, heroCopy, positioning, tools } from '../data/portfolio.mjs';
 
@@ -59,12 +57,6 @@ const personSchema = {
       <PublicWorkIndex works={tools} />
     </section>
 
-    <section class="editorial-section shell identity-section home-identity-section" id="identity" aria-labelledby="identity-title">
-      <div class="editorial-section__head editorial-section__head--compact">
-        <h2 id="identity-title">身份</h2>
-      </div>
-      <HomeIdentityStrip identities={identityProfiles} />
-    </section>
   </main>
   <SiteFooter />
 </Layout>
