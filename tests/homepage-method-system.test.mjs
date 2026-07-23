@@ -38,18 +38,18 @@ test('首页方法体系沿用两条主线和现有详情页链接', () => {
 test('首页三条原则使用已确认的公开方法原文', () => {
   assert.deepEqual(relationshipData.homepagePrinciples, [
     {
-      title: '从决策问题开始',
-      description: '先写清决策主体、待决定事项、可选动作、时间窗口和约束条件。',
+      title: '先把要作的决定说清楚',
+      description: '写清谁要作决定、决定什么、有哪些选择、何时决定，以及受到哪些限制。',
       href: '/methods/research-and-judgment/'
     },
     {
-      title: '分开事实、解释、评价和建议',
-      description: '事实与推理分开，建议写清行动主体、触发条件和适用边界。',
+      title: '把事实、解释、评价和建议分开写',
+      description: '事实与推理分开；建议写明谁来做、什么情况下做、适用于什么范围。',
       href: '/methods/writing/'
     },
     {
-      title: '发布以后仍有工程责任',
-      description: '交付时说明当前版本、已知限制、操作方式和责任人。',
+      title: '发布以后，问题仍要有人管',
+      description: '交付时写明当前版本、已知限制、操作方法和负责人。',
       href: '/methods/product-and-engineering/'
     }
   ]);

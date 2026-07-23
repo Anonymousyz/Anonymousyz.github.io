@@ -15,8 +15,8 @@ const expectedTitles = new Map([
   ['plural-thinking', '多元思维｜规律 · 工具 · 视角'],
   ['writing', '写作｜判断 · 证据 · 表达'],
   ['product-definition', '产品｜做什么 · 为什么做 · 验证什么'],
-  ['visual-information-design', '视觉｜功能 · 一致性 · 删除'],
-  ['product-and-engineering', '工程｜怎么做稳 · 怎么维护 · 怎么交付'],
+  ['visual-information-design', '视觉｜重点 · 秩序 · 取舍'],
+  ['product-and-engineering', '工程｜稳定 · 维护 · 交付'],
 ]);
 
 test('六个专业方法页采用来自 Notion 的公开措辞与长文结构', () => {
@@ -54,7 +54,7 @@ test('学习页说明测评结果，也写明证据边界', () => {
     learningMethod.article.assessment.sourceUrl,
     /^https:\/\/www\.gallup\.com\//,
   );
-  assert.match(learningMethod.article.assessment.boundary, /不替代项目成果/);
+  assert.match(learningMethod.article.assessment.boundary, /不能代替项目成果/);
   assert.equal('related' in learningMethod.article, false);
 });
 

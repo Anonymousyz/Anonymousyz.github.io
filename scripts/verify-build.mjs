@@ -30,24 +30,24 @@ const methods = await readFile(path.join(root, 'methods/index.html'), 'utf8');
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 
 const methodPages = [
-  ['learning', '持续学习｜好奇心 · 任务 · 校验 · 更新'],
+  ['learning', '持续学习｜好奇心 · 目标 · 检验 · 调整'],
   ['research-and-judgment', '研究｜决策问题 · 证据链 · 结论树'],
   ['plural-thinking', '多元思维｜规律 · 工具 · 视角'],
   ['writing', '写作｜判断 · 证据 · 表达'],
   ['product-definition', '产品｜做什么 · 为什么做 · 验证什么'],
-  ['visual-information-design', '视觉｜功能 · 一致性 · 删除'],
-  ['product-and-engineering', '工程｜怎么做稳 · 怎么维护 · 怎么交付'],
+  ['visual-information-design', '视觉｜重点 · 秩序 · 取舍'],
+  ['product-and-engineering', '工程｜稳定 · 维护 · 交付'],
 ];
 
 const methodV3Requirements = new Map([
-  ['/methods/', ['这些方法怎样协作', '主要阅读关系']],
-  ['/methods/learning/', ['主动检索', '费曼检验', '元认知']],
-  ['/methods/research-and-judgment/', ['比较行动选项', '最小可验证行动', '判断写完整']],
-  ['/methods/plural-thinking/', ['最小、可验证、可撤回的行动', '默认使用一个主工具']],
-  ['/methods/writing/', ['四道质量门', '新增检查不再改变判断、结构或行动时停止']],
-  ['/methods/product-definition/', ['不做清单', '工程化设计入口']],
-  ['/methods/visual-information-design/', ['甜蜜区', '机器可读']],
-  ['/methods/product-and-engineering/', ['工程化设计和质量门禁', '正式 UAT']],
+  ['/methods/', ['七项方法之间的关系', '只列主要关系']],
+  ['/methods/learning/', ['提取练习', '近迁移', '元认知监测']],
+  ['/methods/research-and-judgment/', ['把几种做法放在一起比较', '先做一步可验证的行动', '结论要带上条件']],
+  ['/methods/plural-thinking/', ['规模较小、结果可查、必要时能够撤回的行动', '通常先用一个主要工具']],
+  ['/methods/writing/', ['写完以后检查四遍', '继续修改已经不会改变判断、结构或行动时']],
+  ['/methods/product-definition/', ['明确不做的内容', '工程化设计入口']],
+  ['/methods/visual-information-design/', ['信息量和留白', '程序读取']],
+  ['/methods/product-and-engineering/', ['工程设计和交付检查', '正式用户验收测试（UAT）']],
 ]);
 
 const methodV3Forbidden = [
@@ -64,7 +64,7 @@ assert.match(index, /研究、项目与公开作品/);
 assert.match(index, /从分析到决策/);
 assert.match(index, /从技术到应用/);
 assert.match(index, /两条工作主线/);
-assert.match(index, /查看完整方法与七个方向/);
+assert.match(index, /查看全部七项方法/);
 assert.doesNotMatch(index, /长期主义者|终身学习者/);
 assert.match(index, /工业绿色微电网评价软件/);
 assert.match(index, /工业技术改造投资管理平台项目/);
@@ -106,7 +106,7 @@ assert.match(sitemap, /<loc>https:\/\/decideandbuild\.com\/methods\/<\/loc>/);
 const learning = await readFile(path.join(root, 'methods/learning/index.html'), 'utf8');
 assert.match(learning, /Learner®/);
 assert.match(learning, /#1/);
-assert.match(learning, /不替代项目成果/);
+assert.match(learning, /不能代替项目成果/);
 
 assert.match(works, /v0\.6\.0/);
 assert.match(works, /r2d validate brief\.json/);
@@ -114,7 +114,7 @@ assert.match(works, /ai-ready report assessment\.json/);
 assert.match(works, /SoftwareSourceCode/);
 assert.match(works, /og\/works\.png/);
 
-assert.match(about, /过去八年，我参与产业研究、政策分析和重大项目/);
+assert.match(about, /过去八年，我做过产业研究、政策分析和重大项目/);
 
 for (const file of ['home.png', 'projects.png', 'works.png', 'about.png']) {
   await access(path.join(root, 'og', file));

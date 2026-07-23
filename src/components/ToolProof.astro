@@ -42,11 +42,11 @@ const { tool, compact = false } = Astro.props;
   <div class="tool-proof__body">
     <div>
       <p class="tool-proof__summary">{tool.summary}</p>
-      <div class="proof-list" aria-label="可检查内容">
+      <div class="proof-list" aria-label="仓库内容">
         {tool.proofTypes.map((proof) => <ProofChip label={proof} />)}
       </div>
       {!compact && (
-        <p class="tool-proof__boundary"><strong>方法边界</strong>{tool.methodBoundary}</p>
+        <p class="tool-proof__boundary"><strong>使用限制</strong>{tool.methodBoundary}</p>
       )}
     </div>
     <div class="tool-proof__run">
@@ -57,8 +57,8 @@ const { tool, compact = false } = Astro.props;
         <ol>{tool.quickStart.items.map((item) => <li>{item}</li>)}</ol>
       )}
       <div class="project-links">
-        {tool.caseHref && <a href={tool.caseHref}>查看案例 →</a>}
-        <a href={tool.href} target="_blank" rel="noreferrer">打开仓库 <span aria-hidden="true">↗</span></a>
+        {tool.caseHref && <a href={tool.caseHref}>查看使用案例 →</a>}
+        <a href={tool.href} target="_blank" rel="noreferrer">查看仓库 <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </div>

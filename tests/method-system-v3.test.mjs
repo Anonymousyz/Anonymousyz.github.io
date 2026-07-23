@@ -14,15 +14,15 @@ function articleText(slug) {
 test('研究页从证据继续走到行动与复盘', () => {
   const article = methodBySlug['research-and-judgment'];
   assert.deepEqual(article.map.steps, [
-    '界定决策问题',
-    '建立证据地图',
-    '形成竞争性解释',
-    '比较行动选项',
-    '设计最小可验证行动',
-    '记录结果并复盘',
+    '说清要作的决定',
+    '列出要核对的事实',
+    '比较不同解释',
+    '比较几种做法',
+    '先做一步可验证的行动',
+    '记录结果，按时复核',
   ]);
   for (const term of [
-    '不行动', '保守方案', '进取方案', '可逆性', '信息价值',
+    '不行动', '谨慎试行', '较大投入', '撤回', '能多知道什么',
     '适用范围', '主要反方', '反证条件', '复核时间',
   ]) assert.match(articleText('research-and-judgment'), new RegExp(term));
 });
@@ -30,30 +30,30 @@ test('研究页从证据继续走到行动与复盘', () => {
 test('多元思维把验证写成下一步行动', () => {
   const article = methodBySlug['plural-thinking'];
   assert.deepEqual(article.map.steps, [
-    '目标：真正要解决什么',
-    '事实：已经确认什么',
-    '验证：下一步怎样行动',
+    '目标：要解决什么问题',
+    '事实：已经知道什么',
+    '验证：下一步先做什么',
   ]);
-  assert.match(articleText('plural-thinking'), /最小、可验证、可撤回的行动/);
-  assert.match(articleText('plural-thinking'), /默认使用一个主工具/);
-  assert.match(articleText('plural-thinking'), /不再改变判断或行动时停止/);
+  assert.match(articleText('plural-thinking'), /规模较小、结果可查、必要时能够撤回的行动/);
+  assert.match(articleText('plural-thinking'), /通常先用一个主要工具/);
+  assert.match(articleText('plural-thinking'), /再加一个模型也不会改变判断和行动时/);
 });
 
 test('学习页区分个人偏好、参考方法和实际证据', () => {
   const text = articleText('learning');
-  for (const term of ['主动检索', '费曼检验', '迁移', '元认知']) {
+  for (const term of ['提取练习', '近迁移', '远迁移', '元认知监测']) {
     assert.match(text, new RegExp(term));
   }
-  assert.match(text, /参考方法/);
-  assert.match(text, /不表示这些方法已经形成长期个人证据/);
+  assert.match(text, /学习方法只在需要时使用/);
+  assert.match(text, /只能说明偏好与过程/);
   assert.doesNotMatch(text, /记忆保持率|≥\s*85%|学习 KPI|25 分钟/);
 });
 
 test('写作、产品、视觉和工程保留各自的选择与停止规则', () => {
-  assert.match(articleText('writing'), /新增检查不再改变判断、结构或行动时停止/);
-  assert.match(articleText('product-definition'), /不做清单|工程化设计入口/);
-  assert.match(articleText('visual-information-design'), /甜蜜区|机器可读|正在形成/);
-  assert.match(articleText('product-and-engineering'), /工程化设计和质量门禁/);
+  assert.match(articleText('writing'), /继续修改已经不会改变判断、结构或行动时/);
+  assert.match(articleText('product-definition'), /明确不做的内容|工程化设计入口/);
+  assert.match(articleText('visual-information-design'), /信息量和留白|程序读取|仍在整理/);
+  assert.match(articleText('product-and-engineering'), /工程设计和交付检查/);
 });
 
 test('方法关系只描述主要阅读关系和跨主线使用', () => {
@@ -61,7 +61,7 @@ test('方法关系只描述主要阅读关系和跨主线使用', () => {
     ['研究', '多元思维', '写作'],
     ['产品', '视觉', '工程'],
   ]);
-  assert.match(methodRelationships.note, /顺序表示主要阅读关系/);
+  assert.match(methodRelationships.note, /只列主要关系/);
   assert.doesNotMatch(methodRelationships.note, /箭头/);
   assert.match(methodRelationships.note, /多元思维.*产品和工程/);
   assert.match(methodRelationships.note, /视觉.*研究材料.*软件界面/);

@@ -7,7 +7,7 @@ import { projects } from '../data/portfolio.mjs';
 
 <Layout
   title="项目与实践｜Anonymousyz"
-  description="研究、重大项目和数字化系统案例，说明职责、处理过程、当前进度与公开边界。"
+  description="三个项目记录，说明我做了什么、项目进展到哪一步，以及哪些内容可以公开。"
   image="/og/projects.png"
 >
   <SiteHeader current="projects" />
@@ -15,8 +15,8 @@ import { projects } from '../data/portfolio.mjs';
   <main>
     <section class="editorial-hero shell">
       <p class="editorial-eyebrow">项目</p>
-      <h1>三个项目，<br />按实际进度记录</h1>
-      <p class="editorial-lead">这些记录写的是项目怎样从材料和业务问题走到产品与软件。现在只放脱敏文字，不放项目附件；进度按实际情况写。</p>
+      <h1>三个项目，<br />按进度如实记录</h1>
+      <p class="editorial-lead">这三项记录从研究、方案写到产品和软件。页面只使用脱敏文字和原型界面，不公开项目附件；尚未完成的阶段也会注明。</p>
     </section>
 
     <nav class="project-jump shell" aria-label="项目索引">
@@ -48,11 +48,11 @@ import { projects } from '../data/portfolio.mjs';
 
         <div class="project-facts">
           <article>
-            <span>怎样处理</span>
+            <span>处理方式</span>
             <ul>{project.decisions.map((item) => <li>{item}</li>)}</ul>
           </article>
           <article>
-            <span>目前做到哪一步</span>
+            <span>当前进度</span>
             <ul>{project.results.map((item) => <li>{item}</li>)}</ul>
           </article>
         </div>
@@ -62,14 +62,14 @@ import { projects } from '../data/portfolio.mjs';
             <div class="project-prototype-showcase__head">
               <div>
                 <p class="editorial-kicker">{project.prototypeShowcase.status}</p>
-                <h3 id={project.id + '-prototype-title'}>原型快照</h3>
+                <h3 id={project.id + '-prototype-title'}>原型界面</h3>
               </div>
               <p>{project.prototypeShowcase.intro}</p>
             </div>
             <div class="project-prototype-showcase__grid">
               {project.prototypeShowcase.images.map((image) => (
                 <figure class="project-prototype-showcase__item">
-                  <a href={image.src} aria-label={'查看' + image.label + '原始尺寸'}>
+                  <a href={image.src} aria-label={'查看' + image.label + '大图'}>
                     <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />
                   </a>
                   <figcaption>
@@ -87,17 +87,17 @@ import { projects } from '../data/portfolio.mjs';
 
         <div class="project-facts">
           <article>
-            <span>交付路径</span>
+            <span>工作路径</span>
             <p>{project.deliveryPath}</p>
           </article>
           <article>
-            <span>可公开说明的范围</span>
+            <span>公开范围</span>
             <ul>{project.publicScope.map((item) => <li>{item}</li>)}</ul>
           </article>
         </div>
 
         <div class="project-boundary">
-          <strong>公开说明</strong>
+          <strong>公开边界</strong>
           <p>{project.boundary}</p>
         </div>
       </section>

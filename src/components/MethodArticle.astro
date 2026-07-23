@@ -8,7 +8,7 @@ const methodTitleTerms = methodTitleDetail?.split(' · ') ?? [];
 
 <article class="method-article">
   <header class="method-article__header">
-    <a class="back-link" href="/methods/">← 返回工作方法</a>
+    <a class="back-link" href="/methods/">← 返回方法总页</a>
     <p class="editorial-kicker">{article.trackTitle} · {article.index}</p>
     <h1>
       <span class="method-title__name">{methodTitleName}</span>
@@ -27,10 +27,10 @@ const methodTitleTerms = methodTitleDetail?.split(' · ') ?? [];
 
   <div class="method-article__layout">
     <nav class="method-article__toc" aria-label="本页目录">
-      <p>本页</p>
+      <p>目录</p>
       <ol>
         <li><a href="#method-map">{article.map.label}</a></li>
-        {article.assessment && <li><a href="#assessment">测评记录</a></li>}
+        {article.assessment && <li><a href="#assessment">测评结果</a></li>}
         {article.sections.map((section) => (
           <li><a href={`#${section.id}`}>{section.heading}</a></li>
         ))}
@@ -40,7 +40,7 @@ const methodTitleTerms = methodTitleDetail?.split(' · ') ?? [];
 
     <div class="method-article__content">
       <section class="method-map" id="method-map" aria-labelledby="method-map-title">
-        <p class="method-section-label">方法路径</p>
+        <p class="method-section-label">做法</p>
         <h2 id="method-map-title">{article.map.label}</h2>
         <ol>
           {article.map.steps.map((step, index) => (
@@ -89,7 +89,7 @@ const methodTitleTerms = methodTitleDetail?.split(' · ') ?? [];
       </div>
 
       <section class="method-boundaries" id="boundaries" aria-labelledby="boundaries-title">
-        <p class="method-section-label">使用说明</p>
+        <p class="method-section-label">说明</p>
         <h2 id="boundaries-title">适用边界</h2>
         <ul>
           {article.boundaries.map((boundary) => <li>{boundary}</li>)}
@@ -98,8 +98,8 @@ const methodTitleTerms = methodTitleDetail?.split(' · ') ?? [];
 
       {article.publicOutputs?.length > 0 && (
         <section class="method-public-outputs" aria-labelledby="public-outputs-title">
-          <p class="method-section-label">公开整理</p>
-          <h2 id="public-outputs-title">可继续查看</h2>
+          <p class="method-section-label">公开作品</p>
+          <h2 id="public-outputs-title">查看相关工具</h2>
           <div>
             {article.publicOutputs.map((item) => (
               <a

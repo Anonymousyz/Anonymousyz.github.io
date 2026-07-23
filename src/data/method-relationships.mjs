@@ -25,24 +25,24 @@ export const methodRelationships = {
       ],
     },
   ],
-  learning: '持续学习：遇到新证据或实际结果时，回头修正前面的判断和做法。',
-  note: '这里的顺序表示主要阅读关系。多元思维也参与产品和工程判断，写作用于产品与工程文档，视觉同时服务研究材料与软件界面。',
+  learning: '持续学习：新证据或实际结果与原判断不符时，及时修改认识和做法。',
+  note: '图中只列主要关系。多元思维也用于产品和工程判断，写作贯穿产品与工程文档，视觉设计同时服务研究材料和软件界面。',
 };
 
 export const homepagePrinciples = [
   {
-    title: '从决策问题开始',
-    description: '先写清决策主体、待决定事项、可选动作、时间窗口和约束条件。',
+    title: '先把要作的决定说清楚',
+    description: '写清谁要作决定、决定什么、有哪些选择、何时决定，以及受到哪些限制。',
     href: '/methods/research-and-judgment/',
   },
   {
-    title: '分开事实、解释、评价和建议',
-    description: '事实与推理分开，建议写清行动主体、触发条件和适用边界。',
+    title: '把事实、解释、评价和建议分开写',
+    description: '事实与推理分开；建议写明谁来做、什么情况下做、适用于什么范围。',
     href: '/methods/writing/',
   },
   {
-    title: '发布以后仍有工程责任',
-    description: '交付时说明当前版本、已知限制、操作方式和责任人。',
+    title: '发布以后，问题仍要有人管',
+    description: '交付时写明当前版本、已知限制、操作方法和负责人。',
     href: '/methods/product-and-engineering/',
   },
 ];
