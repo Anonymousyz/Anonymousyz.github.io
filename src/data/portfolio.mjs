@@ -84,6 +84,7 @@ export const projects = [
       '已完成内部功能版本，覆盖项目台账、角色权限、审批状态和工作台。正式用户验收测试、预生产验证和生产验收尚未完成。'
     ],
     prototypeShowcase: {
+      presentation: 'featured-switcher',
       status: '内部功能版本 · 界面快照',
       intro: '以下是脱敏样例界面，展示项目台账、角色、风险和待办事项怎样集中到一个工作台。',
       images: [
@@ -93,6 +94,10 @@ export const projects = [
           height: 712,
           alt: '工业技术改造投资管理平台项目工作台的脱敏样例界面',
           label: '项目工作台',
+          displayZoom: 1.24,
+          displayFocus: '100% 0%',
+          displayZoomMobile: 2.2,
+          displayFocusMobile: '18% 22%',
           explanation: '工作台汇总项目台账、风险提示和各角色需要关注的信息，便于项目管理人员跟进。',
           boundary: '界面使用脱敏样例，不含真实项目、组织信息和运行地址。'
         },
@@ -102,6 +107,10 @@ export const projects = [
           height: 712,
           alt: '工业技术改造投资管理平台项目任务队列的脱敏样例界面',
           label: '任务队列',
+          displayZoom: 1.24,
+          displayFocus: '100% 0%',
+          displayZoomMobile: 2.2,
+          displayFocusMobile: '18% 22%',
           explanation: '待办事项按项目阶段、角色和期限排列，申报、反馈、验收和问题处理沿着同一条工作路径推进。',
           boundary: '界面使用脱敏样例，不代表已经完成正式用户验收测试、预生产验证或生产验收。'
         }

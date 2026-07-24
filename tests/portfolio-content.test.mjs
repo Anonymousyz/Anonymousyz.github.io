@@ -188,15 +188,39 @@ test('项目页在公开边界内渲染原型快照，不导向私有运行环�
   assert.doesNotMatch(source, /target=/);
 });
 
-test('原型快照以全宽原图和图下紧凑双栏说明呈现', async () => {
+test('工业技改项目以单张主图和可访问切换控件呈现两张快照', async () => {
   const source = await readFile(new URL('../src/pages/projects.astro', import.meta.url), 'utf8');
   const css = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
+  const industrialProject = projects.find(
+    (project) => project.id === 'industrial-digital-public-service-platform'
+  );
+  const oralCareProject = projects.find((project) => project.id === 'oral-care-mini-program');
 
+  assert.equal(industrialProject.prototypeShowcase.presentation, 'featured-switcher');
+  assert.equal(industrialProject.prototypeShowcase.images.length, 2);
+  for (const image of industrialProject.prototypeShowcase.images) {
+    assert.ok(image.displayZoom >= 1.2);
+    assert.ok(image.displayZoomMobile >= 2);
+  }
+  assert.equal(oralCareProject.prototypeShowcase.presentation, undefined);
+  assert.match(source, /project\.prototypeShowcase\.presentation === 'featured-switcher'/);
+  assert.match(source, /data-prototype-switcher/);
+  assert.match(source, /role="tablist"/);
+  assert.match(source, /aria-selected/);
+  assert.match(source, /aria-controls/);
+  assert.match(source, /role="tabpanel"/);
+  assert.match(source, /project-prototype-showcase__viewport/);
   assert.match(source, /class="project-prototype-showcase__description"/);
   assert.match(source, /class="project-prototype-showcase__boundary"/);
-  assert.match(css, /\.project-prototype-showcase__grid\s*\{[^}]*grid-template-columns:\s*1fr;/s);
-  assert.match(css, /\.project-prototype-showcase__item figcaption\s*\{[^}]*grid-template-columns:/s);
-  assert.doesNotMatch(css, /\.project-prototype-showcase__item img\s*\{[^}]*(?:aspect-ratio|object-fit)/s);
+  assert.match(css, /\.project-prototype-showcase__switcher\s*\{/s);
+  assert.match(css, /\.project-prototype-showcase__tab\[aria-selected="true"\]\s*\{/s);
+  assert.match(css, /\.project-prototype-showcase__viewport\s*\{[^}]*overflow:\s*hidden;/s);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(source, /--prototype-zoom-mobile/);
+  assert.match(
+    css,
+    /@media \(max-width: 560px\)[\s\S]*\.project-prototype-showcase__viewport\s*\{[^}]*aspect-ratio:\s*4\s*\/\s*3;[\s\S]*\.project-prototype-showcase__viewport img\s*\{[^}]*--prototype-active-zoom:\s*var\(--prototype-zoom-mobile/s
+  );
 });
 
 test('原型快照为图片保留真实尺寸以避免布局跳动', async () => {
