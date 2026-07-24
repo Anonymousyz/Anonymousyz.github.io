@@ -84,35 +84,17 @@ export const projects = [
       '已完成内部功能版本，覆盖项目台账、角色权限、审批状态和工作台。正式用户验收测试、预生产验证和生产验收尚未完成。'
     ],
     prototypeShowcase: {
-      presentation: 'featured-switcher',
-      status: '内部功能版本 · 界面快照',
-      intro: '以下是脱敏样例界面，展示项目台账、角色、风险和待办事项怎样集中到一个工作台。',
+      status: '公共门户首页 · 界面快照',
+      intro: '展示政策、项目与服务入口如何组织为面向使用者的公共界面。',
       images: [
         {
-          src: '/images/projects/tech-reform-cockpit.png',
-          width: 1265,
-          height: 712,
-          alt: '工业技术改造投资管理平台项目工作台的脱敏样例界面',
-          label: '项目工作台',
-          displayZoom: 1.24,
-          displayFocus: '100% 0%',
-          displayZoomMobile: 2.2,
-          displayFocusMobile: '18% 22%',
-          explanation: '工作台汇总项目台账、风险提示和各角色需要关注的信息，便于项目管理人员跟进。',
-          boundary: '界面使用脱敏样例，不含真实项目、组织信息和运行地址。'
-        },
-        {
-          src: '/images/projects/tech-reform-workflow.png',
-          width: 1265,
-          height: 712,
-          alt: '工业技术改造投资管理平台项目任务队列的脱敏样例界面',
-          label: '任务队列',
-          displayZoom: 1.24,
-          displayFocus: '100% 0%',
-          displayZoomMobile: 2.2,
-          displayFocusMobile: '18% 22%',
-          explanation: '待办事项按项目阶段、角色和期限排列，申报、反馈、验收和问题处理沿着同一条工作路径推进。',
-          boundary: '界面使用脱敏样例，不代表已经完成正式用户验收测试、预生产验证或生产验收。'
+          src: '/images/projects/tech-reform-portal.png',
+          width: 1440,
+          height: 900,
+          alt: '工业技术改造投资管理平台项目公共门户首页的脱敏样例界面',
+          label: '公共门户首页',
+          explanation: '政策信息、项目入口和服务指南以公共门户的方式集中呈现，便于使用者先了解事项、再进入办理。',
+          boundary: '脱敏样例界面，不含真实组织、项目、账号或运行地址。'
         }
       ]
     },

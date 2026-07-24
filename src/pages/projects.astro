@@ -66,93 +66,22 @@ import { projects } from '../data/portfolio.mjs';
               </div>
               <p>{project.prototypeShowcase.intro}</p>
             </div>
-            {project.prototypeShowcase.presentation === 'featured-switcher' ? (
-              <div class="project-prototype-showcase__switcher" data-prototype-switcher>
-                <div class="project-prototype-showcase__tabs" role="tablist" aria-label="选择界面快照">
-                  {project.prototypeShowcase.images.map((image, index) => {
-                    const tabId = `${project.id}-prototype-tab-${index + 1}`;
-                    const panelId = `${project.id}-prototype-panel-${index + 1}`;
-
-                    return (
-                      <button
-                        class="project-prototype-showcase__tab"
-                        id={tabId}
-                        type="button"
-                        role="tab"
-                        aria-selected={index === 0 ? 'true' : 'false'}
-                        aria-controls={panelId}
-                        tabindex={index === 0 ? 0 : -1}
-                        data-prototype-tab
-                      >
-                        <span>{String(index + 1).padStart(2, '0')}</span>
-                        {image.label}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div class="project-prototype-showcase__panels">
-                  {project.prototypeShowcase.images.map((image, index) => {
-                    const tabId = `${project.id}-prototype-tab-${index + 1}`;
-                    const panelId = `${project.id}-prototype-panel-${index + 1}`;
-
-                    return (
-                      <figure
-                        class="project-prototype-showcase__item project-prototype-showcase__panel"
-                        id={panelId}
-                        role="tabpanel"
-                        aria-labelledby={tabId}
-                        hidden={index !== 0}
-                        data-prototype-panel
-                      >
-                        <div class="project-prototype-showcase__stage">
-                          <a href={image.src} aria-label={'查看' + image.label + '大图'}>
-                            <span
-                              class="project-prototype-showcase__viewport"
-                              style={`--prototype-zoom: ${image.displayZoom ?? 1}; --prototype-focus: ${image.displayFocus ?? '50% 50%'}; --prototype-zoom-mobile: ${image.displayZoomMobile ?? image.displayZoom ?? 1}; --prototype-focus-mobile: ${image.displayFocusMobile ?? '56% 24%'};`}
-                            >
-                              <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />
-                            </span>
-                          </a>
-                        </div>
-                        <figcaption>
-                          <div class="project-prototype-showcase__description">
-                            <strong>{image.label}</strong>
-                            <p>{image.explanation}</p>
-                          </div>
-                          <small class="project-prototype-showcase__boundary">{image.boundary}</small>
-                        </figcaption>
-                      </figure>
-                    );
-                  })}
-                </div>
-
-                <noscript>
-                  <p class="project-prototype-showcase__noscript">
-                    {project.prototypeShowcase.images.map((image) => (
-                      <a href={image.src}>查看{image.label}原图</a>
-                    ))}
-                  </p>
-                </noscript>
-              </div>
-            ) : (
-              <div class="project-prototype-showcase__grid">
-                {project.prototypeShowcase.images.map((image) => (
-                  <figure class="project-prototype-showcase__item">
-                    <a href={image.src} aria-label={'查看' + image.label + '大图'}>
-                      <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />
-                    </a>
-                    <figcaption>
-                      <div class="project-prototype-showcase__description">
-                        <strong>{image.label}</strong>
-                        <p>{image.explanation}</p>
-                      </div>
-                      <small class="project-prototype-showcase__boundary">{image.boundary}</small>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            )}
+            <div class="project-prototype-showcase__grid">
+              {project.prototypeShowcase.images.map((image) => (
+                <figure class="project-prototype-showcase__item">
+                  <a href={image.src} aria-label={'查看' + image.label + '大图'}>
+                    <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" />
+                  </a>
+                  <figcaption>
+                    <div class="project-prototype-showcase__description">
+                      <strong>{image.label}</strong>
+                      <p>{image.explanation}</p>
+                    </div>
+                    <small class="project-prototype-showcase__boundary">{image.boundary}</small>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </section>
         )}
 
@@ -175,46 +104,6 @@ import { projects } from '../data/portfolio.mjs';
     ))}
   </main>
 
-  <script>
-    document.querySelectorAll('[data-prototype-switcher]').forEach((switcher) => {
-      const tabs = Array.from(switcher.querySelectorAll('[data-prototype-tab]'));
-      const panels = Array.from(switcher.querySelectorAll('[data-prototype-panel]'));
-
-      const activate = (nextTab, shouldFocus = false) => {
-        const panelId = nextTab.getAttribute('aria-controls');
-
-        tabs.forEach((tab) => {
-          const isActive = tab === nextTab;
-          tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-          tab.setAttribute('tabindex', isActive ? '0' : '-1');
-        });
-
-        panels.forEach((panel) => {
-          panel.toggleAttribute('hidden', panel.id !== panelId);
-        });
-
-        if (shouldFocus && nextTab instanceof HTMLElement) {
-          nextTab.focus();
-        }
-      };
-
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activate(tab));
-        tab.addEventListener('keydown', (event) => {
-          let nextIndex = index;
-
-          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
-          else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
-          else if (event.key === 'Home') nextIndex = 0;
-          else if (event.key === 'End') nextIndex = tabs.length - 1;
-          else return;
-
-          event.preventDefault();
-          activate(tabs[nextIndex], true);
-        });
-      });
-    });
-  </script>
 
   <SiteFooter />
 </Layout>
