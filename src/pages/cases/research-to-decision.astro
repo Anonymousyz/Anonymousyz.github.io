@@ -7,7 +7,7 @@ const stages = [
   ['01', '先说清要作的决定', '写清谁要决定什么、何时决定，以及继续拖延会有什么代价。'],
   ['02', '核对材料能否支持判断', '分开事实、判断、假设和待核对事项，并标出证据最薄弱的地方。'],
   ['03', '把可选做法摆在一起比较', '列出几种做法、各自取舍和风险，也说明出现什么证据就要修改建议。'],
-  ['04', '留下能够复查的记录', '保存决策包、负责人和实际反馈，下次讨论可以据此复核原判断。']
+  ['04', '留下可以复查的记录', '保存决策包、负责人和实际反馈，下次讨论可以据此复核原判断。']
 ];
 ---
 
@@ -57,7 +57,7 @@ const stages = [
             <p class="kicker">02 / 怎样工作</p>
             <h2>四步整理，不替人作决定</h2>
           </div>
-          <p>工具只负责整理材料结构。来源是否可靠、专业判断是否成立、风险能否承担和最终如何决定，都由具体负责人处理。</p>
+          <p>工具只负责整理材料结构。来源是否可靠、专业判断是否成立、风险能否承担、最终作什么决定，都由具体负责人处理。</p>
         </div>
         <div class="case-stages">
           {stages.map(([index, title, text]) => (
@@ -90,7 +90,7 @@ const stages = [
     <section class="section shell case-run">
       <div>
         <p class="kicker">04 / 60 秒试用</p>
-        <h2>先运行虚构样例，<br />再使用已经获准处理的材料。</h2>
+        <h2>先运行虚构样例。<br />使用真实材料前，请确认已经获准处理。</h2>
       </div>
       <pre><code>python -m pip install "https://github.com/Anonymousyz/research-to-decision-toolkit/releases/download/v0.6.0/research_to_decision_toolkit-0.6.0-py3-none-any.whl"
 r2d init brief.json
@@ -104,7 +104,7 @@ r2d report brief.json --output decision_report.md</code></pre>
           <p class="kicker">05 / 当前进展</p>
           <h2>目前做到哪一步</h2>
         </div>
-        <p>结构检查、来源核验和实际采用分别记录。当前版本已经通过结构和命令测试；外部复现和实际使用的记录仍在积累。</p>
+        <p>当前只验证工具能否运行、结构规则是否生效。来源是否可靠、专业判断是否成立和材料是否被采用，另行记录；外部复现和实际使用记录仍在积累。</p>
       </div>
       <div class="validation-list">
         <article class="validation-item">

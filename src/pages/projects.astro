@@ -15,8 +15,8 @@ import { projects } from '../data/portfolio.mjs';
   <main>
     <section class="editorial-hero shell">
       <p class="editorial-eyebrow">项目</p>
-      <h1>三个项目，<br />按进度如实记录</h1>
-      <p class="editorial-lead">这三项记录从研究、方案写到产品和软件。页面只使用脱敏文字和原型界面，不公开项目附件；尚未完成的阶段也会注明。</p>
+      <h1>三个项目</h1>
+      <p class="editorial-lead">三个项目分别做到可部署版本、内部功能版本和受控演示版。这里写清我的工作、当前进度和公开范围；界面只使用脱敏样例数据。</p>
     </section>
 
     <nav class="project-jump shell" aria-label="项目索引">
@@ -48,7 +48,7 @@ import { projects } from '../data/portfolio.mjs';
 
         <div class="project-facts">
           <article>
-            <span>处理方式</span>
+            <span>关键做法</span>
             <ul>{project.decisions.map((item) => <li>{item}</li>)}</ul>
           </article>
           <article>
@@ -62,7 +62,7 @@ import { projects } from '../data/portfolio.mjs';
             <div class="project-prototype-showcase__head">
               <div>
                 <p class="editorial-kicker">{project.prototypeShowcase.status}</p>
-                <h3 id={project.id + '-prototype-title'}>原型界面</h3>
+                <h3 id={project.id + '-prototype-title'}>界面快照</h3>
               </div>
               <p>{project.prototypeShowcase.intro}</p>
             </div>
@@ -91,13 +91,13 @@ import { projects } from '../data/portfolio.mjs';
             <p>{project.deliveryPath}</p>
           </article>
           <article>
-            <span>公开范围</span>
+            <span>公开内容</span>
             <ul>{project.publicScope.map((item) => <li>{item}</li>)}</ul>
           </article>
         </div>
 
         <div class="project-boundary">
-          <strong>公开边界</strong>
+          <strong>未公开内容</strong>
           <p>{project.boundary}</p>
         </div>
       </section>

@@ -22,7 +22,7 @@ test('研究页保留决策问题、证据链和结论树的完整路径', () =>
 test('多元思维页区分规律、工具与人物视角', () => {
   const article = methodBySlug['plural-thinking'];
   const text = JSON.stringify(article);
-  assert.match(article.lead, /^我不会一上来套模型/);
+  assert.match(article.lead, /^模型和思维工具用来提问，不能代替事实。/);
   assert.deepEqual(article.map.steps, [
     '目标：要解决什么问题',
     '事实：已经知道什么',
@@ -36,15 +36,15 @@ test('多元思维页区分规律、工具与人物视角', () => {
 test('学习、研究和写作页以明确的主体和动作开篇', () => {
   assert.match(
     methodBySlug.learning.lead,
-    /^我喜欢弄清新问题，也愿意为此花时间。开始学习时，我先确定/
+    /^好奇心让我愿意追问，但学习的先后由手头的问题决定。/
   );
   assert.match(
     methodBySlug['research-and-judgment'].lead,
-    /^研究要先说清一件事：谁将在什么时候作出什么决定。/
+    /^研究先要弄清：谁来决定、何时决定、有哪些选择。/
   );
   assert.match(
     methodBySlug.writing.lead,
-    /^写作要回答一个具体问题，也要把证据和判断交代清楚/
+    /^写作既帮助自己形成判断，也要让读者看懂并用得上。/
   );
 });
 
@@ -70,10 +70,10 @@ test('产品、视觉和工程页回答不同层次的问题', () => {
   const visual = methodBySlug['visual-information-design'];
   const engineering = methodBySlug['product-and-engineering'];
 
-  assert.match(product.lead, /^做产品，先要说明准备解决什么问题、为什么值得投入、准备用什么办法验证。/);
-  assert.match(JSON.stringify(product), /经营判断|问题验证|方案验证|MVP|停止条件/);
+  assert.match(product.lead, /^产品工作从一个具体问题开始：/);
+  assert.match(JSON.stringify(product), /立项判断|问题验证|方案验证|MVP|停止条件/);
 
-  assert.match(visual.lead, /^视觉设计首先要让人找到重点、看懂关系、分清状态、完成操作。/);
+  assert.match(visual.lead, /^视觉设计首先帮助人找到重点、看懂关系、分清状态、完成操作。/);
   assert.deepEqual(visual.map.steps, [
     '先让信息好找',
     '同一含义用同一规则',
@@ -83,17 +83,17 @@ test('产品、视觉和工程页回答不同层次的问题', () => {
   assert.match(JSON.stringify(visual), /已经能说清设计规则和人工检查方法/);
   assert.match(JSON.stringify(visual), /程序可以先找出偏差/);
 
-  assert.match(engineering.lead, /^工程工作要保证系统做得稳、有人维护、能够交接。/);
+  assert.match(engineering.lead, /^系统交付时，代码要能运行，后续也要有人维护、有人接手。/);
   assert.deepEqual(engineering.map.steps, [
-    '经营判断',
+    '立项判断',
     '问题验证',
     '方案验证',
-    '工程化设计',
+    '工程设计',
     '迭代实现',
     '交付检查',
     '发布交付',
-    '运营复盘',
-    '整理复用',
+    '运行复查',
+    '整理留存',
   ]);
   assert.match(JSON.stringify(engineering), /业务架构|应用架构|数据架构|技术架构/);
   assert.match(JSON.stringify(engineering), /AI Coding|代码审查|自动测试/);

@@ -34,7 +34,7 @@ test('多元思维把验证写成下一步行动', () => {
     '事实：已经知道什么',
     '验证：下一步先做什么',
   ]);
-  assert.match(articleText('plural-thinking'), /规模较小、结果可查、必要时能够撤回的行动/);
+  assert.match(articleText('plural-thinking'), /规模较小、结果可查、必要时可以撤回的行动/);
   assert.match(articleText('plural-thinking'), /通常先用一个主要工具/);
   assert.match(articleText('plural-thinking'), /再加一个模型也不会改变判断和行动时/);
 });
@@ -51,7 +51,7 @@ test('学习页区分个人偏好、参考方法和实际证据', () => {
 
 test('写作、产品、视觉和工程保留各自的选择与停止规则', () => {
   assert.match(articleText('writing'), /继续修改已经不会改变判断、结构或行动时/);
-  assert.match(articleText('product-definition'), /明确不做的内容|工程化设计入口/);
+  assert.match(articleText('product-definition'), /明确不做的内容|工程设计/);
   assert.match(articleText('visual-information-design'), /信息量和留白|程序读取|仍在整理/);
   assert.match(articleText('product-and-engineering'), /工程设计和交付检查/);
 });
@@ -61,7 +61,7 @@ test('方法关系只描述主要阅读关系和跨主线使用', () => {
     ['研究', '多元思维', '写作'],
     ['产品', '视觉', '工程'],
   ]);
-  assert.match(methodRelationships.note, /只列主要关系/);
+  assert.match(methodRelationships.note, /按主要用途归类/);
   assert.doesNotMatch(methodRelationships.note, /箭头/);
   assert.match(methodRelationships.note, /多元思维.*产品和工程/);
   assert.match(methodRelationships.note, /视觉.*研究材料.*软件界面/);
