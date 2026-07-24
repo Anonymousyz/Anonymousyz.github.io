@@ -8,9 +8,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "node --test tests/*.test.mjs",
+    "verify:copy": "node scripts/verify-copy.mjs",
     "verify:build": "node scripts/verify-build.mjs",
     "verify:links": "node scripts/verify-links.mjs",
-    "check": "npm test && npm run build && npm run verify:build && npm run verify:links"
+    "check": "npm test && npm run verify:copy && npm run build && npm run verify:build && npm run verify:links"
   },
   "devDependencies": {
     "astro": "^7.0.0"

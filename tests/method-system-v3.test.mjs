@@ -61,7 +61,7 @@ test('方法关系只描述主要阅读关系和跨主线使用', () => {
     ['研究', '多元思维', '写作'],
     ['产品', '视觉', '工程'],
   ]);
-  assert.match(methodRelationships.note, /按主要用途归类/);
+  assert.match(methodRelationships.note, /最常用的去处/);
   assert.doesNotMatch(methodRelationships.note, /箭头/);
   assert.match(methodRelationships.note, /多元思维.*产品和工程/);
   assert.match(methodRelationships.note, /视觉.*研究材料.*软件界面/);

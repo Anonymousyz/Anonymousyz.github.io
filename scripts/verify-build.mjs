@@ -40,7 +40,7 @@ const methodPages = [
 ];
 
 const methodV3Requirements = new Map([
-  ['/methods/', ['七项方法各自处理什么', '按主要用途归类']],
+  ['/methods/', ['七项方法各自处理什么', '最常用的去处']],
   ['/methods/learning/', ['提取练习', '近迁移', '元认知监测']],
   ['/methods/research-and-judgment/', ['把几种做法放在一起比较', '先做一步可验证的行动', '结论要带上条件']],
   ['/methods/plural-thinking/', ['规模较小、结果可查、必要时可以撤回的行动', '通常先用一个主要工具']],

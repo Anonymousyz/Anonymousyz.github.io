@@ -21,7 +21,7 @@ const personSchema = {
 
 <Layout
   title="Anonymousyz｜从分析到决策，从技术到应用"
-  description="三个项目、七项工作方法和四个公开仓库，记录我怎样从分析走向决策、从技术走向应用。"
+  description="三个项目、七项工作方法和四个公开仓库，记录项目实践、工作方法和公开工具。"
   image="/og/home.png"
   structuredData={personSchema}
 >
@@ -37,14 +37,14 @@ const personSchema = {
     <section class="editorial-section shell" id="projects">
       <div class="editorial-section__head">
         <h2>代表项目</h2>
-        <p>先看我做过什么，以及项目分别做到哪一步。</p>
+        <p>先看项目做了什么，也看各自做到哪一步。</p>
       </div>
       <ProjectIndex {featuredCase} {demos} />
     </section>
     <section class="editorial-section shell" id="methods">
       <div class="editorial-section__head">
         <h2>两条工作主线</h2>
-        <p>这些做法分成七项，分别写在方法页。</p>
+        <p>七项方法分别说明研究、多元思维、写作、产品、视觉、工程和持续学习。</p>
       </div>
       <HomeMethodSystem relationships={methodRelationships} />
     </section>
@@ -52,7 +52,7 @@ const personSchema = {
     <section class="editorial-section shell" id="works">
       <div class="editorial-section__head">
         <h2>公开作品</h2>
-        <p>四个仓库都可以直接查看；版本、样例和使用方法也在其中。</p>
+        <p>每个仓库都附了版本、样例、用法和使用边界。</p>
       </div>
       <PublicWorkIndex works={tools} />
     </section>

@@ -268,7 +268,7 @@ test('首页按方法、项目和公开作品组织内容', async () => {
   assert.match(source, /PublicWorkIndex/);
   assert.match(source, /heroCopy/);
   assert.match(source, /id="methods"/);
-  assert.match(source, /先看我做过什么，以及项目分别做到哪一步/);
+  assert.match(source, /先看项目做了什么，也看各自做到哪一步/);
   assert.doesNotMatch(source, /能力证明|成熟度/);
   assert.doesNotMatch(source, /DeliveryRail|WorkLoop|EvidenceBadge/);
 });
