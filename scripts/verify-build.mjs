@@ -30,7 +30,7 @@ const methods = await readFile(path.join(root, 'methods/index.html'), 'utf8');
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 
 const methodPages = [
-  ['learning', '持续学习｜好奇心 · 目标 · 检验 · 调整'],
+  ['learning', '持续学习｜好奇心 · 问题 · 检验 · 调整'],
   ['research-and-judgment', '研究｜决策问题 · 证据链 · 结论树'],
   ['plural-thinking', '多元思维｜规律 · 工具 · 视角'],
   ['writing', '写作｜判断 · 证据 · 表达'],
@@ -40,7 +40,7 @@ const methodPages = [
 ];
 
 const methodV3Requirements = new Map([
-  ['/methods/', ['七项方法各自处理什么', '最常用的去处']],
+  ['/methods/', ['7 项方法各自处理什么', '最常用的场景']],
   ['/methods/learning/', ['提取练习', '近迁移', '元认知监测']],
   ['/methods/research-and-judgment/', ['把几种做法放在一起比较', '先做一步可验证的行动', '结论要带上条件']],
   ['/methods/plural-thinking/', ['规模较小、结果可查、必要时可以撤回的行动', '通常先用一个主要工具']],
@@ -64,7 +64,7 @@ assert.match(index, /研究、项目与公开作品/);
 assert.match(index, /从分析到决策/);
 assert.match(index, /从技术到应用/);
 assert.match(index, /两条工作主线/);
-assert.match(index, /查看全部七项方法/);
+assert.match(index, /查看 7 项工作方法/);
 assert.doesNotMatch(index, /长期主义者|终身学习者/);
 assert.match(index, /工业绿色微电网评价软件/);
 assert.match(index, /工业技术改造投资管理平台项目/);
@@ -114,7 +114,7 @@ assert.match(works, /ai-ready report assessment\.json/);
 assert.match(works, /SoftwareSourceCode/);
 assert.match(works, /og\/works\.png/);
 
-assert.match(about, /过去八年，我做过产业研究、政策分析和重大项目/);
+assert.match(about, /过去 8 年，我做产业研究、政策分析和重大项目/);
 
 for (const file of ['home.png', 'projects.png', 'works.png', 'about.png']) {
   await access(path.join(root, 'og', file));

@@ -48,7 +48,7 @@ test('首页三条原则使用已确认的公开方法原文', () => {
       href: '/methods/writing/'
     },
     {
-      title: '发布以后，问题仍要有人管',
+      title: '发布以后，问题要有人管',
       description: '交付时写明当前版本、已知限制、操作方法和负责人。',
       href: '/methods/product-and-engineering/'
     }

@@ -44,7 +44,9 @@ test('学习页区分个人偏好、参考方法和实际证据', () => {
   for (const term of ['提取练习', '近迁移', '远迁移', '元认知监测']) {
     assert.match(text, new RegExp(term));
   }
-  assert.match(text, /学习方法只在需要时使用/);
+  assert.match(text, /学习方法按需要来用/);
+  assert.match(text, /手头要解决什么问题/);
+  assert.doesNotMatch(text, /我会追问一个判断为什么成立/);
   assert.match(text, /只能说明偏好与过程/);
   assert.doesNotMatch(text, /记忆保持率|≥\s*85%|学习 KPI|25 分钟/);
 });
@@ -61,7 +63,7 @@ test('方法关系只描述主要阅读关系和跨主线使用', () => {
     ['研究', '多元思维', '写作'],
     ['产品', '视觉', '工程'],
   ]);
-  assert.match(methodRelationships.note, /最常用的去处/);
+  assert.match(methodRelationships.note, /最常用的场景/);
   assert.doesNotMatch(methodRelationships.note, /箭头/);
   assert.match(methodRelationships.note, /多元思维.*产品和工程/);
   assert.match(methodRelationships.note, /视觉.*研究材料.*软件界面/);

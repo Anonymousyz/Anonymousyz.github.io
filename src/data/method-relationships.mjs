@@ -25,8 +25,8 @@ export const methodRelationships = {
       ],
     },
   ],
-  learning: '持续学习：新证据或实际结果不合原判断，就及时修改。',
-  note: '图中只标出每项方法最常用的去处。多元思维也可用于产品和工程；写作贯穿各类文档；视觉设计既服务研究材料，也服务软件界面。',
+  learning: '持续学习：新证据或实际结果与原判断不一致时，修改原判断。',
+  note: '图中只列每项方法最常用的场景。多元思维也可用于产品和工程，写作贯穿各类文档，视觉设计既服务研究材料，也服务软件界面。',
 };
 
 export const homepagePrinciples = [
@@ -41,7 +41,7 @@ export const homepagePrinciples = [
     href: '/methods/writing/',
   },
   {
-    title: '发布以后，问题仍要有人管',
+    title: '发布以后，问题要有人管',
     description: '交付时写明当前版本、已知限制、操作方法和负责人。',
     href: '/methods/product-and-engineering/',
   },

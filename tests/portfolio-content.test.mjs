@@ -75,7 +75,7 @@ test('一级定位保持用户确认的原文', () => {
 test('首页事实说明保持确认稿', () => {
   assert.equal(
     heroCopy,
-    '过去八年，我做过产业研究、政策分析和重大项目，也参与过产品和软件建设。这里有三个项目、七项工作方法和四个公开仓库。'
+    '过去 8 年，我做产业研究、政策分析和重大项目，也参与产品和软件建设。这个网站收录 3 个项目、7 项工作方法和 4 个公开仓库。'
   );
 });
 
@@ -268,7 +268,7 @@ test('首页按方法、项目和公开作品组织内容', async () => {
   assert.match(source, /PublicWorkIndex/);
   assert.match(source, /heroCopy/);
   assert.match(source, /id="methods"/);
-  assert.match(source, /先看项目做了什么，也看各自做到哪一步/);
+  assert.match(source, /先看项目解决什么问题，也看各自做到哪一步/);
   assert.doesNotMatch(source, /能力证明|成熟度/);
   assert.doesNotMatch(source, /DeliveryRail|WorkLoop|EvidenceBadge/);
 });

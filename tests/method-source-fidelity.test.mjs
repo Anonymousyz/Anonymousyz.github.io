@@ -22,7 +22,7 @@ test('研究页保留决策问题、证据链和结论树的完整路径', () =>
 test('多元思维页区分规律、工具与人物视角', () => {
   const article = methodBySlug['plural-thinking'];
   const text = JSON.stringify(article);
-  assert.match(article.lead, /^模型和思维工具用来多问几句，不能代替事实。/);
+  assert.match(article.lead, /^遇到复杂问题，我会换几个角度看一看，找出原判断可能漏掉的条件。/);
   assert.deepEqual(article.map.steps, [
     '目标：要解决什么问题',
     '事实：已经知道什么',
@@ -36,15 +36,15 @@ test('多元思维页区分规律、工具与人物视角', () => {
 test('学习、研究和写作页以明确的主体和动作开篇', () => {
   assert.match(
     methodBySlug.learning.lead,
-    /^我会追问一个判断为什么成立，也会弄清一个系统为什么这样运转。/
+    /^遇到拿不准的判断，或第一次接触的系统，我会去查它的依据和运行方式。/
   );
   assert.match(
     methodBySlug['research-and-judgment'].lead,
-    /^研究先弄清：谁来决定、何时决定、有哪些选择。/
+    /^研究是为一项具体决定服务的：谁来决定、何时决定、有哪些选择。/
   );
   assert.match(
     methodBySlug.writing.lead,
-    /^写作先帮我把判断想明白，也要让读者看懂、用得上。/
+    /^写作一面帮我把判断理清，一面把它讲给读者。/
   );
 });
 
@@ -70,10 +70,10 @@ test('产品、视觉和工程页回答不同层次的问题', () => {
   const visual = methodBySlug['visual-information-design'];
   const engineering = methodBySlug['product-and-engineering'];
 
-  assert.match(product.lead, /^做产品，先从一个具体问题开始：/);
+  assert.match(product.lead, /^产品工作先回答一件事：/);
   assert.match(JSON.stringify(product), /立项判断|问题验证|方案验证|MVP|停止条件/);
 
-  assert.match(visual.lead, /^视觉设计先让人找到重点、看懂关系、分清状态、完成操作。/);
+  assert.match(visual.lead, /^视觉设计要让人找到重点、看懂关系、分清状态，也知道下一步怎么做。/);
   assert.deepEqual(visual.map.steps, [
     '先让信息好找',
     '同一含义用同一规则',
@@ -83,7 +83,7 @@ test('产品、视觉和工程页回答不同层次的问题', () => {
   assert.match(JSON.stringify(visual), /已经能说清设计规则和人工检查方法/);
   assert.match(JSON.stringify(visual), /程序可以先找出偏差/);
 
-  assert.match(engineering.lead, /^交付一套系统，代码要能运行，后续也要有人维护、有人接手。/);
+  assert.match(engineering.lead, /^交付一套系统，不只看代码能不能运行，还要看后来有没有人能维护、接手。/);
   assert.deepEqual(engineering.map.steps, [
     '立项判断',
     '问题验证',
