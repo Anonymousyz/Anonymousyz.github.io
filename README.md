@@ -2,6 +2,8 @@
 
 [Anonymousyz](https://github.com/Anonymousyz) 的公开作品与写作网站，使用 Astro 构建，由 GitHub Pages 发布。
 
+For project status, public-material boundaries, and feedback, see [STATUS.md](STATUS.md).
+
 ## 本地开发
 
 ```bash
