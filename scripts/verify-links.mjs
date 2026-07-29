@@ -70,7 +70,7 @@ function safeDecode(value, label) {
 }
 
 function candidatesFor(url) {
-  const pathname = safeDecode(url.pathname, 'path');
+  const pathname = safeDecode(url.pathname, 'path').replace(/\\/g, '/');
   const relative = pathname.replace(/^\/+/, '');
 
   if (pathname === '/') return [path.join(root, 'index.html')];
