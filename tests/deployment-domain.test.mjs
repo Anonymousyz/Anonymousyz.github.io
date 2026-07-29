@@ -25,7 +25,7 @@ test('站点以 decideandbuild.com 作为唯一公开域名', async () => {
   assert.match(sitemap, /<loc>https:\/\/decideandbuild\.com\/<\/loc>/);
   assert.match(linkVerifier, /const siteOrigin = 'https:\/\/decideandbuild\.com';/);
   assert.match(buildVerifier, /https:\/\/decideandbuild/);
-  assert.match(readme, /Website: https:\/\/decideandbuild\.com/);
+  assert.match(readme, /网站：https:\/\/decideandbuild\.com/);
 
   for (const content of [config, home, robots, sitemap, linkVerifier, buildVerifier, readme]) {
     assert.doesNotMatch(content, /https:\/\/anonymousyz\.github\.io/);

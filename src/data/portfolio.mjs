@@ -1,6 +1,6 @@
 export const positioning = ['从分析到决策', '从技术到应用'];
 
-export const heroCopy = '过去 8 年，我做产业研究、政策分析和重大项目，也参与产品和软件建设。这个网站收录 3 个项目、7 项工作方法和 4 个公开仓库。';
+export const heroCopy = '过去 8 年，我做产业研究、政策分析和重大项目，也参与产品和软件建设。这个网站收录 3 个项目、7 项工作方法和 5 个公开仓库。';
 
 export const featuredCase = {
   index: '01',
@@ -205,7 +205,7 @@ export const tools = [
       kind: 'guide',
       label: '查找顺序',
       items: [
-        '打开 Quick decision map',
+        '打开 README 顶部的 Start here',
         '按问题类型进入对应分类',
         '采用前核对版本、许可证和维护状态'
       ]
@@ -218,22 +218,44 @@ export const tools = [
     index: '04',
     title: '高质量 AI 写作',
     question: '方案、报告或技术文档署名前，怎么判断它经不经得起审阅？',
-    summary: '按立意、逻辑、来源、分寸、字句、文气和得体程度检查文稿，并提供脱敏改稿示例和可安装的审稿技能。',
+    summary: '按立意、逻辑、取舍、来源、分寸、陈言、文气和得体检查文稿，并提供脱敏改稿示例和可安装的审稿技能。',
     homeSummary: '一套供方案、报告和技术文档署名前使用的审稿标准。',
     status: '持续维护',
-    version: 'v0.7.0',
+    version: 'v0.8.1',
     runtime: 'Markdown 标准与 Agent Skills',
     quickStart: {
       kind: 'guide',
       label: '阅读顺序',
       items: [
-        '从 STANDARD.md 了解写前模式、一票否决与三层八维',
-        '按 principles/ 查看每个维度的问句、病征和改法',
+        '从 STANDARD.md 了解署前复查、否决情形和八个维度',
+        '按 principles/ 查看每个维度的定义、问句和改法',
         '安装 pre-sign-review，在署名前做一次全检'
       ]
     },
     proofTypes: ['评审标准', '脱敏判例', '测试', 'Agent Skills'],
     methodBoundary: '它只提供审稿标准和检查顺序，不能代替事实核查、专业审核，也不能替作者承担署名责任。',
     href: 'https://github.com/Anonymousyz/quality-ai-writing'
+  },
+  {
+    index: '05',
+    title: 'AI 上线否决卡',
+    question: '一份 AI 上线方案还缺哪些条件？',
+    summary: '按数据、人工复核、日志、回滚、质量和成本逐项追问，形成可带进评审会的否决卡。',
+    homeSummary: '一项用于审查 AI 上线方案的结构化红队技能。',
+    status: '可公开复查',
+    version: '持续维护',
+    runtime: 'Claude Code、Cursor、Codex',
+    quickStart: {
+      kind: 'guide',
+      label: '使用步骤',
+      items: [
+        '安装 ai-launch-red-team 技能',
+        '粘贴准备上线或试点的方案描述',
+        '根据否决卡补齐证据、责任和控制条件'
+      ]
+    },
+    proofTypes: ['否决条件', '评审维度', '虚构示例', 'Agent Skill'],
+    methodBoundary: '技能只根据方案描述提出缺口和追问，不核实事实，也不构成批准。',
+    href: 'https://github.com/Anonymousyz/ai-launch-red-team'
   }
 ];

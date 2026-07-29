@@ -75,7 +75,7 @@ test('一级定位保持用户确认的原文', () => {
 test('首页事实说明保持确认稿', () => {
   assert.equal(
     heroCopy,
-    '过去 8 年，我做产业研究、政策分析和重大项目，也参与产品和软件建设。这个网站收录 3 个项目、7 项工作方法和 4 个公开仓库。'
+    '过去 8 年，我做产业研究、政策分析和重大项目，也参与产品和软件建设。这个网站收录 3 个项目、7 项工作方法和 5 个公开仓库。'
   );
 });
 
@@ -234,15 +234,15 @@ test('证据状态只有三种', () => {
   ]);
 });
 
-test('公开作品保留四个入口', () => {
-  assert.equal(tools.length, 4);
+test('公开作品列出五个入口', () => {
+  assert.equal(tools.length, 5);
   for (const tool of tools) {
     assert.match(tool.href, /^https:\/\/github\.com\/Anonymousyz\//);
   }
 });
 
 test('公开作品提供版本、检查路径和方法边界', () => {
-  assert.deepEqual(tools.map((item) => item.version), ['v0.6.0', 'v0.6.0', '持续维护', 'v0.7.0']);
+  assert.deepEqual(tools.map((item) => item.version), ['v0.6.0', 'v0.6.0', '持续维护', 'v0.8.1', '持续维护']);
 
   for (const tool of tools) {
     assert.ok(tool.runtime.length > 0);
@@ -257,7 +257,8 @@ test('首页公开作品摘要保持确认稿', () => {
     '一组用于界定研究问题、整理证据和比较方案的模板。',
     '帮助团队检查 AI 原型进入真实业务前还缺什么。',
     '整理 AI 系统用于真实业务前可查的工程和治理资料。',
-    '一套供方案、报告和技术文档署名前使用的审稿标准。'
+    '一套供方案、报告和技术文档署名前使用的审稿标准。',
+    '一项用于审查 AI 上线方案的结构化红队技能。'
   ]);
 });
 
