@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HomeMethodSystem from '../components/HomeMethodSystem.astro';
+import HomeProjectEvidence from '../components/HomeProjectEvidence.astro';
 import ProjectIndex from '../components/ProjectIndex.astro';
 import PublicWorkIndex from '../components/PublicWorkIndex.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/homepage-dual-axis.css';
 import { methodRelationships } from '../data/method-relationships.mjs';
-import { demos, featuredCase, heroCopy, positioning, tools } from '../data/portfolio.mjs';
+import { demos, featuredCase, heroCopy, homeEvidence, positioning, tools } from '../data/portfolio.mjs';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -26,37 +28,42 @@ const personSchema = {
   structuredData={personSchema}
 >
   <SiteHeader current="home" />
-  <main>
-    <section class="editorial-hero shell">
-      <p class="editorial-eyebrow">研究、项目与公开作品</p>
-      <h1>{positioning[0]}<br />{positioning[1]}</h1>
-      <p class="editorial-lead">{heroCopy}</p>
-    </section>
-
-
-    <section class="editorial-section shell" id="projects">
-      <div class="editorial-section__head">
-        <h2>代表项目</h2>
-        <p>先看项目解决什么问题，也看各自做到哪一步。</p>
+  <main class="home-main">
+    <section class="home-hero" id="projects">
+      <div class="home-hero__inner shell">
+        <div class="home-hero__copy">
+          <p class="editorial-eyebrow">研究、项目与公开作品</p>
+          <h1>{positioning[0]}<br />{positioning[1]}</h1>
+          <p>{heroCopy}</p>
+          <a href="#project-records">查看项目记录 <span aria-hidden="true">↓</span></a>
+        </div>
+        <HomeProjectEvidence evidence={homeEvidence} />
       </div>
-      <ProjectIndex {featuredCase} {demos} />
     </section>
-    <section class="editorial-section shell" id="methods">
-      <div class="editorial-section__head">
+
+    <section class="home-methods shell" id="methods">
+      <header>
         <h2>两条工作主线</h2>
-        <p>7 项方法分别处理研究、多元思维、写作、产品、视觉、工程和持续学习。</p>
-      </div>
+        <p>项目解决具体问题；方法记录可重复使用并持续校正的做法。</p>
+      </header>
       <HomeMethodSystem relationships={methodRelationships} />
     </section>
 
-    <section class="editorial-section shell" id="works">
-      <div class="editorial-section__head">
-        <h2>公开作品</h2>
-        <p>每个仓库都说明使用方式和使用边界，并列出可查看的版本、样例或资料。</p>
-      </div>
-      <PublicWorkIndex works={tools} />
+    <section class="home-project-records shell" id="project-records">
+      <header>
+        <h2>项目记录</h2>
+        <p>三个项目分别说明问题、参与工作和公开边界。</p>
+      </header>
+      <ProjectIndex {featuredCase} {demos} />
     </section>
 
+    <section class="home-public-works shell" id="works">
+      <header>
+        <h2>公开作品</h2>
+        <p>每个仓库都说明使用方式、版本和适用边界。</p>
+      </header>
+      <PublicWorkIndex works={tools} />
+    </section>
   </main>
   <SiteFooter />
 </Layout>

@@ -262,18 +262,76 @@ test('首页公开作品摘要保持确认稿', () => {
   ]);
 });
 
-test('首页按方法、项目和公开作品组织内容', async () => {
+test('首页首屏证据从工业技术改造项目的唯一公共门户图派生', () => {
+  const project = projects.find((item) => item.id === 'industrial-digital-public-service-platform');
+  const image = project.prototypeShowcase.images[0];
+
+  assert.ok(portfolio.homeEvidence, 'homeEvidence must be exported');
+  assert.equal(portfolio.homeEvidence.projectId, project.id);
+  assert.equal(portfolio.homeEvidence.projectTitle, project.title);
+  assert.equal(portfolio.homeEvidence.src, image.src);
+  assert.equal(portfolio.homeEvidence.alt, image.alt);
+  assert.equal(portfolio.homeEvidence.boundary, image.boundary);
+  assert.equal(portfolio.homeEvidence.href, '/projects/#industrial-digital-public-service-platform');
+});
+
+test('首页首屏以真实项目界面呈现证据', async () => {
+  const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
+
+  assert.match(source, /HomeProjectEvidence/);
+  assert.match(source, /homeEvidence/);
+  assert.doesNotMatch(source, /HomeProjectArtifact/);
+});
+
+test('首页按成果、方法、项目记录和公开作品组织内容', async () => {
   const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
   assert.match(source, /HomeMethodSystem/);
   assert.match(source, /ProjectIndex/);
   assert.match(source, /PublicWorkIndex/);
   assert.match(source, /heroCopy/);
   assert.match(source, /id="methods"/);
-  assert.match(source, /先看项目解决什么问题，也看各自做到哪一步/);
+  assert.match(source, /三个项目分别说明问题、参与工作和公开边界/);
   assert.doesNotMatch(source, /能力证明|成熟度/);
   assert.doesNotMatch(source, /DeliveryRail|WorkLoop|EvidenceBadge/);
 });
 
+test('首页项目证据保留图像尺寸、替代文本和公开边界', async () => {
+  const source = await readFile(new URL('../src/components/HomeProjectEvidence.astro', import.meta.url), 'utf8');
+  assert.match(source, /src=\{evidence\.src\}/);
+  assert.match(source, /width=\{evidence\.width\}/);
+  assert.match(source, /height=\{evidence\.height\}/);
+  assert.match(source, /alt=\{evidence\.alt\}/);
+  assert.match(source, /evidence\.boundary/);
+  assert.match(source, /href=\{evidence\.href\}/);
+  assert.doesNotMatch(source, /\b\d+(?:\.\d+)?%|实时|在线运行|监控大屏/);
+});
+test('首页以成果、方法、项目记录和公开作品组织叙事', async () => {
+  const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
+  assert.match(source, /HomeProjectEvidence/);
+  assert.ok(source.indexOf('home-hero') < source.indexOf('id="methods"'));
+  assert.ok(source.indexOf('id="methods"') < source.indexOf('id="project-records"'));
+  assert.ok(source.indexOf('id="project-records"') < source.indexOf('id="works"'));
+});
+test('首页双轴视觉使用真实界面、矿物色和窄屏单列规则', async () => {
+  const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
+  assert.match(page, /homepage-dual-axis\.css/);
+  assert.doesNotMatch(page, /homepage-artifact\.css/);
+
+  const css = await readFile(new URL('../src/styles/homepage-dual-axis.css', import.meta.url), 'utf8');
+  assert.match(css, /--home-axis-ink:/);
+  assert.match(css, /--home-axis-mineral:/);
+  assert.match(css, /\.home-project-evidence__image-wrap/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0, 5fr\) minmax\(380px, 7fr\)/);
+  assert.match(css, /@media \(max-width: 850px\)/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.doesNotMatch(css, /rotateY|rotateX|home-project-artifact|22px 22px/);
+});
+test('首页方法层把两条主线作为可读标题呈现', async () => {
+  const source = await readFile(new URL('../src/components/HomeMethodSystem.astro', import.meta.url), 'utf8');
+  assert.match(source, /<h3[^>]*>\{path\.title\}<\/h3>/);
+  assert.match(source, /path\.label/);
+  assert.match(source, /home-method-path__head/);
+});
 test('作品页只从集中数据渲染公开工具', async () => {
   const source = await readFile(new URL('../src/pages/works.astro', import.meta.url), 'utf8');
   assert.match(source, /ToolProof/);
@@ -480,7 +538,7 @@ test('集中内容不包含私域话术、私有路径或运行信息', async ()
   }
 });
 
-test('共享布局使用编辑式页面外框', async () => {
+test('共享布局使用冷色页面基线', async () => {
   const layout = await readFile(new URL('../src/layouts/Layout.astro', import.meta.url), 'utf8');
   const header = await readFile(new URL('../src/components/SiteHeader.astro', import.meta.url), 'utf8');
   const footer = await readFile(new URL('../src/components/SiteFooter.astro', import.meta.url), 'utf8');
@@ -488,7 +546,7 @@ test('共享布局使用编辑式页面外框', async () => {
 
   assert.match(layout, /editorial\.css/);
   assert.match(layout, /page-frame/);
-  assert.match(layout, /#f4f1e9/);
+  assert.match(layout, /#eef3f8/);
   assert.match(header, /label: '方法'/);
   assert.match(header, /href: '\/methods\/'/);
   assert.doesNotMatch(header, /brand-mark/);
@@ -503,9 +561,23 @@ test('首页不再呈现身份定义，身份说明仅保留在关于页', async
   const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
   assert.doesNotMatch(source, /HomeIdentityStrip|identityProfiles|id="identity"/);
   assert.match(source, /<p class="editorial-eyebrow">研究、项目与公开作品<\/p>/);
-  assert.match(source, /<p class="editorial-lead">\{heroCopy\}<\/p>/);
-  assert.ok(source.indexOf('editorial-hero') < source.indexOf('id="methods"'));
+  assert.match(source, /<p>\{heroCopy\}<\/p>/);
+  assert.ok(source.indexOf('home-hero') < source.indexOf('id="methods"'));
   assert.ok(source.indexOf('id="methods"') < source.indexOf('id="works"'));
+});
+test('首页首屏提供直接进入代表项目的主入口', async () => {
+  const source = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
+  assert.match(source, /href=\"#project-records\"/);
+  assert.match(source, />查看项目记录/);
+});
+
+test('首页外壳不再使用暖色厚框或背景网格', async () => {
+  const editorial = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
+  const global = await readFile(new URL('../src/styles/global.css', import.meta.url), 'utf8');
+  assert.match(editorial, /--editorial-canvas:\s*#eef3f8/i);
+  assert.doesNotMatch(editorial, /border:\s*4px solid var\(--editorial-green\)/);
+  assert.doesNotMatch(editorial, /double var\(--editorial-rule\)/);
+  assert.doesNotMatch(global, /\.page-grid\s*\{[^}]*background-image:/s);
 });
 test('身份和方法在桌面双栏、移动端单栏', async () => {
   const css = await readFile(new URL('../src/styles/editorial.css', import.meta.url), 'utf8');
@@ -587,11 +659,11 @@ test('编辑式导航与细字元数据不再使用低对比旧色值', async ()
   assert.doesNotMatch(globalCss, /#078e7d|#087f71/i);
   assert.match(
     globalCss,
-    /\.mobile-nav nav a\.active\s*\{[^}]*color:\s*var\(--editorial-accent,\s*#8b412d\);/s
+    /\.mobile-nav nav a\.active\s*\{[^}]*color:\s*var\(--editorial-accent,\s*#1769aa\);/s
   );
   assert.match(
     globalCss,
-    /\.tool-proof__header > span,\s*\.tool-proof dt\s*\{[^}]*color:\s*var\(--editorial-accent,\s*#8b412d\);/s
+    /\.tool-proof__header > span,\s*\.tool-proof dt\s*\{[^}]*color:\s*var\(--editorial-accent,\s*#1769aa\);/s
   );
   assert.match(
     editorialCss,

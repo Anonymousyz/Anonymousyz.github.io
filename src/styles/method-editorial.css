@@ -5,7 +5,7 @@
 .method-article__header {
   max-width: 900px;
   padding-bottom: 52px;
-  border-bottom: 4px double var(--editorial-rule);
+  border-bottom: 1px solid var(--editorial-rule);
 }
 
 .method-article__header .back-link {
@@ -229,7 +229,7 @@
 .method-boundaries {
   margin-top: 56px;
   padding: 30px 0 0;
-  border-top: 4px double var(--editorial-rule);
+  border-top: 1px solid var(--editorial-rule);
 }
 
 .method-boundaries ul {
@@ -368,7 +368,7 @@
 
 .method-relationship {
   padding: 0 0 2rem;
-  border-bottom: 3px double var(--editorial-rule);
+  border-bottom: 1px solid var(--editorial-rule);
 }
 
 .method-relationship > header {

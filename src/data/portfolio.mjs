@@ -147,6 +147,20 @@ export const projects = [
   }
 ];
 
+const techReformProject = projects.find((item) => item.id === 'industrial-digital-public-service-platform');
+const techReformPortal = techReformProject.prototypeShowcase.images[0];
+
+export const homeEvidence = {
+  projectId: techReformProject.id,
+  projectTitle: techReformProject.title,
+  label: techReformPortal.label,
+  src: techReformPortal.src,
+  width: techReformPortal.width,
+  height: techReformPortal.height,
+  alt: techReformPortal.alt,
+  boundary: techReformPortal.boundary,
+  href: `/projects/#${techReformProject.id}`
+};
 export const tools = [
   {
     index: '01',

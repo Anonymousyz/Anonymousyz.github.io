@@ -1,0 +1,17 @@
+---
+const { evidence } = Astro.props;
+---
+
+<figure class="home-project-evidence" aria-labelledby="home-project-evidence-title">
+  <figcaption>
+    <span>项目界面 · {evidence.label}</span>
+    <strong id="home-project-evidence-title">{evidence.projectTitle}</strong>
+  </figcaption>
+  <div class="home-project-evidence__image-wrap">
+    <img src={evidence.src} width={evidence.width} height={evidence.height} alt={evidence.alt} loading="eager" decoding="async" />
+  </div>
+  <footer>
+    <span>{evidence.boundary}</span>
+    <a href={evidence.href}>查看项目记录 <span aria-hidden="true">→</span></a>
+  </footer>
+</figure>
